@@ -65,12 +65,20 @@ const mapa =
       <!-- 2. Hero + headline -->
       <section class="hero" style={`--hero: url('${heroFundo}')`}>
         <div class="wrap wrap-820">
-          <p class="hero-olho" data-edit>"Sentado na Mesa dos Grandes... Mesmo Que Você Não Conheça Quase Ninguém... No AMBIENTE CERTO!"</p>
-          <h1>
-            <span data-edit>O Que Pode Acontecer Com o Seu Negócio Quando Você Está na Sala Certa, Com as Pessoas Certas?</span>
-          </h1>
-          <p class="evento-nome">Inteligência Emocional para Liderar o Seu Negócio</p>
-          <p class="evento-local">Um encontro restrito no Tênis Clube de Campinas.</p>
+          <div class="hero-intro">
+            <p class="hero-olho" data-edit><span class="frase">"Sentado na mesa dos grandes…</span> <span class="frase">mesmo que você não conheça quase ninguém…</span> <span class="frase">no AMBIENTE CERTO!"</span></p>
+            <h1>
+              <span data-edit><span class="frase"><span class="frase">O Que Pode Acontecer</span> <span class="frase">Com o Seu Negócio</span></span> <span class="frase"><span class="frase">Quando Você Está</span> <span class="frase">na Sala Certa,</span></span> <span class="frase">Com as Pessoas Certas?</span></span>
+            </h1>
+          </div>
+          <div class="evento-resumo">
+            <p class="evento-nome"><span class="frase">Inteligência Emocional</span> <span class="frase">para Liderar o Seu Negócio</span></p>
+            <p class="evento-local">Um encontro restrito no Tênis Clube de Campinas.</p>
+          </div>
+          <a class="btn btn-lg hero-cta" href="#ingressos">{cta}</a>
+          <p class="nota">
+            <span class="frase">{evento.dataShow}</span> · <strong class="frase">Vagas limitadas</strong>
+          </p>
           <img
             class="hero-foto"
             src="/images/hero.webp"
@@ -78,10 +86,6 @@ const mapa =
             width="1254"
             height="1254"
           />
-          <a class="btn btn-lg hero-cta" href="#ingressos">{cta}</a>
-          <p class="nota">
-            Treinamento presencial de 1 dia · Tênis Clube de Campinas · <strong>Vagas limitadas</strong>
-          </p>
           <p class="seta" aria-hidden="true">▼</p>
         </div>
       </section>
