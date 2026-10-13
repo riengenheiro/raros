@@ -8,6 +8,7 @@ const CAMPOS = new Set([
   "lugares",
   "produtora",
   "whatsapp",
+  "telefone",
   "razaoSocial",
   "cnpj",
 ]);

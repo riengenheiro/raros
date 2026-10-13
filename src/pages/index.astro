@@ -17,14 +17,15 @@ const evento = {
   video: "",
   vendidos: 78,
   lugares: 23,
-  produtora: "Sua Produtora",
-  razaoSocial: "SUA PRODUTORA LTDA",
-  cnpj: "00.000.000/0001-00",
+  produtora: "G&R Instituto Educacional",
+  razaoSocial: "G&R INSTITUTO EDUCACIONAL LTDA",
+  cnpj: "39.969.764/0001-25",
+  telefone: "(19) 99432-8278",
   whatsapp: "(XX) 9 XXXX-XXXX",
   links: {
-    combo: "https://pay.hotmart.com/SEU-LINK-COMBO",
-    dupla: "https://pay.hotmart.com/SEU-LINK-DUPLA",
-    galera: "https://pay.hotmart.com/SEU-LINK-GALERA",
+    individual: "https://pay.hotmart.com/W107941887P?off=vyswj0sp",
+    combo: "https://pay.hotmart.com/W107941887P?off=bndwz2ti",
+    socio: "https://pay.hotmart.com/W107941887P?off=1or0i69a",
   },
 };
 
@@ -39,6 +40,10 @@ const mapa =
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#07080b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>RAROS | Encontro presencial no Tênis Clube de {evento.cidade}</title>
     <meta
       name="description"
@@ -259,50 +264,49 @@ const mapa =
           </div>
 
           <div class="grade-3">
+            <article class="lote">
+              <p class="lote-nome">Individual</p>
+              <p class="lote-tipo"><strong>1 pessoa</strong></p>
+              <ul>
+                <li>✓ Ingresso válido para 1 pessoa</li>
+                <li>✓ Treinamento completo de 1 dia</li>
+                <li>✓ Networking com empresários e líderes</li>
+                <li>✓ Confirmação imediata por e-mail</li>
+              </ul>
+              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">197</span></p>
+              <p class="a-vista">à vista</p>
+              <a class="btn btn-bloco" href={evento.links.individual}>{cta}</a>
+              <p class="via">Pagamento seguro via Hotmart</p>
+            </article>
+
             <article class="lote lote-destaque">
-              <p class="selo">⭐ O mais vendido</p>
-              <p class="lote-tipo"><strong>Combo</strong>: 4 pessoas</p>
-              <p class="lote-nota">*50% de desconto neste combo <strong>por tempo limitado</strong></p>
+              <p class="lote-nome">Combo</p>
+              <p class="lote-tipo"><strong>4 pessoas</strong></p>
               <ul>
                 <li>✓ Ingresso válido para 4 pessoas</li>
                 <li>✓ Treinamento completo de 1 dia</li>
                 <li>✓ Networking com empresários e líderes</li>
                 <li>✓ Confirmação imediata por e-mail</li>
               </ul>
-              <p class="de-preco">de R$ 160 por</p>
-              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">80</span></p>
+              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">388</span></p>
               <p class="a-vista">à vista</p>
               <a class="btn btn-bloco" href={evento.links.combo}>{cta}</a>
               <p class="via">Pagamento seguro via Hotmart</p>
             </article>
 
             <article class="lote">
-              <p class="lote-nome">Para duplas</p>
-              <p class="lote-tipo"><strong>Combo</strong>: 2 pessoas</p>
+              <p class="lote-nome">Sócio do Clube</p>
+              <p class="lote-tipo"><strong>Tênis Clube</strong></p>
+              <p class="lote-nota">Obrigatório apresentar a carteirinha</p>
               <ul>
-                <li>✓ Ingresso válido para 2 pessoas</li>
+                <li>✓ Ingresso de sócio do Tênis Clube</li>
                 <li>✓ Treinamento completo de 1 dia</li>
                 <li>✓ Networking com empresários e líderes</li>
                 <li>✓ Confirmação imediata por e-mail</li>
               </ul>
-              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">40</span></p>
+              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">47</span></p>
               <p class="a-vista">à vista</p>
-              <a class="btn btn-bloco" href={evento.links.dupla}>{cta}</a>
-              <p class="via">Pagamento seguro via Hotmart</p>
-            </article>
-
-            <article class="lote">
-              <p class="lote-nome">Para o seu time</p>
-              <p class="lote-tipo"><strong>Combo</strong>: 6 pessoas</p>
-              <ul>
-                <li>✓ Ingresso válido para 6 pessoas</li>
-                <li>✓ Treinamento completo de 1 dia</li>
-                <li>✓ Networking com empresários e líderes</li>
-                <li>✓ Confirmação imediata por e-mail</li>
-              </ul>
-              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">160</span></p>
-              <p class="a-vista">à vista</p>
-              <a class="btn btn-bloco" href={evento.links.galera}>{cta}</a>
+              <a class="btn btn-bloco" href={evento.links.socio}>{cta}</a>
               <p class="via">Pagamento seguro via Hotmart</p>
             </article>
           </div>
@@ -338,7 +342,7 @@ const mapa =
       <section class="secao secao-noite garantia">
         <div class="wrap wrap-680">
           <p class="escudo" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.4 3.1 8.3 7.5 9.5 4.4-1.2 7.5-5.1 7.5-9.5V6L12 3Z" /><path d="m8.8 12.2 2.4 2.4 4.2-4.6" /></svg>
+            <svg viewBox="0 0 24 24"><path class="escudo-forma" d="M12 3 4.5 6v5.5c0 4.4 3.1 8.3 7.5 9.5 4.4-1.2 7.5-5.1 7.5-9.5V6L12 3Z" /><path class="escudo-ok" d="m8.8 12.2 2.4 2.4 4.2-4.6" /></svg>
           </p>
           <h2>100% de garantia na sua compra</h2>
           <p>
@@ -356,19 +360,21 @@ const mapa =
             <img
               class="sobre-foto"
               src="/images/organizador.webp"
-              alt={evento.produtora}
+              alt="RAROS: encontro presencial no Tênis Clube de Campinas"
               width="300"
               height="300"
             />
             <div>
               <h2>Quem está por trás?</h2>
-              <p>
-                <strong data-campo="produtora">{evento.produtora}</strong>
-                <span data-edit>
-                  é a realizadora dos RAROS, um encontro presencial de 1 dia no Tênis Clube de
-                  Campinas, criado para aproximar empresários, empreendedores e líderes de conexões que
-                  abrem portas e de parcerias que antes pareciam inalcançáveis.
-                </span>
+              <div class="realizacao">
+                <span class="realizacao-rotulo">Realização</span>
+                <strong>Tênis Clube de Campinas</strong>
+                <span>Presidente Antônio Grassi Júnior · Diretora Cultural Ana Clara de Mello e Silva</span>
+              </div>
+              <p data-edit>
+                Os RAROS são um encontro presencial de 1 dia no Tênis Clube de Campinas, criado para
+                aproximar empresários, empreendedores e líderes de conexões que abrem portas e de
+                parcerias que antes pareciam inalcançáveis.
               </p>
               <p class="fechamento">
                 As vagas são limitadas e o ambiente é restrito. Garanta a sua enquanto ainda há lugar!
@@ -394,7 +400,10 @@ const mapa =
           </details>
           <details>
             <summary>Posso levar acompanhantes?</summary>
-            <p>Sim. Você pode escolher o ingresso para 2, 4 ou 6 pessoas.</p>
+            <p>
+              O ingresso individual é para 1 pessoa. Para ir em grupo, escolha o combo de 4 pessoas.
+              O valor de sócio vale apenas para quem apresenta a carteirinha do Tênis Clube de Campinas.
+            </p>
           </details>
           <details>
             <summary>Quais são as formas de pagamento?</summary>
@@ -441,13 +450,18 @@ const mapa =
             <p>Pagamento processado pela Hotmart</p>
           </div>
         </div>
-        <p class="aviso-legal">
+        <p class="aviso-legal" id="privacidade">
           <strong>AVISO:</strong> Este site não é afiliado ao Facebook ou a qualquer entidade do mesmo.
           A responsabilidade de todas as informações aqui contidas é do produtor.
+          A navegação pode ser registrada pelo Microsoft Clarity para entendermos como a página é usada.
         </p>
         <p class="cnpj">
           <span data-campo="razaoSocial">{evento.razaoSocial}</span> · CNPJ:
           <span data-campo="cnpj">{evento.cnpj}</span>
+        </p>
+        <p class="cnpj">
+          Telefone para dúvidas
+          <a href="tel:+5519994328278" data-campo="telefone">{evento.telefone}</a>
         </p>
       </div>
     </footer>
@@ -475,6 +489,20 @@ const mapa =
           mostrar();
         }, 1000);
       })();
+    </script>
+    <script is:inline>
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "yujxos97gk");
     </script>
   </body>
 </html>

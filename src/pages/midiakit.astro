@@ -1,0 +1,635 @@
+---
+import "../styles/global.css";
+
+/**
+ * Mídia kit de patrocínio do RAROS.
+ *
+ * Tudo que é dado do kit fica neste objeto. Campos com `null` aparecem na página
+ * (e no PDF) como "a preencher", destacados em vermelho, para não irem em branco
+ * para um patrocinador. Preencha e rode `npm run midiakit:pdf` para gerar o PDF.
+ */
+const mk = {
+  nome: "RAROS",
+  tema: "Inteligência Emocional para Liderar o Seu Negócio",
+  formato: "Treinamento presencial de 1 dia",
+  data: "Sábado, 5 de dezembro de 2026",
+  casa: "Tênis Clube de Campinas",
+  endereco: "R. Cel. Quirino, 1346 — Cambuí, Campinas — SP, 13015-330",
+  capacidade: 120 as number | null,
+
+  // Perfil dos inscritos no RAROS. Cargos e segmentos não são conhecidos, então não aparecem.
+  // O infográfico em clube.perfil é do público do CLUBE, não dos inscritos do evento.
+  inscritos: {
+    porte: "Pequenas, médias e grandes",
+  },
+
+  // Composição do público do evento (somam 100%)
+  composicao: [
+    { pct: 20, rotulo: "Sócios do clube que fazem parte do Clube de Networking" },
+    { pct: 60, rotulo: "Sócios do clube" },
+    { pct: 20, rotulo: "Convidados externos ao clube: empresários e empreendedores" },
+  ],
+
+  // O Tênis Clube de Campinas
+  clube: {
+    nome: "Tênis Clube de Campinas",
+    perfil: "/images/mk/perfil-clube.jpg",
+    historia:
+      'O Tênis Clube de Campinas, inicialmente chamado de "Lawn Tennis Club", teve sua origem em 4 de maio de 1913. Localizado na região norte da cidade, no bairro Bonfim, o clube foi concebido por um grupo de amigos apaixonados pelo tênis de campo, com a missão de difundir a prática do tênis e demais atividades de caráter esportivo, recreativo, cultural e de lazer aos associados, e apoiar a formação de atletas olímpicos e paraolímpicos.',
+    numeros: [
+      { valor: "+8,5 mil", rotulo: "sócios ativos, titulares e dependentes" },
+      { valor: "420 mil", rotulo: "acessos durante 2024" },
+      { valor: "+1.200", rotulo: "acessos diários" },
+    ],
+  },
+
+  // Palestrantes (foto: null mostra um monograma "foto a preencher")
+  palestrantes: [
+    {
+      nome: "Leandro Marcondes",
+      papel: "Empresário · Estrategista de negócios · Mentor · Autor",
+      foto: "/images/mk/leandro.jpg" as string | null,
+      bio: [
+        "Autor do livro “O Poder Milionário do Networking”, com mais de 20 anos de experiência internacional em liderança, negócios e desenvolvimento pessoal.",
+        "Ao longo de sua trajetória, esteve à frente de grandes projetos e eventos, trabalhando com nomes como T. Harv Eker, Jordan Belfort e Nick Vujicic.",
+      ],
+      numeros: [
+        { valor: "+20 anos", rotulo: "de experiência internacional" },
+        { valor: "Autor", rotulo: "de “O Poder Milionário do Networking”" },
+      ],
+      listas: [] as { titulo: string; itens: string[] }[],
+    },
+    {
+      nome: "Guaciara Fornaciari",
+      papel: "Fundadora da Fábrica Mágica · Fundadora do Doutora Escola",
+      foto: "/images/mk/guaciara.jpg" as string | null,
+      bio: [
+        "Especialista em aprendizagem acelerada, Educação 5.0 com foco no socioemocional e metodologias ativas, com 21 anos de experiência. Fonoaudióloga e doutora em educação.",
+        "Empreendedora: abriu uma escola do zero e transformou uma lacuna que ninguém resolvia em negócio, a Fábrica Mágica.",
+      ],
+      numeros: [
+        { valor: "12.000" as string | null, rotulo: "pessoas já treinadas" },
+        { valor: "21 anos", rotulo: "de experiência" },
+        { valor: "11.800+", rotulo: "documentos criados na Fábrica Mágica" },
+      ],
+      listas: [] as { titulo: string; itens: string[] }[],
+    },
+    {
+      nome: "Tatiane Soldam",
+      papel: "Gestora e co-fundadora",
+      foto: "/images/mk/tatiane.jpg" as string | null,
+      bio: [
+        "Mais de 20 anos liderando finanças, fiscal, RH e supply chain em multinacionais e médias empresas.",
+      ],
+      numeros: [] as { valor: string; rotulo: string }[],
+      listas: [
+        {
+          titulo: "Trajetória em empresas",
+          itens: [
+            "Eaton, AMBEV, Sonda Procwork, Bosch e Mapel Empilhadeiras",
+            "Projetos para Tetra Pak, Villares Metals, Elektro, Masterfoods e Bosch",
+          ],
+        },
+        {
+          titulo: "Formação e certificações",
+          itens: [
+            "Pós-graduação e MBA em Gestão Estratégica de Negócios (INPG)",
+            "Bacharel em Ciências da Computação (Anhanguera)",
+            "Contabilidade para não contadores (Deloitte)",
+            "Finanças, tesouraria e liderança (SENAC Campinas)",
+          ],
+        },
+        {
+          titulo: "Destaques de atuação",
+          itens: [
+            "Gerente por 11 anos na Mapel, reportando direto aos sócios",
+            "Liderança de 50 pessoas em Financeiro, Fiscal, RH e Supply Chain",
+            "Implantação de processos e migração de sistemas para SAP na AMBEV",
+          ],
+        },
+      ],
+    },
+  ],
+  programa: [
+    { hora: "8h30", tema: "Credenciamento" },
+    { hora: "9h00", tema: "Início" },
+    { hora: "10h30", tema: "Coffee break" },
+    { hora: "13h00", tema: "Almoço" },
+    { hora: "15h30", tema: "Coffee break" },
+    { hora: "18h00", tema: "Coquetel de encerramento" },
+  ] as { hora: string; tema: string }[],
+
+  // Edições anteriores (deixe null se for a primeira edição)
+  // Vídeos das edições anteriores do evento (miniaturas já recortadas em public/images/)
+  videos: [
+    {
+      titulo: "Edição anterior · vídeo 1",
+      url: "https://youtube.com/shorts/FGUNILyhjr0",
+      exibe: "youtube.com/shorts/FGUNILyhjr0",
+      imagem: "/images/mk/evento-anterior-1.jpg",
+    },
+    {
+      titulo: "Edição anterior · vídeo 2",
+      url: "https://www.youtube.com/watch?v=p2MD9QSiMCQ",
+      exibe: "youtube.com/watch?v=p2MD9QSiMCQ",
+      imagem: "/images/mk/evento-anterior-2.jpg",
+    },
+  ],
+
+  // Alcance de divulgação
+  // Seguidores informados pela produção (Instagram). Mídias e painéis do clube são telas, sem número.
+  alcance: [
+    {
+      canal: "Instagram · Leandro Marcondes",
+      perfil: "@leandromarcondesoficial",
+      url: "https://www.instagram.com/leandromarcondesoficial/",
+      seguidores: 22000 as number | null,
+    },
+    {
+      canal: "Instagram · Guaciara Fornaciari",
+      perfil: "@doutoraescola",
+      url: "https://www.instagram.com/doutoraescola",
+      seguidores: 61800 as number | null,
+    },
+    {
+      canal: "Instagram · Tênis Clube de Campinas",
+      perfil: "@tenisclubedecampinas",
+      url: "https://www.instagram.com/tenisclubedecampinas/",
+      seguidores: 14600 as number | null,
+    },
+    {
+      canal: "Mídias e painéis digitais do clube",
+      perfil: null,
+      url: null,
+      seguidores: null,
+      detalhe: "Exibição nas telas do clube",
+    },
+  ],
+
+  // Cotas: RASCUNHO. Valores e quantidades serão definidos com a produção.
+  cotas: [
+    {
+      nome: "Master",
+      destaque: false,
+      vagas: "1 cota, exclusividade de segmento",
+      preco: null as string | null,
+      entregas: [
+        "Exclusividade no seu segmento de atuação",
+        "Logo em destaque na landing page e nos materiais de divulgação",
+        "Logo no telão e menção de agradecimento no palco",
+        "Espaço de ativação da marca no evento",
+        "Ingressos de cortesia",
+        "Divulgação dedicada nas redes do evento",
+        "Relatório pós-evento",
+      ],
+    },
+    {
+      nome: "Ouro",
+      destaque: true,
+      vagas: "Cotas limitadas",
+      preco: null as string | null,
+      entregas: [
+        "Logo na landing page e nos materiais de divulgação",
+        "Logo no telão e menção no palco",
+        "Material da marca no credenciamento",
+        "Ingressos de cortesia",
+        "Divulgação nas redes do evento",
+        "Relatório pós-evento",
+      ],
+    },
+    {
+      nome: "Apoio",
+      destaque: false,
+      vagas: "Cotas limitadas",
+      preco: null as string | null,
+      entregas: [
+        "Logo na landing page e nos materiais de divulgação",
+        "Divulgação nas redes do evento",
+        "Ingressos de cortesia",
+        "Relatório pós-evento",
+      ],
+    },
+  ],
+
+  // Contato comercial
+  contato: {
+    nome: "Ricardo Farias Alexandre" as string | null,
+    telefone: "(19) 99432-8278", // telefone da produtora (landing)
+    whatsapp: "5519994328278",
+    email: "eventos@vivasuamissao.com.br" as string | null,
+    prazoFechamento: null as string | null,
+    prazoRelatorio: null as string | null,
+  },
+
+  realizacao: "Tênis Clube de Campinas",
+  realizacaoPessoas:
+    "Presidente Antônio Grassi Júnior · Diretora Cultural Ana Clara de Mello e Silva",
+};
+
+const mil = (n: number) =>
+  (n / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mil";
+const totalSeguidores = mk.alcance.reduce((s, a) => s + (a.seguidores ?? 0), 0);
+
+const pdf = "/midiakit-raros.pdf";
+const zap =
+  "https://wa.me/" +
+  mk.contato.whatsapp +
+  "?text=" +
+  encodeURIComponent("Olá! Vi o mídia kit do RAROS e quero saber mais sobre as cotas de patrocínio.");
+const pendente = "a preencher";
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#07080b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>Mídia Kit de Patrocínio | RAROS · Tênis Clube de Campinas</title>
+    <meta
+      name="description"
+      content="Mídia kit de patrocínio do RAROS: público, alcance, cotas e contato para marcas que querem estar na sala certa."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="mk-body">
+    <div class="mk-barra">
+      <p><strong>RAROS</strong> · Mídia kit de patrocínio</p>
+      <a class="btn btn-sm" href={pdf} download="midiakit-raros.pdf">Baixar PDF</a>
+    </div>
+
+    <main class="mk">
+      <!-- 1. Capa -->
+      <section class="mk-pag mk-capa" style="--capa: url('/images/mk/organizador.jpg')">
+        <div class="mk-wrap mk-capa-conteudo">
+          <h1 class="mk-sr">{mk.nome}</h1>
+          <p class="mk-kicker">Mídia kit de patrocínio</p>
+          <p class="mk-tema">{mk.tema}</p>
+          <p class="mk-capa-promessa">
+            Uma sala reservada com empresários, empreendedores e líderes abertos a fazer negócios.
+            A sua marca no centro dessas conexões.
+          </p>
+          <div class="mk-capa-info">
+            <p><span>Quando</span>{mk.data}</p>
+            <p><span>Onde</span>{mk.casa} · Campinas, SP</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. O evento -->
+      <section class="mk-pag">
+        <div class="mk-wrap">
+          <p class="mk-kicker">O evento</p>
+          <h2>Um dia, uma sala, as pessoas certas</h2>
+          <p class="mk-lead">
+            O RAROS é um encontro presencial de 1 dia no {mk.casa}, criado para aproximar
+            empresários, empreendedores e líderes de conexões que abrem portas e de parcerias que
+            antes pareciam inalcançáveis. O conteúdo é um treinamento de {mk.tema.toLowerCase()}.
+          </p>
+
+          <ul class="mk-numeros">
+            <li><strong>1 dia</strong><span>de treinamento presencial</span></li>
+            <li>
+              <strong>{mk.capacidade ?? <span class="pendente">{pendente}</span>}</strong>
+              <span>vagas no total</span>
+            </li>
+            <li><strong>Restrito</strong><span>ambiente reservado</span></li>
+          </ul>
+
+          <div class="mk-local">
+            <h3>Data e local</h3>
+            <p class="mk-forte">{mk.data}</p>
+            <p>{mk.casa}</p>
+            <p class="mk-mudo">{mk.endereco}</p>
+          </div>
+
+          <div class="mk-fotos">
+            <img src="/images/mk/ambiente-1.jpg" alt="Ambiente do evento" width="280" height="210" />
+            <img src="/images/mk/ambiente-2.jpg" alt="Ambiente do evento" width="280" height="210" />
+            <img src="/images/mk/ambiente-3.jpg" alt="Ambiente do evento" width="280" height="210" />
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Público -->
+      <section class="mk-pag mk-suave">
+        <div class="mk-wrap">
+          <p class="mk-kicker">Audiência</p>
+          <h2>Quem está na sala</h2>
+          <p class="mk-lead">
+            Empresários, empreendedores e líderes que pagam para estar em um ambiente restrito e
+            abertos a fazer negócios. Para o patrocinador, é falar diretamente com quem decide.
+          </p>
+
+          <h3 class="mk-sub">Composição do público</h3>
+          <div class="mk-barra-comp" role="img" aria-label={mk.composicao.map((c) => `${c.pct}% ${c.rotulo}`).join("; ")}>
+            {mk.composicao.map((c, i) => (
+              <span class={`seg seg-${i + 1}`} style={`width: ${c.pct}%`}></span>
+            ))}
+          </div>
+          <ul class="mk-comp-legenda">
+            {mk.composicao.map((c, i) => (
+              <li>
+                <i class={`seg seg-${i + 1}`} aria-hidden="true"></i>
+                <strong>{c.pct}%</strong>
+                <span>{c.rotulo}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mk-dados mk-dados-1">
+            <div>
+              <span>Porte das empresas</span>
+              <strong>{mk.inscritos.porte}</strong>
+            </div>
+          </div>
+
+          <h3 class="mk-sub">Por que patrocinar o RAROS</h3>
+          <div class="mk-beneficios">
+            <article>
+              <h4>Público qualificado</h4>
+              <p>Decisores reunidos por um dia inteiro, com tempo real de conversa e não só um estande de passagem.</p>
+            </article>
+            <article>
+              <h4>Ambiente à altura</h4>
+              <p>O {mk.casa}, no Cambuí, associa a sua marca a um cenário reservado e de prestígio.</p>
+            </article>
+            <article>
+              <h4>Conteúdo que conecta</h4>
+              <p>Inteligência emocional aplicada aos negócios: a sua marca ao lado de um tema que aproxima pessoas e fecha parcerias.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. O clube -->
+      <section class="mk-pag">
+        <div class="mk-wrap">
+          <p class="mk-kicker">O clube</p>
+          <h2>{mk.clube.nome}</h2>
+          <div class="mk-clube">
+            <p>{mk.clube.historia}</p>
+            <ul class="mk-numeros">
+              {mk.clube.numeros.map((n) => (
+                <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>
+              ))}
+            </ul>
+          </div>
+
+          <h3 class="mk-sub">Perfil do público do clube</h3>
+          <figure class="mk-perfil">
+            <img
+              src={mk.clube.perfil}
+              alt="Perfil demográfico do público do Tênis Clube de Campinas: gênero 55% mulheres e 45% homens; faixa etária; classes sociais A+ 26%, A 58% e B 16%; 70% com ensino superior completo"
+              width="1024"
+              height="565"
+            />
+            <figcaption>Perfil demográfico do público do {mk.clube.nome}.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 5. Programa -->
+      <section class="mk-pag mk-suave">
+        <div class="mk-wrap">
+          <p class="mk-kicker">Conteúdo</p>
+          <h2>Palestrantes e programa</h2>
+
+          <div class="mk-pals">
+            {mk.palestrantes.map((p) => (
+              <article class="mk-pal">
+                <div class="mk-pal-foto">
+                  {p.foto ? (
+                    <img src={p.foto} alt={`Foto de ${p.nome}`} width="520" height="650" />
+                  ) : (
+                    <div class="mk-monograma" aria-hidden="true">
+                      <span>{p.nome.split(" ").map((n) => n[0]).slice(0, 2).join("")}</span>
+                      <small class="pendente">foto a preencher</small>
+                    </div>
+                  )}
+                </div>
+                <div class="mk-pal-texto">
+                  <h3>{p.nome}</h3>
+                  <p class="mk-pal-papel">{p.papel}</p>
+                  {p.bio.map((t) => <p>{t}</p>)}
+                  {p.numeros.length > 0 && (
+                    <ul class="mk-pal-numeros">
+                      {p.numeros.map((n) => (
+                        <li>
+                          <strong>{n.valor ?? <span class="pendente">xx</span>}</strong>
+                          <span>{n.rotulo}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {p.listas.length > 0 && (
+                    <div class="mk-pal-listas">
+                      {p.listas.map((l) => (
+                        <div>
+                          <h4>{l.titulo}</h4>
+                          <ul>{l.itens.map((i) => <li>{i}</li>)}</ul>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <h3 class="mk-sub">Programação</h3>
+          {mk.programa.length > 0 ? (
+            <ul class="mk-programa">
+              {mk.programa.map((p) => (
+                <li><strong>{p.hora}</strong><span>{p.tema}</span></li>
+              ))}
+            </ul>
+          ) : (
+            <p class="mk-vazio"><span class="pendente">{pendente}</span>: horários e temas do dia.</p>
+          )}
+
+        </div>
+      </section>
+
+      <!-- 6. Alcance -->
+      <section class="mk-pag">
+        <div class="mk-wrap">
+          <p class="mk-kicker">Divulgação</p>
+          <h2>Onde a sua marca aparece antes do evento</h2>
+          <p class="mk-lead">
+            A divulgação do RAROS acontece na landing page oficial, nos perfis dos palestrantes e do
+            Tênis Clube de Campinas e nas mídias e painéis digitais do clube. A marca patrocinadora
+            ganha visibilidade desde o dia em que fecha a cota.
+          </p>
+
+          <ul class="mk-numeros mk-numeros-1">
+            <li>
+              <strong>{mil(totalSeguidores)}</strong>
+              <span>seguidores somados nos 3 perfis do Instagram</span>
+            </li>
+          </ul>
+
+          <table class="mk-tabela">
+            <thead>
+              <tr><th>Canal</th><th>Alcance</th></tr>
+            </thead>
+            <tbody>
+              {mk.alcance.map((a) => (
+                <tr>
+                  <td>
+                    {a.canal}
+                    {a.perfil && a.url && (
+                      <small><a href={a.url}>{a.perfil}</a></small>
+                    )}
+                  </td>
+                  <td>
+                    {a.seguidores != null
+                      ? `${mil(a.seguidores)} seguidores`
+                      : (a.detalhe ?? <span class="pendente">{pendente}</span>)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="mk-nota">
+            A soma é simples: não desconta pessoas que seguem mais de um perfil. Projeções serão
+            sempre identificadas como estimativa.
+          </p>
+
+          <div class="mk-landing">
+            <img src="/images/mk/hero.jpg" alt="Landing page oficial do RAROS" width="1254" height="1254" />
+            <div>
+              <h3>Landing page oficial</h3>
+              <p>
+                O tráfego das divulgações converge para a página de ingressos do RAROS, onde a
+                marca patrocinadora tem espaço de logo. A navegação é medida com Microsoft Clarity,
+                o que permite reportar visitas e comportamento no relatório pós-evento.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Cotas -->
+      <section class="mk-pag mk-suave">
+        <div class="mk-wrap">
+          <p class="mk-kicker">Cotas de patrocínio</p>
+          <h2>Escolha como a sua marca participa</h2>
+          <p class="mk-aviso">
+            <span class="pendente">Rascunho</span>: contrapartidas, quantidades e valores serão
+            fechados com a produção antes do envio.
+          </p>
+
+          <div class="mk-cotas">
+            {mk.cotas.map((c) => (
+              <article class:list={["mk-cota", { "mk-cota-destaque": c.destaque }]}>
+                {c.destaque && <p class="mk-selo">Recomendada</p>}
+                <p class="mk-cota-nome">{c.nome}</p>
+                <p class="mk-cota-vagas">{c.vagas}</p>
+                <p class="mk-cota-preco">
+                  {c.preco ?? <span class="pendente">valor a definir</span>}
+                </p>
+                <ul>
+                  {c.entregas.map((e) => <li>{e}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Prova social e realização -->
+      <section class="mk-pag">
+        <div class="mk-wrap">
+          <p class="mk-kicker">Credibilidade</p>
+          <h2>Quem faz e quem já aprova</h2>
+
+          <div class="mk-realizacao">
+            <div>
+              <span>Realização</span>
+              <strong>{mk.realizacao}</strong>
+              <p>{mk.realizacaoPessoas}</p>
+            </div>
+          </div>
+
+          <h3 class="mk-sub">Edições anteriores</h3>
+          <div class="mk-videos">
+            {mk.videos.map((v) => (
+              <a class="mk-video" href={v.url}>
+                <span class="mk-video-capa">
+                  <img src={v.imagem} alt={`Vídeo: ${v.titulo}`} width="405" height="720" />
+                  <i class="mk-play" aria-hidden="true"></i>
+                </span>
+                <span class="mk-video-info">
+                  <strong>{v.titulo}</strong>
+                  <span>Assistir no YouTube</span>
+                  <small>{v.exibe}</small>
+                </span>
+              </a>
+            ))}
+          </div>
+
+          <h3 class="mk-sub">O que dizem os participantes</h3>
+          <div class="mk-prints">
+            <img src="/images/mk/depoimento-1.jpg" alt="Depoimento de participante" width="360" height="420" />
+            <img src="/images/mk/depoimento-2.jpg" alt="Depoimento de participante" width="360" height="420" />
+            <img src="/images/mk/depoimento-3.jpg" alt="Depoimento de participante" width="360" height="420" />
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. Mensuração e contato -->
+      <section class="mk-pag mk-noite">
+        <div class="mk-wrap">
+          <p class="mk-kicker">Resultados e próximo passo</p>
+          <h2>Como você vai saber o que aconteceu</h2>
+          <p class="mk-lead">
+            Toda cota fecha com relatório pós-evento: o que foi entregue, onde, quando e qual foi o
+            alcance, com fotos e números das ações da marca.
+          </p>
+          <ul class="mk-checks">
+            <li>Registro fotográfico das entregas da marca no evento</li>
+            <li>Alcance das publicações e menções nas redes do evento</li>
+            <li>Visitas à landing page oficial no período da cota</li>
+            <li>
+              Relatório entregue em até
+              <strong>{mk.contato.prazoRelatorio ?? <span class="pendente">{pendente}</span>}</strong>
+              após o evento
+            </li>
+          </ul>
+
+          <div class="mk-contato">
+            <h3>Vamos conversar?</h3>
+            <p class="mk-forte">
+              {mk.contato.nome ?? <span class="pendente">nome do contato comercial</span>}
+            </p>
+            <p>WhatsApp <a href={zap}>{mk.contato.telefone}</a></p>
+            <p>
+              E-mail
+              {mk.contato.email
+                ? <a href={`mailto:${mk.contato.email}`}>{mk.contato.email}</a>
+                : <span class="pendente">{pendente}</span>}
+            </p>
+            <p class="mk-prazo">
+              Prazo para fechar a sua cota:
+              <strong>{mk.contato.prazoFechamento ?? <span class="pendente">{pendente}</span>}</strong>
+            </p>
+            <a class="btn mk-cta" href={zap}>Falar sobre as cotas</a>
+          </div>
+
+          <p class="mk-rodape">
+            {mk.nome} · {mk.casa} · {mk.endereco}
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

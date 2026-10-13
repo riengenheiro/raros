@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "midiakit:imagens": "node scripts/gerar-midiakit-pdf.mjs --so-imagens",
+    "midiakit:pdf": "node scripts/gerar-midiakit-pdf.mjs"
   },
   "dependencies": {
     "astro": "^5.14.1"
