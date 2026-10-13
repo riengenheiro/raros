@@ -248,14 +248,41 @@
 .k2-video-txt { display: block; margin-top: 10px; color: var(--k2-cinza-claro); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
 
 .k2-depoimentos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.k2-depoimentos img { display: block; width: 100%; }
+.k2-depo {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--k2-marfim);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.k2-depo-capa { position: relative; display: block; }
+.k2-depo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  object-position: center 18%;
+  filter: grayscale(0.35);
+  transition: filter 0.2s;
+}
+.k2-depo:hover img,
+.k2-depo:focus-visible img { filter: none; }
+.k2-depo .k2-play { top: 50%; }
+.k2-depo-txt {
+  display: block;
+  margin-top: 10px;
+  color: var(--k2-cinza-claro);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
 
-/* Resultados e contato */
-.k2-relatorio { margin: 32px 0 0; padding: 0; list-style: none; counter-reset: k2r; border-top: 1px solid var(--k2-fio-escuro); }
-.k2-relatorio li { counter-increment: k2r; display: grid; grid-template-columns: 48px 1fr; padding: 14px 0; border-bottom: 1px solid var(--k2-fio-escuro); font-size: 15px; }
-.k2-relatorio li::before { content: counter(k2r, decimal-leading-zero); color: var(--k2-ouro); font-family: var(--k2-serifa); font-size: 18px; }
-
+/* Contato */
 .k2-contato { margin-top: 64px; padding: 40px; border: 1px solid var(--k2-fio-escuro); }
+.k2-final .k2-contato { margin-top: 0; }
 .k2-contato-nome { margin-bottom: 14px; font-family: var(--k2-serifa); font-size: 34px; line-height: 1.1; }
 .k2-contato p + p { margin-top: 4px; }
 .k2-contato a { color: var(--k2-marfim); text-decoration: none; border-bottom: 1px solid var(--k2-fio-escuro); }
@@ -316,6 +343,7 @@
   .k2-grade-3 li:nth-child(even) { padding-left: 0; border-left: 0; }
   .k2-jornada { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
   .k2-visib { grid-template-columns: 1fr; gap: 12px; }
+  .k2-depoimentos { grid-template-columns: 1fr; }
   .k2-contato { padding: 28px 20px; }
 }
 

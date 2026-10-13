@@ -387,6 +387,12 @@ h3 { font-size: 24px; color: var(--ouro); }
   text-transform: uppercase;
 }
 
+.edicao { padding: 36px 0 8px; }
+.edicao-video {
+  width: min(340px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
 .experiencia { padding: 64px 0 10px; text-align: center; }
 .experiencia h2 { font-size: 42px; }
 .experiencia .continuacao { margin-top: 6px; color: var(--ouro); font-size: 32px; font-weight: 500; font-style: italic; line-height: 1.25; font-family: var(--serifa); text-wrap: balance; }
@@ -421,7 +427,80 @@ h3 { font-size: 24px; color: var(--ouro); }
 .card h3 { margin: 16px 0 8px; }
 .card p { font-size: 14px; }
 
+.palestrantes .kicker,
+.palestrantes h2 { text-align: center; }
+.palestrante img.redonda { object-position: center 18%; }
+
 .depoimentos h2 { color: var(--titulo); text-align: center; }
+.depo-videos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: min(860px, 100%);
+  margin: 32px auto 0;
+}
+.depo-video {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  border: 1px solid var(--ouro-linha);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: var(--sombra);
+}
+.depo-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.depo-capa {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: #000;
+  cursor: pointer;
+}
+.depo-capa img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  filter: brightness(0.72);
+}
+.depo-capa:hover img,
+.depo-capa:focus-visible img { filter: brightness(0.88); }
+.depo-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(7, 8, 11, 0.72);
+  border: 1px solid var(--ouro);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.depo-play::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-35%, -50%);
+  border-style: solid;
+  border-width: 10px 0 10px 16px;
+  border-color: transparent transparent transparent var(--ouro-claro);
+}
+.depo-capa:focus-visible {
+  outline: 2px solid var(--ouro);
+  outline-offset: -4px;
+}
 .print {
   width: 100%;
   border-radius: 8px;
@@ -852,6 +931,20 @@ body.editando [contenteditable="true"]:focus {
   .hero-cta { width: 100%; max-width: 360px; margin-top: 24px; padding: 16px 18px; }
   .nota { margin-top: 12px; font-size: 13px; }
   .lote-destaque { margin-top: 16px; }
+  .depo-videos {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 4px;
+    padding-bottom: 6px;
+  }
+  .depo-videos .depo-video {
+    flex: 0 0 78%;
+    max-width: 300px;
+    scroll-snap-align: center;
+  }
 }
 
 /* ==========================================================================
@@ -1194,7 +1287,35 @@ body.editando [contenteditable="true"]:focus {
 .mk-realizacao strong { display: block; margin-top: 4px; color: var(--titulo); font-family: var(--serifa); font-size: 22px; font-weight: 500; }
 .mk-realizacao p { margin-top: 4px; color: var(--mudo); font-size: 13px; }
 .mk-prints { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.mk-prints img { width: 100%; border: 1px solid var(--linha); border-radius: 8px; }
+.mk-depo {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.mk-depo-capa { position: relative; display: block; }
+.mk-depo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  object-position: center 18%;
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+}
+.mk-depo-txt {
+  display: block;
+  margin-top: 8px;
+  color: var(--ouro);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
 
 /* Mensuração e contato */
 .mk-checks { margin: 24px 0 0; padding: 0; list-style: none; color: var(--texto); }

@@ -29,6 +29,30 @@ const evento = {
   },
 };
 
+const palestrantes = [
+  {
+    nome: "Leandro Marcondes",
+    papel: "Empresário · Estrategista de negócios · Mentor · Autor",
+    foto: "/images/leandro.jpg",
+  },
+  {
+    nome: "Guaciara Fornaciari",
+    papel: "Fundadora do Doutora Escola",
+    foto: "/images/guaciara.jpg",
+  },
+  {
+    nome: "Tatiane Soldam",
+    papel: "Gestora e co-fundadora",
+    foto: "/images/tatiane.jpg",
+  },
+];
+
+const depoimentos = [
+  "6FwxZEKQaC0",
+  "kdY579l18To",
+  "nP8JC4RUjfs",
+];
+
 const cta = "Sim, quero fazer parte dos RAROS";
 const heroFundo = "/images/hero.webp";
 const mapa =
@@ -131,7 +155,22 @@ const mapa =
         </div>
       </section>
 
-      <!-- 5. Agitação -->
+      <!-- 5. Edições anteriores -->
+      <section class="edicao">
+        <div class="edicao-video depo-video" data-id="6JuHeCETFT0" data-titulo="Edições anteriores" data-rotulo="Assistir edições anteriores">
+          <button type="button" class="depo-capa" aria-label="Assistir edições anteriores">
+            <img
+              src="https://i.ytimg.com/vi/6JuHeCETFT0/hqdefault.jpg"
+              alt=""
+              width="480"
+              height="360"
+            />
+            <span class="depo-play" aria-hidden="true"></span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 6. Agitação -->
       <section class="experiencia" id="experiencia">
         <div class="wrap">
           <h2>E se a próxima grande parceria…</h2>
@@ -191,19 +230,29 @@ const mapa =
         </div>
       </section>
 
-      <!-- 6. Prints + depoimentos -->
+      <!-- 7. Depoimentos em vídeo -->
       <section class="secao secao-suave depoimentos">
         <div class="wrap">
           <h2>O que dizem os participantes:</h2>
-          <div class="grade-3">
-            <img class="print" src="/images/depoimento-1.webp" alt="Depoimento de participante" width="360" height="420" />
-            <img class="print" src="/images/depoimento-2.webp" alt="Depoimento de participante" width="360" height="420" />
-            <img class="print" src="/images/depoimento-3.webp" alt="Depoimento de participante" width="360" height="420" />
+          <div class="depo-videos">
+            {depoimentos.map((id) => (
+              <div class="depo-video" data-id={id}>
+                <button type="button" class="depo-capa" aria-label="Assistir depoimento">
+                  <img
+                    src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
+                    alt=""
+                    width="480"
+                    height="360"
+                  />
+                  <span class="depo-play" aria-hidden="true"></span>
+                </button>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <!-- 7. Ambiente -->
+      <!-- 8. Ambiente -->
       <section class="secao casa">
         <div class="wrap">
           <p class="kicker">Ambiente restrito</p>
@@ -219,7 +268,7 @@ const mapa =
         </div>
       </section>
 
-      <!-- 8. Logística -->
+      <!-- 9. Logística -->
       <section class="secao secao-noite logistica">
         <div class="wrap wrap-760">
           <h2>Reserve seu lugar nos RAROS</h2>
@@ -239,7 +288,7 @@ const mapa =
         </div>
       </section>
 
-      <!-- 9. Oferta -->
+      <!-- 10. Oferta -->
       <section class="secao secao-suave oferta" id="ingressos">
         <div class="wrap">
           <h2>Garanta sua vaga nos RAROS</h2>
@@ -313,7 +362,7 @@ const mapa =
         </div>
       </section>
 
-      <!-- 10. Como funciona -->
+      <!-- 11. Como funciona -->
       <section class="secao passos">
         <div class="wrap wrap-960">
           <h2>Garantir sua vaga é simples e rápido</h2>
@@ -338,7 +387,7 @@ const mapa =
         </div>
       </section>
 
-      <!-- 11. Garantia -->
+      <!-- 12. Garantia -->
       <section class="secao secao-noite garantia">
         <div class="wrap wrap-680">
           <p class="escudo" aria-hidden="true">
@@ -353,7 +402,24 @@ const mapa =
         </div>
       </section>
 
-      <!-- 12. Quem está por trás -->
+      <!-- 13. Palestrantes -->
+      <section class="secao palestrantes">
+        <div class="wrap">
+          <p class="kicker">Palestrantes</p>
+          <h2>Quem conduz o dia</h2>
+          <div class="grade-3">
+            {palestrantes.map((p) => (
+              <article class="card palestrante">
+                <img class="redonda" src={p.foto} alt={p.nome} width="240" height="240" />
+                <h3>{p.nome}</h3>
+                <p>{p.papel}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 14. Quem está por trás -->
       <section class="secao">
         <div class="wrap wrap-1100 sobre">
           <div class="sobre-grid">
@@ -385,7 +451,7 @@ const mapa =
         </div>
       </section>
 
-      <!-- 13. FAQ -->
+      <!-- 15. FAQ -->
       <section class="secao faq" id="faq">
         <div class="wrap wrap-720">
           <h2>Ainda com dúvidas?</h2>
@@ -468,6 +534,35 @@ const mapa =
     </div>
     <script>
       import "../scripts/editor.ts";
+    </script>
+    <script is:inline>
+      (() => {
+        if (!document.querySelector(".depo-video")) return;
+
+        const capa = (id, rotulo) => `
+          <button type="button" class="depo-capa" aria-label="${rotulo}">
+            <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" width="480" height="360" />
+            <span class="depo-play" aria-hidden="true"></span>
+          </button>`;
+
+        document.addEventListener("click", (evento) => {
+          const card = evento.target.closest(".depo-video");
+          if (!card || card.querySelector("iframe")) return;
+
+          document.querySelectorAll(".depo-video").forEach((outro) => {
+            if (outro !== card && outro.querySelector("iframe")) {
+              outro.innerHTML = capa(outro.dataset.id, outro.dataset.rotulo || "Assistir depoimento");
+            }
+          });
+
+          const frame = document.createElement("iframe");
+          frame.src = `https://www.youtube.com/embed/${card.dataset.id}?autoplay=1&rel=0&playsinline=1`;
+          frame.title = card.dataset.titulo || "Depoimento de participante";
+          frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          frame.allowFullscreen = true;
+          card.replaceChildren(frame);
+        });
+      })();
     </script>
     <script is:inline>
       (() => {

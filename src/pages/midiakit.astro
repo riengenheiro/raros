@@ -61,7 +61,7 @@ const mk = {
     },
     {
       nome: "Guaciara Fornaciari",
-      papel: "Fundadora da Fábrica Mágica · Fundadora do Doutora Escola",
+      papel: "Fundadora do Doutora Escola",
       foto: "/images/mk/guaciara.jpg" as string | null,
       bio: [
         "Especialista em aprendizagem acelerada, Educação 5.0 com foco no socioemocional e metodologias ativas, com ampla experiência em educação. Já atuou como diretora de escola.",
@@ -130,8 +130,8 @@ const mk = {
     },
     {
       titulo: "Edição anterior · vídeo 2",
-      url: "https://www.youtube.com/watch?v=p2MD9QSiMCQ",
-      exibe: "youtube.com/watch?v=p2MD9QSiMCQ",
+      url: "https://youtube.com/shorts/nmYrXJ7qWfY",
+      exibe: "youtube.com/shorts/nmYrXJ7qWfY",
       imagem: "/images/mk/evento-anterior-2.jpg",
     },
   ],
@@ -225,6 +225,11 @@ const mk = {
   realizacaoPessoas:
     "Presidente Antônio Grassi Júnior · Diretora Cultural Ana Clara de Mello e Silva · Diretor de Marketing Luis Roberto Brunialti",
 };
+
+const depoimentos = ["6FwxZEKQaC0", "kdY579l18To", "nP8JC4RUjfs"].map((id) => ({
+  id,
+  url: `https://youtube.com/shorts/${id}`,
+}));
 
 function youtubeEmbed(url: string) {
   const id =
@@ -596,9 +601,26 @@ const pendente = "a preencher";
 
           <h3 class="mk-sub">O que dizem os participantes</h3>
           <div class="mk-prints">
-            <img src="/images/mk/depoimento-1.jpg" alt="Depoimento de participante" width="360" height="420" />
-            <img src="/images/mk/depoimento-2.jpg" alt="Depoimento de participante" width="360" height="420" />
-            <img src="/images/mk/depoimento-3.jpg" alt="Depoimento de participante" width="360" height="420" />
+            {depoimentos.map((d, i) => (
+              <button
+                type="button"
+                class="mk-depo"
+                data-video={youtubeEmbed(d.url)}
+                data-formato="vertical"
+                data-titulo={`Depoimento ${i + 1}`}
+              >
+                <span class="mk-depo-capa">
+                  <img
+                    src={`https://i.ytimg.com/vi/${d.id}/hqdefault.jpg`}
+                    alt=""
+                    width="480"
+                    height="360"
+                  />
+                  <i class="mk-play" aria-hidden="true"></i>
+                </span>
+                <span class="mk-depo-txt">Assistir depoimento {i + 1}</span>
+              </button>
+            ))}
           </div>
         </div>
       </section>
@@ -663,7 +685,7 @@ const pendente = "a preencher";
       const frame = dialog.querySelector("iframe");
       const titulo = dialog.querySelector(".mk-player-titulo");
 
-      document.querySelectorAll(".mk-video").forEach((botao) => {
+      document.querySelectorAll(".mk-video, .mk-depo").forEach((botao) => {
         botao.addEventListener("click", () => {
           const nome = botao.dataset.titulo || "Vídeo";
           frame.title = nome;

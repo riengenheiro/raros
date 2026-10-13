@@ -60,7 +60,7 @@ const k2 = {
     },
     {
       nome: "Guaciara Fornaciari",
-      papel: "Empresária · Fundadora da Fábrica Mágica e do Doutora Escola",
+      papel: "Empresária · Fundadora do Doutora Escola",
       foto: "/images/mk/guaciara.jpg",
       texto:
         "Especialista em aprendizagem acelerada e desenvolvimento socioemocional. Já dirigiu escola e transformou uma lacuna do mercado em negócio próprio.",
@@ -150,22 +150,17 @@ const k2 = {
     },
     {
       titulo: "Edição anterior",
-      url: "https://www.youtube.com/watch?v=p2MD9QSiMCQ",
+      url: "https://youtube.com/shorts/nmYrXJ7qWfY",
       imagem: "/images/mk/evento-anterior-2.jpg",
     },
   ],
 
-  // Prints reais de depoimentos. Enquanto vazio, a seção não aparece.
-  depoimentos: [] as { imagem: string; alt: string }[],
+  depoimentos: ["6FwxZEKQaC0", "kdY579l18To", "nP8JC4RUjfs"].map((id) => ({
+    id,
+    url: `https://youtube.com/shorts/${id}`,
+  })),
 
   seguidores: [22000, 61800, 14600],
-
-  relatorio: [
-    "Registro fotográfico das entregas da marca",
-    "Alcance das publicações nos perfis dos palestrantes e do clube",
-    "Visitas à página oficial no período da parceria",
-    "Resumo das interações no evento",
-  ],
 
   contato: {
     nome: "Ricardo Farias Alexandre",
@@ -395,27 +390,30 @@ const zap =
             ))}
           </div>
 
-          {k2.depoimentos.length > 0 && (
-            <>
-              <h3 class="k2-sub">O que dizem os participantes</h3>
-              <div class="k2-depoimentos">
-                {k2.depoimentos.map((d) => <img src={d.imagem} alt={d.alt} />)}
-              </div>
-            </>
-          )}
+          <h3 class="k2-sub">O que dizem os participantes</h3>
+          <div class="k2-depoimentos">
+            {k2.depoimentos.map((d, i) => (
+              <button
+                type="button"
+                class="k2-depo"
+                data-video={youtubeEmbed(d.url)}
+                data-formato="vertical"
+                data-titulo={`Depoimento ${i + 1}`}
+              >
+                <span class="k2-depo-capa">
+                  <img src={`https://i.ytimg.com/vi/${d.id}/hqdefault.jpg`} alt="" width="480" height="360" />
+                  <span class="k2-play" aria-hidden="true"></span>
+                </span>
+                <span class="k2-depo-txt">Assistir depoimento {i + 1}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
-      <!-- 8. Resultados e contato -->
+      <!-- 8. Contato -->
       <section class="k2-pag k2-final">
         <div class="k2-wrap">
-          <p class="k2-num">07 · Resultados</p>
-          <h2>O que a sua marca recebe depois</h2>
-          <p class="k2-lead">Toda parceria fecha com um relatório do que foi entregue, onde e com qual alcance.</p>
-          <ol class="k2-relatorio">
-            {k2.relatorio.map((r) => <li>{r}</li>)}
-          </ol>
-
           <div class="k2-contato">
             <p class="k2-rotulo">Conversa reservada</p>
             <p class="k2-contato-nome">{k2.contato.nome}</p>
@@ -441,7 +439,7 @@ const zap =
       const frame = dialog.querySelector("iframe")!;
       const titulo = dialog.querySelector(".k2-player-titulo")!;
 
-      document.querySelectorAll<HTMLButtonElement>(".k2-video").forEach((botao) => {
+      document.querySelectorAll<HTMLButtonElement>(".k2-video, .k2-depo").forEach((botao) => {
         botao.addEventListener("click", () => {
           const nome = botao.dataset.titulo || "Vídeo";
           frame.title = nome;

@@ -1,0 +1,737 @@
+---
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
+import "../styles/midiakitstuttgartporsche.css";
+
+/**
+ * Proposta de parceria do RAROS escrita para a Stuttgart Porsche (/midiakitstuttgartporsche).
+ * Independente do /midiakit, /midiakit002 e /midiakitheineken: dados e estilos próprios (classes .k4-).
+ *
+ * Como personalizar para outra marca: tudo que é específico da Stuttgart está no objeto `h`
+ * (leitura da marca, pontos em comum, ideia por momento do dia, linhas, formatos e compromissos).
+ * O restante (dados do evento) vem do objeto `evento`.
+ *
+ * Logo: se existir public/images/stuttgart/logo.(svg|png|webp), ele aparece no topo da capa.
+ * Capa: troque `capa` por uma foto de modelo Porsche em /images/stuttgart/capa.jpg, se houver.
+ */
+const evento = {
+  nome: "RAROS",
+  tema: "Inteligência Emocional para Liderar o Seu Negócio",
+  data: "Sábado, 5 de dezembro de 2026",
+  casa: "Tênis Clube de Campinas",
+  endereco: "R. Cel. Quirino, 1346 — Cambuí, Campinas — SP, 13015-330",
+
+  destaques: [
+    { valor: "120", rotulo: "lugares, em ambiente reservado" },
+    { valor: "84%", rotulo: "do público do clube nas classes A+ e A" },
+    { valor: "1913", rotulo: "ano de fundação do Tênis Clube de Campinas" },
+  ],
+  composicao: [
+    { pct: 20, rotulo: "Sócios do clube integrantes do Clube de Networking" },
+    { pct: 60, rotulo: "Sócios do Tênis Clube de Campinas" },
+    { pct: 20, rotulo: "Empresários e empreendedores convidados" },
+  ],
+  porte: "Pequenas, médias e grandes empresas",
+  perfilClube: [
+    { valor: "26%", rotulo: "classe A+" },
+    { valor: "58%", rotulo: "classe A" },
+    { valor: "70%", rotulo: "com ensino superior completo" },
+    { valor: "71%", rotulo: "com 36 anos ou mais" },
+  ],
+  clubeNumeros: [
+    { valor: "+8,5 mil", rotulo: "sócios ativos" },
+    { valor: "420 mil", rotulo: "acessos em 2024" },
+    { valor: "+1.200", rotulo: "acessos por dia" },
+  ],
+
+  palestrantes: [
+    {
+      nome: "Leandro Marcondes",
+      papel: "Empresário e estrategista de negócios",
+      foto: "/images/mk/leandro.jpg",
+      texto:
+        "Mais de 20 anos de experiência internacional em liderança e negócios, à frente de grandes projetos e eventos ao lado de nomes como T. Harv Eker e Nick Vujicic.",
+      numeros: [{ valor: "+20 anos", rotulo: "de experiência internacional" }],
+    },
+    {
+      nome: "Guaciara Fornaciari",
+      papel: "Empresária · Fundadora do Doutora Escola",
+      foto: "/images/mk/guaciara.jpg",
+      texto:
+        "Especialista em aprendizagem acelerada e desenvolvimento socioemocional. Já dirigiu escola e transformou uma lacuna do mercado em negócio próprio.",
+      numeros: [
+        { valor: "12.000", rotulo: "pessoas treinadas" },
+        { valor: "21 anos", rotulo: "de experiência" },
+      ],
+    },
+    {
+      nome: "Tatiane Soldam",
+      papel: "Gestora e co-fundadora",
+      foto: "/images/mk/tatiane.jpg",
+      texto:
+        "Mais de 20 anos à frente de finanças, fiscal, RH e supply chain em grandes indústrias, como Bosch e Eaton.",
+      numeros: [
+        { valor: "+20 anos", rotulo: "em gestão" },
+        { valor: "50", rotulo: "pessoas lideradas" },
+      ],
+    },
+  ],
+
+  realizacao: "Tênis Clube de Campinas",
+  diretoria: [
+    { cargo: "Presidente", nome: "Antônio Grassi Júnior" },
+    { cargo: "Diretora Cultural", nome: "Ana Clara de Mello e Silva" },
+    { cargo: "Diretor de Marketing", nome: "Luis Roberto Brunialti" },
+  ],
+  videos: [
+    { titulo: "Edição anterior", url: "https://youtube.com/shorts/FGUNILyhjr0", imagem: "/images/mk/evento-anterior-1.jpg" },
+    { titulo: "Edição anterior", url: "https://youtube.com/shorts/nmYrXJ7qWfY", imagem: "/images/mk/evento-anterior-2.jpg" },
+  ],
+  seguidores: [22000, 61800, 14600],
+
+  contato: {
+    nome: "Ricardo Farias Alexandre",
+    telefone: "(19) 99432-8278",
+    whatsapp: "5519994328278",
+    email: "eventos@vivasuamissao.com.br",
+  },
+};
+
+/* ------------------------------------------------------------------ */
+/* Tudo abaixo é específico da Stuttgart Porsche                       */
+/* ------------------------------------------------------------------ */
+const h = {
+  empresa: "Stuttgart Porsche",
+  marca: "Stuttgart Porsche",
+  capa: "/images/mk/organizador.jpg",
+
+  carta: [
+    "Esta proposta foi escrita para a Stuttgart Porsche, não adaptada de outra.",
+    "Antes de desenhar qualquer formato, estudamos como a marca se posiciona: a herança construída desde 1994, a ideia de que um Porsche é feito para uma pessoa, a comunidade que a Stuttgart criou com o Porsche Club Brasil e a presença em experiências onde o público está. Cada página a seguir parte desse estudo.",
+    "O que a Stuttgart não reconhecer como seu, nós ajustamos juntos.",
+  ],
+
+  epigrafe: {
+    texto: "Não um Porsche qualquer. Seu Porsche.",
+    fonte: "Programa Sonderwunsch, porsche.com/brazil",
+  },
+
+  pilares: [
+    {
+      titulo: "Herança",
+      texto:
+        "A Stuttgart nasceu em 1994 como concessionária Porsche, foi importadora oficial entre 1997 e 2015 e hoje opera Porsche Centers em nove cidades, além do Porsche Store Itaim e do Service | Body & Paint, em São Paulo.",
+      dado: "Em 1997, o nome da Stuttgart apareceu nos Porsche 911 GT1 da equipe de fábrica nas 24 Horas de Le Mans.",
+    },
+    {
+      titulo: "Exclusividade e personalização",
+      texto:
+        "O Porsche Center São Paulo é Flagship Dealer e Exclusive Manufaktur Partner, a divisão de personalização mais refinada da Porsche. A marca trata o carro como obra feita para uma pessoa.",
+      dado: "No programa Sonderwunsch, o cliente comanda uma equipe de projetistas e engenheiros para criar um Factory One-Off, exemplar único de fábrica, em até três anos.",
+    },
+    {
+      titulo: "Comunidade",
+      texto:
+        "O Porsche Club Brasil nasceu da Stuttgart em 1997. Tem cerca de 1.500 associados, é o maior da América Latina e o único reconhecido oficialmente pela Porsche AG.",
+      dado: "O 95º Porsche Club Driving School reuniu 110 inscritos em Interlagos, sob chuva. Desde 2001, o Club organiza a Porsche Club Cup.",
+    },
+    {
+      titulo: "Experiências onde o público está",
+      texto:
+        "A Porsche Cup Brasil, criada em 2005, e o Porsche Fest fazem do autódromo um ponto de encontro de clientes, fãs e famílias. Segundo a organização, “o fã da marca é muito o nosso target”.",
+      dado: "O Porsche Fest de 28/11/2026, em Interlagos, tem 12 horas de programação e mais de 200 carros expostos. A organização espera 45 mil pessoas na final da Porsche Cup, 50% mais que em 2025.",
+    },
+  ],
+  fontes:
+    "Fontes: stuttgartporsche.com.br (história da Stuttgart e do Porsche Club Brasil); porsche.com/brazil (Sonderwunsch); comunicados do Porsche Club Brasil (Driving School, 2026); Estadão (Porsche Cup Brasil, 2026); Sympla (Porsche Fest 2026); Porsche Cup Brasil (temporada 2026).",
+
+  encontros: [
+    {
+      titulo: "Público de alto padrão",
+      stuttgart: "Os eventos do Porsche Club Brasil são pensados para proprietários e também para familiares e amigos, em ambiente seguro e estruturado.",
+      raros: "No clube, 84% do público está nas classes A+ e A e 71% tem 36 anos ou mais. O RAROS é exclusivo para maiores de 18 anos.",
+    },
+    {
+      titulo: "Campinas",
+      stuttgart: "O Porsche Center Campinas atende a cidade na Av. Princesa D'Oeste, 1811, no Jardim Proença.",
+      raros: "O RAROS acontece no Cambuí, em Campinas, com sócios do clube e empresários convidados.",
+    },
+    {
+      titulo: "Comunidade",
+      stuttgart: "Cerca de 1.500 associados no Porsche Club Brasil, criado pela Stuttgart em 1997.",
+      raros: "Mais de 8,5 mil sócios ativos no Tênis Clube de Campinas. Um quinto da sala é do Clube de Networking.",
+    },
+    {
+      titulo: "Tradição",
+      stuttgart: "Porsche, desde 1948. Stuttgart, desde 1994.",
+      raros: "Tênis Clube de Campinas, desde 1913. Fundado como Lawn Tennis Club, recebe o RAROS no Cambuí.",
+    },
+    {
+      titulo: "Experiência, não só exposição",
+      stuttgart: "A Porsche usa seus eventos para aproximar a marca de proprietários e interessados: a exposição dos carros e as experiências criam contato ao longo da programação.",
+      raros: "120 lugares, uma única sala, conversa direta com cada convidado, cadastro de test drive durante o dia e relatório pós-evento.",
+    },
+    {
+      titulo: "Um por vez",
+      stuttgart: "“Não um Porsche qualquer. Seu Porsche.” A marca trabalha cada carro, e cada cliente, de forma individual.",
+      raros: "Uma sala de 120 lugares, entre sócios e empresários convidados, para que cada conversa seja de verdade.",
+    },
+  ],
+
+  dia: {
+    ideia: "Durante o dia, a conversa. Depois do evento, o convite para dirigir no Porsche Center.",
+    detalhe:
+      "Um caminho sugerido, que respeita o ritmo do evento: a marca ocupa o dia com presença elegante, sem interromper o conteúdo, e assina o fechamento. Tudo é ajustável.",
+    momentos: [
+      { id: "credenciamento", hora: "8h30", nome: "Credenciamento", marca: true, nivel: "apoio", selecionavel: true, ideia: "Material da marca na entrega do crachá e o convite para dirigir depois, no Porsche Center Campinas." },
+      { id: "abertura", hora: "9h00", nome: "Abertura e conteúdo", marca: false, nivel: "apoio", selecionavel: true, ideia: "O conteúdo fica livre de marca. Apenas a abertura cita a Stuttgart Porsche e o que ela traz ao dia." },
+      { id: "coffee-manha", hora: "10h30", nome: "Coffee break da manhã", marca: true, nivel: "experiencia", selecionavel: true, ideia: "Mesa de personalização: configurador, materiais e conversa sobre o Sonderwunsch, ao lado do café." },
+      { id: "almoco", hora: "13h00", nome: "Almoço", marca: false, nivel: "apoio", selecionavel: false, ideia: "Sem marca. O almoço é do networking e da conversa entre os convidados." },
+      { id: "coffee-tarde", hora: "15h30", nome: "Coffee break da tarde", marca: true, nivel: "experiencia", selecionavel: true, ideia: "Cadastro de test drive: quem quiser dirigir deixa os dados e agenda para depois do evento, com o Porsche Center." },
+      { id: "coquetel", hora: "18h00", nome: "Coquetel de encerramento", marca: true, nivel: "master", selecionavel: true, ideia: "A Stuttgart assina o fechamento do dia e convida quem quiser a dirigir depois, no Porsche Center Campinas." },
+    ],
+    extra: {
+      id: "exposicao",
+      nome: "Espaço de marca",
+      nivel: "experiencia",
+      ideia: "Um canto da marca na sala, com configurador e materiais."
+    },
+    testdrive: {
+      titulo: "Test drive depois do evento",
+      texto:
+        "O convite é feito durante o RAROS, com cadastro dos interessados, e o test drive acontece depois, no Porsche Center Campinas, em data a combinar.",
+    },
+  },
+
+  linhas: [
+    { valor: "Esportivos", texto: "911 e 718, a origem da marca." },
+    { valor: "SUVs", texto: "Cayenne e Macan, para o dia a dia de quem lidera." },
+    { valor: "Elétricos", texto: "Taycan e Macan Electric." },
+    { valor: "Seleção da Stuttgart", texto: "A combinação que a Stuttgart preferir." },
+  ],
+
+  cotas: [
+    {
+      nome: "Parceiro Master",
+      quantidade: "1 por edição",
+      destaque: true,
+      resumo: "Exclusividade em automóveis premium e o Momento Porsche, no coquetel de encerramento.",
+      entregas: [
+        "Exclusividade da categoria de automóveis premium no evento",
+        "Coquetel de encerramento com o nome da Stuttgart Porsche",
+        "Cadastro de test drive durante o dia, para dirigir depois no Porsche Center Campinas",
+        "Marca na página oficial, nos materiais e no palco",
+        "Divulgação nos perfis dos palestrantes e do clube",
+        "Cortesias para convidados da marca",
+        "Relatório pós-evento e lista dos interessados no test drive",
+      ],
+    },
+    {
+      nome: "Parceiro de Experiência",
+      quantidade: "2 momentos disponíveis",
+      destaque: false,
+      resumo: "Um momento do dia assinado pela marca: o coffee da manhã com a mesa de personalização ou o coffee da tarde com o cadastro de test drive.",
+      entregas: [
+        "Um momento do dia com o nome da marca",
+        "Mesa com configurador e materiais da marca",
+        "Menção no palco",
+        "Marca na página oficial e nos materiais",
+        "Cortesias para convidados da marca",
+        "Relatório pós-evento",
+      ],
+    },
+    {
+      nome: "Apoio",
+      quantidade: "Vagas limitadas",
+      destaque: false,
+      resumo: "Presença da marca ao lado de um público de decisores.",
+      entregas: [
+        "Marca na página oficial e nos materiais",
+        "Presença no evento",
+        "Cortesia para convidado da marca",
+        "Relatório pós-evento",
+      ],
+    },
+  ],
+
+  compromissos: [
+    { titulo: "Público 100% adulto", texto: "O RAROS é exclusivo para maiores de 18 anos, em todas as edições e em todos os materiais." },
+    { titulo: "Test drive feito pela marca", texto: "O test drive é conduzido pelo Porsche Center Campinas, seguindo as regras da Stuttgart, em data posterior." },
+    { titulo: "Cadastro com consentimento", texto: "Quem se cadastra sabe para quem os dados vão e para quê. As informações são entregues apenas à Stuttgart, de acordo com a LGPD." },
+    { titulo: "Conteúdo sem interferência", texto: "As palestras ficam livres de marca. A presença da Stuttgart Porsche acontece nos momentos combinados." },
+    { titulo: "Comunicação aprovada pela marca", texto: "Nenhum material com a marca Stuttgart Porsche ou Porsche sai sem a aprovação prévia da equipe de marketing da Stuttgart." },
+  ],
+};
+
+/* ------------------------------------------------------------------ */
+
+function youtubeEmbed(url: string) {
+  const id =
+    url.match(/shorts\/([\w-]+)/)?.[1] ??
+    url.match(/[?&]v=([\w-]+)/)?.[1] ??
+    url.match(/youtu\.be\/([\w-]+)/)?.[1] ??
+    "";
+  return id ? `https://www.youtube.com/embed/${id}?autoplay=1` : url;
+}
+
+const totalSeguidores = evento.seguidores.reduce((s, n) => s + n, 0);
+const seguidoresMil =
+  (totalSeguidores / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mil";
+
+const logo = ["svg", "png", "webp"]
+  .map((ext) => `images/stuttgart/logo.${ext}`)
+  .find((caminho) => existsSync(resolve(process.cwd(), "public", caminho)));
+
+const capaFoto = existsSync(resolve(process.cwd(), "public", "images/stuttgart/capa.jpg"))
+  ? "/images/stuttgart/capa.jpg"
+  : h.capa;
+
+const zap =
+  "https://wa.me/" +
+  evento.contato.whatsapp +
+  "?text=" +
+  encodeURIComponent("Olá! Vi a proposta do RAROS preparada para a Stuttgart Porsche e quero conversar sobre ela.");
+
+const opcoesMomento = [
+  ...h.dia.momentos
+    .filter((m) => m.selecionavel)
+    .map((m) => ({ id: m.id, hora: m.hora, nome: m.nome, ideia: m.ideia, nivel: m.nivel })),
+  { id: h.dia.extra.id, hora: "A combinar", nome: h.dia.extra.nome, ideia: h.dia.extra.ideia, nivel: h.dia.extra.nivel },
+];
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0a0a0b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>Proposta de parceria para a Stuttgart Porsche | RAROS · Tênis Clube de Campinas</title>
+    <meta
+      name="description"
+      content="Proposta de parceria do RAROS preparada para a Stuttgart Porsche: um encontro reservado de 120 lugares no Tênis Clube de Campinas."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="k4-body">
+    <main class="k4">
+      <!-- Capa -->
+      <section class="k4-pag k4-capa" style={`--capa: url('${capaFoto}')`}>
+        <div class="k4-capa-topo">
+          <div class="k4-wrap">
+            <p class="k4-rotulo"><i class="k4-filete" aria-hidden="true"></i>Proposta de parceria · 2026</p>
+            {logo && <img class="k4-logo" src={`/${logo}`} alt={h.marca} />}
+          </div>
+        </div>
+        <div class="k4-wrap k4-capa-texto">
+          <p class="k4-capa-para">Preparada para a {h.empresa}</p>
+          <h1 class="k4-capa-titulo">
+            <span class="k4-sr">{evento.nome}: </span>Um dia para quem decide. Um Porsche para quem escolhe.
+          </h1>
+          <p class="k4-capa-info">
+            {evento.nome} · {evento.tema}<br />
+            {evento.data} · {evento.casa}
+          </p>
+        </div>
+      </section>
+
+      <!-- Carta -->
+      <section class="k4-pag k4-centro">
+        <div class="k4-wrap">
+          <div class="k4-carta">
+            <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>Antes de tudo</p>
+            {h.carta.map((p) => <p class="k4-carta-texto">{p}</p>)}
+            <div class="k4-carta-ass">
+              <strong>{evento.contato.nome}</strong>
+              <span>Organização do {evento.nome}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 01 A marca -->
+      <section class="k4-pag k4-grafite">
+        <div class="k4-wrap">
+          <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>01 · O que estudamos</p>
+          <h2>A Stuttgart Porsche que vimos de perto</h2>
+          <figure class="k4-epigrafe" style="margin-top: 36px">
+            <blockquote>
+              <p>“{h.epigrafe.texto}”</p>
+            </blockquote>
+            <cite>{h.epigrafe.fonte}</cite>
+          </figure>
+          <div class="k4-pilares">
+            {h.pilares.map((p) => (
+              <article class="k4-pilar">
+                <h3><i class="k4-filete" aria-hidden="true"></i>{p.titulo}</h3>
+                <p>{p.texto}</p>
+                <p class="k4-pilar-dado">{p.dado}</p>
+              </article>
+            ))}
+          </div>
+          <p class="k4-fonte">{h.fontes}</p>
+        </div>
+      </section>
+
+      <!-- 02 O que nos une -->
+      <section class="k4-pag k4-claro">
+        <div class="k4-wrap">
+          <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>02 · O que nos une</p>
+          <h2>Seis pontos em que a Stuttgart Porsche e o RAROS se reconhecem</h2>
+          <div class="k4-pares">
+            <div class="k4-par-cab" aria-hidden="true">
+              <span>A Stuttgart Porsche</span><span></span><span>O RAROS</span>
+            </div>
+            {h.encontros.map((e) => (
+              <article class="k4-par">
+                <h3>{e.titulo}</h3>
+                <p>{e.stuttgart}</p>
+                <span class="k4-par-seta" aria-hidden="true">→</span>
+                <p>{e.raros}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 O encontro -->
+      <section class="k4-pag">
+        <div class="k4-wrap">
+          <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>03 · O encontro</p>
+          <h2>Cento e vinte lugares. Uma única sala. As pessoas que decidem.</h2>
+          <p class="k4-lead">
+            O {evento.nome} reúne, por um dia, sócios do {evento.casa} e empresários convidados em torno de inteligência
+            emocional aplicada aos negócios. Um ambiente reservado, pensado para conversas que viram parcerias.
+          </p>
+
+          <div class="k4-barra" role="img" aria-label={evento.composicao.map((c) => `${c.pct}% ${c.rotulo}`).join("; ")}>
+            {evento.composicao.map((c, i) => <span class={`k4-seg k4-seg-${i + 1}`} style={`width: ${c.pct}%`}></span>)}
+          </div>
+          <ul class="k4-legenda">
+            {evento.composicao.map((c, i) => (
+              <li>
+                <i class={`k4-seg k4-seg-${i + 1}`} aria-hidden="true"></i>
+                <strong>{c.pct}%</strong>
+                <span>{c.rotulo}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="k4-linha">{evento.porte}.</p>
+
+          <h3 class="k4-sub">O perfil de quem frequenta o clube</h3>
+          <ul class="k4-grade k4-grade-4">
+            {evento.perfilClube.map((n) => <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>)}
+          </ul>
+          <ul class="k4-grade k4-grade-3">
+            {evento.clubeNumeros.map((n) => <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>)}
+          </ul>
+          <p class="k4-fonte">Fonte: dados do {evento.casa}. Evento exclusivo para maiores de 18 anos.</p>
+        </div>
+      </section>
+
+      <!-- 04 O dia -->
+      <section class="k4-pag k4-claro">
+        <div class="k4-wrap">
+          <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>04 · O dia Porsche</p>
+          <h2>Cada momento do dia, uma ideia para a marca</h2>
+          <p class="k4-lead">
+            {evento.data}, no {evento.casa}. {h.dia.detalhe}
+          </p>
+          <ol class="k4-dia">
+            {h.dia.momentos.map((m) => (
+              <li class={`k4-momento ${m.marca ? "k4-com-marca" : ""}`}>
+                <strong>{m.hora}</strong>
+                <i class="k4-filete" aria-hidden="true"></i>
+                <div>
+                  <h3>{m.nome}</h3>
+                  <p>{m.ideia}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p class="k4-ideia-geral"><strong>{h.dia.ideia}</strong></p>
+          <div class="k4-testdrive">
+            <strong>{h.dia.testdrive.titulo}</strong>
+            {h.dia.testdrive.texto}
+          </div>
+          <p class="k4-fonte">{evento.endereco}</p>
+        </div>
+      </section>
+
+      <!-- 05 Conteúdo -->
+      <section class="k4-pag">
+        <div class="k4-wrap">
+          <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>05 · Conteúdo</p>
+          <h2>Quem conduz o dia</h2>
+          <div class="k4-pals">
+            {evento.palestrantes.map((p) => (
+              <article class="k4-pal">
+                <img src={p.foto} alt={p.nome} width="520" height="650" />
+                <h3>{p.nome}</h3>
+                <p class="k4-pal-papel">{p.papel}</p>
+                <p class="k4-pal-texto">{p.texto}</p>
+                <ul>
+                  {p.numeros.map((n) => <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 Formatos -->
+      <section class="k4-pag k4-claro">
+        <div class="k4-wrap">
+          <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>06 · Parceria</p>
+          <h2>Três formatos para a Stuttgart Porsche estar presente</h2>
+          <div class="k4-cotas">
+            {h.cotas.map((c) => (
+              <article class={`k4-cota ${c.destaque ? "k4-cota-destaque" : ""}`}>
+                <h3>{c.nome}</h3>
+                <p class="k4-cota-qtd">{c.quantidade}</p>
+                <p class="k4-cota-resumo">{c.resumo}</p>
+                <ul>{c.entregas.map((e) => <li>{e}</li>)}</ul>
+                <p class="k4-cota-valor">Investimento apresentado em conversa</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 Monte a presença -->
+      <section class="k4-pag k4-grafite" id="montar">
+        <div class="k4-wrap">
+          <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>07 · Sua presença, do seu jeito</p>
+          <h2>Monte a presença da Stuttgart Porsche no RAROS</h2>
+          <p class="k4-lead">
+            Os formatos são um ponto de partida. Marque o que faz sentido para a marca e enviaremos a composição
+            diretamente para a conversa. Nada aqui é definitivo: serve para começarmos pelo que a Stuttgart já tem em mente.
+          </p>
+
+          <form class="k4-montar" id="k4-montar" onsubmit="return false">
+            <fieldset class="k4-passo">
+              <legend>1. Qual linha Porsche estará presente?</legend>
+              <div class="k4-opcoes k4-opcoes-2">
+                {h.linhas.map((l, i) => (
+                  <label class="k4-escolha">
+                    <input type="radio" name="linha" value={l.valor} checked={i === 0} />
+                    <span><strong>{l.valor}</strong><small>{l.texto}</small></span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset class="k4-passo">
+              <legend>
+                2. Em quais momentos?
+                <small>Marque quantos quiser.</small>
+              </legend>
+              <div class="k4-opcoes k4-opcoes-2">
+                {opcoesMomento.map((m) => (
+                  <label class="k4-escolha">
+                    <input type="checkbox" name="momento" value={m.nome} data-nivel={m.nivel} />
+                    <span><em>{m.hora}</em><strong>{m.nome}</strong><small>{m.ideia}</small></span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset class="k4-passo">
+              <legend>
+                3. Test drive
+                <small>O cadastro é feito durante o RAROS. O test drive acontece depois.</small>
+              </legend>
+              <div class="k4-opcoes k4-opcoes-1">
+                <label class="k4-escolha">
+                  <input type="checkbox" name="testdrive" checked />
+                  <span>
+                    <strong>Abrir cadastro de test drive para depois do evento</strong>
+                    <small>Convidados interessados deixam os dados e agendam com o Porsche Center Campinas, em data a combinar.</small>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="k4-passo">
+              <legend>
+                4. Algo mais que a Stuttgart gostaria de incluir?
+                <small>Uma linha, um convidado ou uma mensagem da marca.</small>
+              </legend>
+              <textarea class="k4-campo" name="obs" rows="3" placeholder="Escreva aqui, se quiser."></textarea>
+            </fieldset>
+
+            <div class="k4-resumo" aria-live="polite">
+              <p class="k4-resumo-rotulo">Formato que combina com a sua escolha</p>
+              <p class="k4-resumo-formato" id="k4-formato">Marque ao menos um momento</p>
+              <p class="k4-resumo-texto" id="k4-resumo-texto">
+                Assim que você escolher, mostramos o formato mais próximo. Depois ajustamos tudo juntos.
+              </p>
+              <a class="k4-botao" id="k4-enviar" href={zap}>Enviar esta composição</a>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- 08 Compromisso -->
+      <section class="k4-pag k4-claro">
+        <div class="k4-wrap">
+          <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>08 · Nosso compromisso</p>
+          <h2>Cuidar da marca é parte da proposta</h2>
+          <p class="k4-lead">
+            Sabemos o que a marca Porsche representa e o cuidado que a Stuttgart tem com ela. Por isso assumimos cinco compromissos desde já.
+          </p>
+          <ul class="k4-compromissos">
+            {h.compromissos.map((c) => (
+              <li>
+                <strong><i class="k4-filete" aria-hidden="true"></i>{c.titulo}</strong>
+                <span>{c.texto}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <!-- 09 Realização e visibilidade -->
+      <section class="k4-pag">
+        <div class="k4-wrap">
+          <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>09 · Realização</p>
+          <h2>{evento.realizacao}</h2>
+          <ul class="k4-diretoria">
+            {evento.diretoria.map((d) => <li><span>{d.cargo}</span><strong>{d.nome}</strong></li>)}
+          </ul>
+
+          <h3 class="k4-sub">Visibilidade antes do evento</h3>
+          <div class="k4-visib">
+            <p class="k4-visib-num">
+              <strong>{seguidoresMil}</strong>
+              <span>seguidores somados nos perfis dos palestrantes e do clube</span>
+            </p>
+            <p>
+              Além da página oficial do evento e das telas digitais do clube, vistas por mais de 1.200 frequentadores por dia.
+            </p>
+          </div>
+
+          <h3 class="k4-sub">Edições anteriores</h3>
+          <p class="k4-fonte" style="margin: -8px 0 16px">Registros de edições realizadas em outros locais.</p>
+          <div class="k4-videos">
+            {evento.videos.map((v, i) => (
+              <button
+                type="button"
+                class="k4-video"
+                data-video={youtubeEmbed(v.url)}
+                data-formato={v.url.includes("/shorts/") ? "vertical" : "horizontal"}
+                data-titulo={`${v.titulo} · vídeo ${i + 1}`}
+              >
+                <img src={v.imagem} alt="" width="405" height="720" />
+                <span class="k4-play" aria-hidden="true"></span>
+                <span class="k4-video-txt">Assistir · vídeo {i + 1}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Contato -->
+      <section class="k4-pag k4-final">
+        <div class="k4-wrap">
+          <div class="k4-contato">
+            <p class="k4-rotulo"><i class="k4-filete" aria-hidden="true"></i>Será uma honra conversar com a Stuttgart Porsche</p>
+            <p class="k4-contato-nome">{evento.contato.nome}</p>
+            <p><a href={zap}>WhatsApp {evento.contato.telefone}</a></p>
+            <p><a href={`mailto:${evento.contato.email}`}>{evento.contato.email}</a></p>
+            <a class="k4-botao" href={zap}>Agendar uma conversa</a>
+          </div>
+          <p class="k4-rodape">{evento.nome} · {evento.casa} · {evento.endereco}</p>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="k4-player" id="k4-player">
+      <form method="dialog" class="k4-player-barra">
+        <p class="k4-player-titulo"></p>
+        <button type="submit" class="k4-player-fechar">Fechar</button>
+      </form>
+      <iframe title="Vídeo" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    </dialog>
+
+    <script is:inline define:vars={{ whatsapp: evento.contato.whatsapp }}>
+      // Janela de vídeo
+      const dialog = document.querySelector("#k4-player");
+      const frame = dialog.querySelector("iframe");
+      const titulo = dialog.querySelector(".k4-player-titulo");
+
+      document.querySelectorAll(".k4-video").forEach((botao) => {
+        botao.addEventListener("click", () => {
+          const nome = botao.dataset.titulo || "Vídeo";
+          frame.title = nome;
+          titulo.textContent = nome;
+          dialog.dataset.formato = botao.dataset.formato || "horizontal";
+          frame.src = botao.dataset.video || "";
+          dialog.showModal();
+        });
+      });
+      dialog.addEventListener("close", () => { frame.src = ""; });
+      dialog.addEventListener("click", (evento) => { if (evento.target === dialog) dialog.close(); });
+
+      // Montar a presença
+      const form = document.querySelector("#k4-montar");
+      const formato = document.querySelector("#k4-formato");
+      const texto = document.querySelector("#k4-resumo-texto");
+      const enviar = document.querySelector("#k4-enviar");
+
+      const formatos = {
+        master: {
+          nome: "Parceiro Master",
+          texto: "Inclui o coquetel de encerramento, o Momento Porsche, e com ele a exclusividade em automóveis premium no evento.",
+        },
+        experiencia: {
+          nome: "Parceiro de Experiência",
+          texto: "Um ou mais momentos do dia assinados pela marca, como a mesa de personalização ou o cadastro de test drive.",
+        },
+        apoio: {
+          nome: "Apoio",
+          texto: "Presença da marca ao lado do público, no credenciamento e na abertura.",
+        },
+      };
+      const peso = { apoio: 1, experiencia: 2, master: 3 };
+
+      function atualizar() {
+        const linha = form.querySelector('input[name="linha"]:checked')?.value ?? "";
+        const marcados = [...form.querySelectorAll('input[name="momento"]:checked')];
+        const testdrive = form.elements.testdrive.checked;
+        const obs = form.elements.obs.value.trim();
+
+        let melhor = null;
+        marcados.forEach((m) => {
+          if (!melhor || peso[m.dataset.nivel] > peso[melhor]) melhor = m.dataset.nivel;
+        });
+        const escolhido = melhor ? formatos[melhor] : null;
+
+        formato.textContent = escolhido ? escolhido.nome : "Marque ao menos um momento";
+        texto.textContent = escolhido
+          ? escolhido.texto + " Depois ajustamos tudo juntos."
+          : "Assim que você escolher, mostramos o formato mais próximo. Depois ajustamos tudo juntos.";
+
+        const linhas = ["Olá! Vi a proposta do RAROS preparada para a Stuttgart Porsche e quero conversar sobre esta composição:"];
+        if (linha) linhas.push("• Linha: " + linha);
+        if (marcados.length) linhas.push("• Momentos: " + marcados.map((m) => m.value).join(", "));
+        if (escolhido) linhas.push("• Formato que combina: " + escolhido.nome);
+        linhas.push("• Cadastro de test drive para depois do evento: " + (testdrive ? "sim" : "não"));
+        if (obs) linhas.push("• Observações: " + obs);
+        enviar.href = "https://wa.me/" + whatsapp + "?text=" + encodeURIComponent(linhas.join("\n"));
+      }
+
+      form.addEventListener("input", atualizar);
+      form.addEventListener("change", atualizar);
+      atualizar();
+    </script>
+  </body>
+</html>

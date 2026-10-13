@@ -1,0 +1,701 @@
+---
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
+import "../styles/midiakitheineken.css";
+
+/**
+ * Proposta de parceria do RAROS escrita para o Grupo Heineken Brasil (/midiakitheineken).
+ * Independente do /midiakit e do /midiakit002: dados e estilos próprios (classes .k3-).
+ *
+ * Como personalizar para outra marca: tudo que é específico da Heineken está no objeto `h`
+ * (leitura da marca, pontos em comum, ideia por momento do dia, formatos e compromissos).
+ * O restante (dados do evento) vem do objeto `evento`.
+ *
+ * Logo: se existir public/images/heineken/logo.(svg|png|webp), ele aparece no topo da capa.
+ */
+const evento = {
+  nome: "RAROS",
+  tema: "Inteligência Emocional para Liderar o Seu Negócio",
+  data: "Sábado, 5 de dezembro de 2026",
+  casa: "Tênis Clube de Campinas",
+  endereco: "R. Cel. Quirino, 1346 — Cambuí, Campinas — SP, 13015-330",
+
+  destaques: [
+    { valor: "120", rotulo: "lugares, em ambiente reservado" },
+    { valor: "84%", rotulo: "do público do clube nas classes A+ e A" },
+    { valor: "1913", rotulo: "ano de fundação do Tênis Clube de Campinas" },
+  ],
+  composicao: [
+    { pct: 20, rotulo: "Sócios do clube integrantes do Clube de Networking" },
+    { pct: 60, rotulo: "Sócios do Tênis Clube de Campinas" },
+    { pct: 20, rotulo: "Empresários e empreendedores convidados" },
+  ],
+  porte: "Pequenas, médias e grandes empresas",
+  perfilClube: [
+    { valor: "26%", rotulo: "classe A+" },
+    { valor: "58%", rotulo: "classe A" },
+    { valor: "70%", rotulo: "com ensino superior completo" },
+    { valor: "71%", rotulo: "com 36 anos ou mais" },
+  ],
+  clubeNumeros: [
+    { valor: "+8,5 mil", rotulo: "sócios ativos" },
+    { valor: "420 mil", rotulo: "acessos em 2024" },
+    { valor: "+1.200", rotulo: "acessos por dia" },
+  ],
+
+  palestrantes: [
+    {
+      nome: "Leandro Marcondes",
+      papel: "Empresário e estrategista de negócios",
+      foto: "/images/mk/leandro.jpg",
+      texto:
+        "Mais de 20 anos de experiência internacional em liderança e negócios, à frente de grandes projetos e eventos ao lado de nomes como T. Harv Eker e Nick Vujicic.",
+      numeros: [{ valor: "+20 anos", rotulo: "de experiência internacional" }],
+    },
+    {
+      nome: "Guaciara Fornaciari",
+      papel: "Empresária · Fundadora do Doutora Escola",
+      foto: "/images/mk/guaciara.jpg",
+      texto:
+        "Especialista em aprendizagem acelerada e desenvolvimento socioemocional. Já dirigiu escola e transformou uma lacuna do mercado em negócio próprio.",
+      numeros: [
+        { valor: "12.000", rotulo: "pessoas treinadas" },
+        { valor: "21 anos", rotulo: "de experiência" },
+      ],
+    },
+    {
+      nome: "Tatiane Soldam",
+      papel: "Gestora e co-fundadora",
+      foto: "/images/mk/tatiane.jpg",
+      texto:
+        "Mais de 20 anos à frente de finanças, fiscal, RH e supply chain em grandes indústrias, como Bosch e Eaton.",
+      numeros: [
+        { valor: "+20 anos", rotulo: "em gestão" },
+        { valor: "50", rotulo: "pessoas lideradas" },
+      ],
+    },
+  ],
+
+  realizacao: "Tênis Clube de Campinas",
+  diretoria: [
+    { cargo: "Presidente", nome: "Antônio Grassi Júnior" },
+    { cargo: "Diretora Cultural", nome: "Ana Clara de Mello e Silva" },
+    { cargo: "Diretor de Marketing", nome: "Luis Roberto Brunialti" },
+  ],
+  videos: [
+    { titulo: "Edição anterior", url: "https://youtube.com/shorts/FGUNILyhjr0", imagem: "/images/mk/evento-anterior-1.jpg" },
+    { titulo: "Edição anterior", url: "https://youtube.com/shorts/nmYrXJ7qWfY", imagem: "/images/mk/evento-anterior-2.jpg" },
+  ],
+  seguidores: [22000, 61800, 14600],
+
+  contato: {
+    nome: "Ricardo Farias Alexandre",
+    telefone: "(19) 99432-8278",
+    whatsapp: "5519994328278",
+    email: "eventos@vivasuamissao.com.br",
+  },
+};
+
+/* ------------------------------------------------------------------ */
+/* Tudo abaixo é específico da Heineken                                */
+/* ------------------------------------------------------------------ */
+const h = {
+  empresa: "Grupo Heineken Brasil",
+  marca: "Heineken",
+
+  carta: [
+    "Esta proposta foi escrita para a Heineken, não adaptada de outra.",
+    "Antes de desenhar qualquer formato, estudamos como a marca se posiciona: a tradição desde 1873, a ideia de socialização de qualidade, a moderação como atitude, que ganhou um novo capítulo com a Heineken Ultimate, e a presença em experiências onde o público está. Cada página a seguir parte desse estudo.",
+    "O que a Heineken não reconhecer como seu, nós ajustamos juntos.",
+  ],
+
+  epigrafe: {
+    texto: "Acreditamos que os melhores momentos são aqueles compartilhados.",
+    fonte: "Grupo HEINEKEN Brasil, heinekenbrasil.com.br",
+  },
+
+  pilares: [
+    {
+      titulo: "Qualidade e tradição",
+      texto:
+        "Uma marca de família, com a cor verde e a estrela vermelha reconhecidas em qualquer mesa do mundo.",
+      dado: "Por volta de 1900, Gerard Heineken escolheu a garrafa verde para a sua cerveja se destacar entre as marrons. “EST. 1873” segue no rótulo.",
+    },
+    {
+      titulo: "Socialização de qualidade",
+      texto:
+        "A Heineken 0.0 se apresenta como defensora da “socialização de qualidade” e entra nos espaços onde as pessoas se encontram.",
+      dado: "No padel, a marca parte de um dado: mais de 70% dos praticantes jogam pela experiência social.",
+    },
+    {
+      titulo: "Moderação como atitude",
+      texto:
+        "A marca fala de consumo responsável como parte do que ela é: primeiro com a Heineken 0.0 e, desde maio de 2026, com a Heineken Ultimate, que o Grupo chama de “inovação na moderação”.",
+      dado: "A Ultimate estreou no Brasil, primeiro país do mundo a recebê-la: 97 calorias, 30% menos que a regular, sem glúten e com 3,5% de álcool. Desde 2010, 10% da verba de mídia vai para consumo consciente.",
+    },
+    {
+      titulo: "Experiências onde o público está",
+      texto:
+        "Parceira global da Fórmula 1 desde 2016 e, a partir de 2026, parceira global de cerveja do Premier Padel.",
+      dado: "No lançamento da Heineken 0.0 no Brasil, em 2020, a degustação foi levada a eventos, corridas, academias, concessionárias e escritórios.",
+    },
+  ],
+  fontes:
+    "Fontes: heinekenbrasil.com.br; heineken.com (história e rótulo); The Heineken Company (comunicado Premier Padel, out/2025); Exame e Estadão (Fórmula 1); comunicados de lançamento da Heineken 0.0 no Brasil (2020); Exame e Clube de Criação (lançamento da Heineken Ultimate, maio/2026).",
+
+  encontros: [
+    {
+      titulo: "Público adulto e qualificado",
+      heineken: "O Código de Marketing Responsável da Heineken pede comunicação para públicos com pelo menos 70% de maiores de idade.",
+      raros: "95% do público acima de 18 anos. No clube, 71% tem 36 anos ou mais.",
+    },
+    {
+      titulo: "Ocasiões de trabalho",
+      heineken: "Com o “Agora você pode”, a Heineken 0.0 chegou ao Brasil propondo novas ocasiões de consumo, como o trabalho e o almoço.",
+      raros: "Um dia inteiro de negócios, com credenciamento, dois coffee breaks e almoço, para decisores.",
+    },
+    {
+      titulo: "Esporte e convivência",
+      heineken: "Do automobilismo ao padel, a marca ocupa lugares onde as pessoas se reúnem para conviver.",
+      raros: "O Tênis Clube de Campinas tem mais de 8,5 mil sócios ativos e mais de 1.200 acessos por dia.",
+    },
+    {
+      titulo: "Equilíbrio e vida social leve",
+      heineken: "A Heineken Ultimate nasceu para quem busca equilíbrio sem abrir mão do sabor: 97 calorias, 30% menos que a regular e sem glúten. A marca a apresenta como parte de uma vida social mais leve.",
+      raros: "O Tênis Clube de Campinas é, antes de tudo, um clube de esporte e bem-estar. O RAROS acontece num lugar onde as pessoas já vão cuidar de si.",
+    },
+    {
+      titulo: "Tradição e posicionamento premium",
+      heineken: "Heineken, desde 1873. Nos comunicados da própria marca, a cerveja premium mais vendida do Brasil.",
+      raros: "Tênis Clube de Campinas, desde 1913. Fundado como Lawn Tennis Club, recebe o RAROS no Cambuí.",
+    },
+    {
+      titulo: "Experiência, não só exposição",
+      heineken: "A marca diz priorizar plataformas que “tragam retorno proporcional ao investimento” e fortaleçam a conexão com diferentes públicos.",
+      raros: "120 lugares, uma única sala, conversa direta com cada convidado e relatório pós-evento do que foi entregue.",
+    },
+  ],
+
+  dia: {
+    ideia: "Durante o dia, Heineken 0.0. À noite, o brinde.",
+    detalhe:
+      "Um caminho sugerido, que respeita o ritmo do evento: a marca acompanha o trabalho com a Heineken 0.0 e assina o fechamento do dia. Tudo é ajustável.",
+    momentos: [
+      { id: "credenciamento", hora: "8h30", nome: "Credenciamento", marca: true, nivel: "apoio", ideia: "Boas-vindas com Heineken 0.0 gelada e material da marca na entrega do crachá." },
+      { id: "abertura", hora: "9h00", nome: "Abertura e conteúdo", marca: false, nivel: "apoio", ideia: "O conteúdo fica livre de marca. Apenas a abertura cita a Heineken e a mensagem de moderação." },
+      { id: "coffee-manha", hora: "10h30", nome: "Coffee break da manhã", marca: true, nivel: "experiencia", ideia: "Ponto Heineken 0.0 ao lado do café, para quem quer uma pausa diferente." },
+      { id: "almoco", hora: "13h00", nome: "Almoço", marca: true, nivel: "experiencia", ideia: "O “Agora você pode” na prática: Heineken 0.0 à mesa, em pleno dia de trabalho." },
+      { id: "coffee-tarde", hora: "15h30", nome: "Coffee break da tarde", marca: true, nivel: "experiencia", ideia: "Pausa da tarde com a marca nas mesas, sem interromper a programação." },
+      { id: "coquetel", hora: "18h00", nome: "Coquetel de encerramento", marca: true, nivel: "master", ideia: "O brinde final, assinado pela Heineken. Cheers to all: com a leveza da Heineken Ultimate, ou sem álcool, com a 0.0." },
+    ],
+    extra: {
+      id: "lounge",
+      nome: "Espaço de marca",
+      nivel: "experiencia",
+      ideia: "Exposição ou lounge da marca, se for do interesse da Heineken. Formato e local a combinar com o clube.",
+    },
+  },
+
+  linhas: [
+    { valor: "Heineken 0.0", texto: "A marca acompanha o dia de trabalho." },
+    { valor: "Heineken Ultimate", texto: "A novidade da marca, leve e sem glúten, no brinde do fim do dia." },
+    { valor: "Heineken", texto: "A cerveja original no brinde do fim do dia." },
+    { valor: "Mais de uma linha", texto: "Uma combinação, cada linha no seu momento." },
+  ],
+
+  cotas: [
+    {
+      nome: "Parceiro Master",
+      quantidade: "1 por edição",
+      destaque: true,
+      resumo: "Exclusividade em cervejas e o brinde de encerramento assinado pela Heineken.",
+      entregas: [
+        "Exclusividade da categoria cervejas no evento",
+        "Coquetel de encerramento com o nome da Heineken",
+        "Espaço de exposição ou lounge, a combinar com o clube",
+        "Marca na página oficial, nos materiais e no palco",
+        "Divulgação nos perfis dos palestrantes e do clube",
+        "Cortesias para convidados da marca",
+        "Relatório pós-evento",
+      ],
+    },
+    {
+      nome: "Parceiro de Experiência",
+      quantidade: "3 momentos disponíveis",
+      destaque: false,
+      resumo: "Um momento do dia assinado pela marca: coffee break da manhã, almoço ou coffee break da tarde.",
+      entregas: [
+        "Um momento do dia com o nome da marca",
+        "Material no credenciamento",
+        "Menção no palco",
+        "Marca na página oficial e nos materiais",
+        "Cortesias para convidados da marca",
+        "Relatório pós-evento",
+      ],
+    },
+    {
+      nome: "Apoio",
+      quantidade: "Vagas limitadas",
+      destaque: false,
+      resumo: "Presença da marca ao lado de um público de decisores.",
+      entregas: [
+        "Marca na página oficial e nos materiais",
+        "Presença no evento",
+        "Cortesia para convidado da marca",
+        "Relatório pós-evento",
+      ],
+    },
+  ],
+
+  compromissos: [
+    { titulo: "95% acima de 18", texto: "95% do público do RAROS está acima de 18 anos, em todas as edições e em todos os materiais." },
+    { titulo: "Sempre com a opção sem álcool", texto: "Em todos os momentos de marca, a Heineken 0.0 está disponível, no mesmo destaque." },
+    { titulo: "Mensagem de moderação", texto: "Espaço no palco e nos materiais para a mensagem que a Heineken quiser levar, como “Quando dirigir, nunca beba”." },
+    { titulo: "Comunicação aprovada pela marca", texto: "Nenhum material com a marca Heineken sai sem a aprovação prévia da equipe de marketing da Heineken." },
+  ],
+};
+
+/* ------------------------------------------------------------------ */
+
+function youtubeEmbed(url: string) {
+  const id =
+    url.match(/shorts\/([\w-]+)/)?.[1] ??
+    url.match(/[?&]v=([\w-]+)/)?.[1] ??
+    url.match(/youtu\.be\/([\w-]+)/)?.[1] ??
+    "";
+  return id ? `https://www.youtube.com/embed/${id}?autoplay=1` : url;
+}
+
+const totalSeguidores = evento.seguidores.reduce((s, n) => s + n, 0);
+const seguidoresMil =
+  (totalSeguidores / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mil";
+
+const logo = ["svg", "png", "webp"]
+  .map((ext) => `images/heineken/logo.${ext}`)
+  .find((caminho) => existsSync(resolve(process.cwd(), "public", caminho)));
+
+const zap =
+  "https://wa.me/" +
+  evento.contato.whatsapp +
+  "?text=" +
+  encodeURIComponent("Olá! Vi a proposta do RAROS preparada para a Heineken e quero conversar sobre ela.");
+
+const opcoesMomento = [
+  ...h.dia.momentos.map((m) => ({ id: m.id, hora: m.hora, nome: m.nome, ideia: m.ideia, nivel: m.nivel })),
+  { id: h.dia.extra.id, hora: "A combinar", nome: h.dia.extra.nome, ideia: h.dia.extra.ideia, nivel: h.dia.extra.nivel },
+];
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#04180d" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>Proposta de parceria para a Heineken | RAROS · Tênis Clube de Campinas</title>
+    <meta
+      name="description"
+      content="Proposta de parceria do RAROS preparada para o Grupo Heineken Brasil: um encontro reservado de 120 lugares no Tênis Clube de Campinas."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="k3-body">
+    <main class="k3">
+      <!-- Capa -->
+      <section class="k3-pag k3-capa" style="--capa: url('/images/mk/organizador.jpg')">
+        <div class="k3-capa-topo">
+          <div class="k3-wrap">
+            <p class="k3-rotulo"><i class="k3-estrela" aria-hidden="true"></i>Proposta de parceria · 2026</p>
+            {logo && <img class="k3-logo" src={`/${logo}`} alt={h.marca} />}
+          </div>
+        </div>
+        <div class="k3-wrap k3-capa-texto">
+          <p class="k3-capa-para">Preparada para o {h.empresa}</p>
+          <h1 class="k3-capa-titulo">
+            <span class="k3-sr">{evento.nome}: </span>Um dia de decisões, um brinde no fim.
+          </h1>
+          <p class="k3-capa-info">
+            {evento.nome} · {evento.tema}<br />
+            {evento.data} · {evento.casa}
+          </p>
+        </div>
+      </section>
+
+      <!-- Carta -->
+      <section class="k3-pag k3-centro">
+        <div class="k3-wrap">
+          <div class="k3-carta">
+            <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>Antes de tudo</p>
+            {h.carta.map((p) => <p class="k3-carta-texto">{p}</p>)}
+            <div class="k3-carta-ass">
+              <strong>{evento.contato.nome}</strong>
+              <span>Organização do {evento.nome}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 01 A marca -->
+      <section class="k3-pag k3-floresta">
+        <div class="k3-wrap">
+          <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>01 · O que estudamos</p>
+          <h2>A Heineken que vimos de perto</h2>
+          <figure class="k3-epigrafe" style="margin-top: 36px">
+            <blockquote>
+              <p>“{h.epigrafe.texto}”</p>
+            </blockquote>
+            <cite>{h.epigrafe.fonte}</cite>
+          </figure>
+          <div class="k3-pilares">
+            {h.pilares.map((p) => (
+              <article class="k3-pilar">
+                <h3><i class="k3-estrela" aria-hidden="true"></i>{p.titulo}</h3>
+                <p>{p.texto}</p>
+                <p class="k3-pilar-dado">{p.dado}</p>
+              </article>
+            ))}
+          </div>
+          <p class="k3-fonte">{h.fontes}</p>
+        </div>
+      </section>
+
+      <!-- 02 O que nos une -->
+      <section class="k3-pag k3-claro">
+        <div class="k3-wrap">
+          <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>02 · O que nos une</p>
+          <h2>Seis pontos em que a Heineken e o RAROS se reconhecem</h2>
+          <div class="k3-pares">
+            <div class="k3-par-cab" aria-hidden="true">
+              <span>A Heineken</span><span></span><span>O RAROS</span>
+            </div>
+            {h.encontros.map((e) => (
+              <article class="k3-par">
+                <h3>{e.titulo}</h3>
+                <p>{e.heineken}</p>
+                <span class="k3-par-seta" aria-hidden="true">→</span>
+                <p>{e.raros}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 O encontro -->
+      <section class="k3-pag">
+        <div class="k3-wrap">
+          <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>03 · O encontro</p>
+          <h2>Cento e vinte lugares. Uma única sala. As pessoas que decidem.</h2>
+          <p class="k3-lead">
+            O {evento.nome} reúne, por um dia, sócios do {evento.casa} e empresários convidados em torno de inteligência
+            emocional aplicada aos negócios. Um ambiente reservado, pensado para conversas que viram parcerias.
+          </p>
+
+          <div class="k3-barra" role="img" aria-label={evento.composicao.map((c) => `${c.pct}% ${c.rotulo}`).join("; ")}>
+            {evento.composicao.map((c, i) => <span class={`k3-seg k3-seg-${i + 1}`} style={`width: ${c.pct}%`}></span>)}
+          </div>
+          <ul class="k3-legenda">
+            {evento.composicao.map((c, i) => (
+              <li>
+                <i class={`k3-seg k3-seg-${i + 1}`} aria-hidden="true"></i>
+                <strong>{c.pct}%</strong>
+                <span>{c.rotulo}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="k3-linha">{evento.porte}.</p>
+
+          <h3 class="k3-sub">O perfil de quem frequenta o clube</h3>
+          <ul class="k3-grade k3-grade-4">
+            {evento.perfilClube.map((n) => <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>)}
+          </ul>
+          <ul class="k3-grade k3-grade-3">
+            {evento.clubeNumeros.map((n) => <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>)}
+          </ul>
+          <p class="k3-fonte">Fonte: dados do {evento.casa}. 95% do público acima de 18 anos.</p>
+        </div>
+      </section>
+
+      <!-- 04 O dia -->
+      <section class="k3-pag k3-claro">
+        <div class="k3-wrap">
+          <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>04 · O dia da Heineken</p>
+          <h2>Cada momento do dia, uma ideia para a marca</h2>
+          <p class="k3-lead">
+            {evento.data}, no {evento.casa}. {h.dia.detalhe}
+          </p>
+          <ol class="k3-dia">
+            {h.dia.momentos.map((m) => (
+              <li class={`k3-momento ${m.marca ? "k3-com-marca" : ""}`}>
+                <strong>{m.hora}</strong>
+                <i class="k3-estrela" aria-hidden="true"></i>
+                <div>
+                  <h3>{m.nome}</h3>
+                  <p>{m.ideia}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p class="k3-ideia-geral"><strong>{h.dia.ideia}</strong></p>
+          <p class="k3-fonte">{evento.endereco}</p>
+        </div>
+      </section>
+
+      <!-- 05 Conteúdo -->
+      <section class="k3-pag">
+        <div class="k3-wrap">
+          <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>05 · Conteúdo</p>
+          <h2>Quem conduz o dia</h2>
+          <div class="k3-pals">
+            {evento.palestrantes.map((p) => (
+              <article class="k3-pal">
+                <img src={p.foto} alt={p.nome} width="520" height="650" />
+                <h3>{p.nome}</h3>
+                <p class="k3-pal-papel">{p.papel}</p>
+                <p class="k3-pal-texto">{p.texto}</p>
+                <ul>
+                  {p.numeros.map((n) => <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 Formatos -->
+      <section class="k3-pag k3-claro">
+        <div class="k3-wrap">
+          <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>06 · Parceria</p>
+          <h2>Três formatos para a Heineken estar presente</h2>
+          <div class="k3-cotas">
+            {h.cotas.map((c) => (
+              <article class={`k3-cota ${c.destaque ? "k3-cota-destaque" : ""}`}>
+                <h3>{c.nome}</h3>
+                <p class="k3-cota-qtd">{c.quantidade}</p>
+                <p class="k3-cota-resumo">{c.resumo}</p>
+                <ul>{c.entregas.map((e) => <li>{e}</li>)}</ul>
+                <p class="k3-cota-valor">Investimento apresentado em conversa</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 Monte a presença -->
+      <section class="k3-pag k3-floresta" id="montar">
+        <div class="k3-wrap">
+          <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>07 · Sua presença, do seu jeito</p>
+          <h2>Monte a presença da Heineken no RAROS</h2>
+          <p class="k3-lead">
+            Os formatos são um ponto de partida. Marque o que faz sentido para a marca e enviaremos a composição
+            diretamente para a conversa. Nada aqui é definitivo: serve para começarmos pelo que a Heineken já tem em mente.
+          </p>
+
+          <form class="k3-montar" id="k3-montar" onsubmit="return false">
+            <fieldset class="k3-passo">
+              <legend>1. Qual Heineken estará presente?</legend>
+              <div class="k3-opcoes k3-opcoes-2">
+                {h.linhas.map((l, i) => (
+                  <label class="k3-escolha">
+                    <input type="radio" name="linha" value={l.valor} checked={i === 0} />
+                    <span><strong>{l.valor}</strong><small>{l.texto}</small></span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset class="k3-passo">
+              <legend>
+                2. Em quais momentos?
+                <small>Marque quantos quiser.</small>
+              </legend>
+              <div class="k3-opcoes k3-opcoes-2">
+                {opcoesMomento.map((m) => (
+                  <label class="k3-escolha">
+                    <input type="checkbox" name="momento" value={m.nome} data-nivel={m.nivel} />
+                    <span><em>{m.hora}</em><strong>{m.nome}</strong><small>{m.ideia}</small></span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset class="k3-passo">
+              <legend>
+                3. Algo mais que a Heineken gostaria de incluir?
+                <small>Uma ação de degustação, um convidado, uma mensagem específica.</small>
+              </legend>
+              <textarea class="k3-campo" name="obs" rows="3" placeholder="Escreva aqui, se quiser."></textarea>
+            </fieldset>
+
+            <div class="k3-resumo" aria-live="polite">
+              <p class="k3-resumo-rotulo">Formato que combina com a sua escolha</p>
+              <p class="k3-resumo-formato" id="k3-formato">Marque ao menos um momento</p>
+              <p class="k3-resumo-texto" id="k3-resumo-texto">
+                Assim que você escolher, mostramos o formato mais próximo. Depois ajustamos tudo juntos.
+              </p>
+              <a class="k3-botao" id="k3-enviar" href={zap}>Enviar esta composição</a>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- 08 Compromisso -->
+      <section class="k3-pag k3-claro">
+        <div class="k3-wrap">
+          <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>08 · Nosso compromisso</p>
+          <h2>Cuidar da marca é parte da proposta</h2>
+          <p class="k3-lead">
+            Sabemos o que a Heineken defende sobre consumo responsável. Por isso assumimos quatro compromissos desde já.
+          </p>
+          <ul class="k3-compromissos">
+            {h.compromissos.map((c) => (
+              <li>
+                <strong><i class="k3-estrela" aria-hidden="true"></i>{c.titulo}</strong>
+                <span>{c.texto}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <!-- 09 Realização e visibilidade -->
+      <section class="k3-pag">
+        <div class="k3-wrap">
+          <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>09 · Realização</p>
+          <h2>{evento.realizacao}</h2>
+          <ul class="k3-diretoria">
+            {evento.diretoria.map((d) => <li><span>{d.cargo}</span><strong>{d.nome}</strong></li>)}
+          </ul>
+
+          <h3 class="k3-sub">Visibilidade antes do evento</h3>
+          <div class="k3-visib">
+            <p class="k3-visib-num">
+              <strong>{seguidoresMil}</strong>
+              <span>seguidores somados nos perfis dos palestrantes e do clube</span>
+            </p>
+            <p>
+              Além da página oficial do evento e das telas digitais do clube, vistas por mais de 1.200 frequentadores por dia.
+            </p>
+          </div>
+
+          <h3 class="k3-sub">Edições anteriores</h3>
+          <p class="k3-fonte" style="margin: -8px 0 16px">Registros de edições realizadas em outros locais.</p>
+          <div class="k3-videos">
+            {evento.videos.map((v, i) => (
+              <button
+                type="button"
+                class="k3-video"
+                data-video={youtubeEmbed(v.url)}
+                data-formato={v.url.includes("/shorts/") ? "vertical" : "horizontal"}
+                data-titulo={`${v.titulo} · vídeo ${i + 1}`}
+              >
+                <img src={v.imagem} alt="" width="405" height="720" />
+                <span class="k3-play" aria-hidden="true"></span>
+                <span class="k3-video-txt">Assistir · vídeo {i + 1}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Contato -->
+      <section class="k3-pag k3-final">
+        <div class="k3-wrap">
+          <div class="k3-contato">
+            <p class="k3-rotulo"><i class="k3-estrela" aria-hidden="true"></i>Será uma honra conversar com a Heineken</p>
+            <p class="k3-contato-nome">{evento.contato.nome}</p>
+            <p><a href={zap}>WhatsApp {evento.contato.telefone}</a></p>
+            <p><a href={`mailto:${evento.contato.email}`}>{evento.contato.email}</a></p>
+            <a class="k3-botao" href={zap}>Agendar uma conversa</a>
+          </div>
+          <p class="k3-rodape">{evento.nome} · {evento.casa} · {evento.endereco}</p>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="k3-player" id="k3-player">
+      <form method="dialog" class="k3-player-barra">
+        <p class="k3-player-titulo"></p>
+        <button type="submit" class="k3-player-fechar">Fechar</button>
+      </form>
+      <iframe title="Vídeo" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    </dialog>
+
+    <script is:inline define:vars={{ whatsapp: evento.contato.whatsapp }}>
+      // Janela de vídeo
+      const dialog = document.querySelector("#k3-player");
+      const frame = dialog.querySelector("iframe");
+      const titulo = dialog.querySelector(".k3-player-titulo");
+
+      document.querySelectorAll(".k3-video").forEach((botao) => {
+        botao.addEventListener("click", () => {
+          const nome = botao.dataset.titulo || "Vídeo";
+          frame.title = nome;
+          titulo.textContent = nome;
+          dialog.dataset.formato = botao.dataset.formato || "horizontal";
+          frame.src = botao.dataset.video || "";
+          dialog.showModal();
+        });
+      });
+      dialog.addEventListener("close", () => { frame.src = ""; });
+      dialog.addEventListener("click", (evento) => { if (evento.target === dialog) dialog.close(); });
+
+      // Montar a presença
+      const form = document.querySelector("#k3-montar");
+      const formato = document.querySelector("#k3-formato");
+      const texto = document.querySelector("#k3-resumo-texto");
+      const enviar = document.querySelector("#k3-enviar");
+
+      const formatos = {
+        master: {
+          nome: "Parceiro Master",
+          texto: "Inclui o coquetel de encerramento e, com ele, a exclusividade em cervejas no evento.",
+        },
+        experiencia: {
+          nome: "Parceiro de Experiência",
+          texto: "Um ou mais momentos do dia assinados pela marca, como coffee break ou almoço.",
+        },
+        apoio: {
+          nome: "Apoio",
+          texto: "Presença da marca ao lado do público, no credenciamento e na abertura.",
+        },
+      };
+      const peso = { apoio: 1, experiencia: 2, master: 3 };
+
+      function atualizar() {
+        const linha = form.querySelector('input[name="linha"]:checked')?.value ?? "";
+        const marcados = [...form.querySelectorAll('input[name="momento"]:checked')];
+        const obs = form.elements.obs.value.trim();
+
+        let melhor = null;
+        marcados.forEach((m) => {
+          if (!melhor || peso[m.dataset.nivel] > peso[melhor]) melhor = m.dataset.nivel;
+        });
+        const escolhido = melhor ? formatos[melhor] : null;
+
+        formato.textContent = escolhido ? escolhido.nome : "Marque ao menos um momento";
+        texto.textContent = escolhido
+          ? escolhido.texto + " Depois ajustamos tudo juntos."
+          : "Assim que você escolher, mostramos o formato mais próximo. Depois ajustamos tudo juntos.";
+
+        const linhas = ["Olá! Vi a proposta do RAROS preparada para a Heineken e quero conversar sobre esta composição:"];
+        if (linha) linhas.push("• Linha: " + linha);
+        if (marcados.length) linhas.push("• Momentos: " + marcados.map((m) => m.value).join(", "));
+        if (escolhido) linhas.push("• Formato que combina: " + escolhido.nome);
+        if (obs) linhas.push("• Observações: " + obs);
+        enviar.href = "https://wa.me/" + whatsapp + "?text=" + encodeURIComponent(linhas.join("\n"));
+      }
+
+      form.addEventListener("input", atualizar);
+      form.addEventListener("change", atualizar);
+      atualizar();
+    </script>
+  </body>
+</html>
