@@ -226,6 +226,15 @@ const mk = {
     "Presidente Antônio Grassi Júnior · Diretora Cultural Ana Clara de Mello e Silva · Diretor de Marketing Luis Roberto Brunialti",
 };
 
+function youtubeEmbed(url: string) {
+  const id =
+    url.match(/shorts\/([\w-]+)/)?.[1] ??
+    url.match(/[?&]v=([\w-]+)/)?.[1] ??
+    url.match(/youtu\.be\/([\w-]+)/)?.[1] ??
+    "";
+  return id ? `https://www.youtube.com/embed/${id}?autoplay=1` : url;
+}
+
 const mil = (n: number) =>
   (n / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mil";
 const totalSeguidores = mk.alcance.reduce((s, a) => s + (a.seguidores ?? 0), 0);
@@ -565,17 +574,23 @@ const pendente = "a preencher";
           </p>
           <div class="mk-videos">
             {mk.videos.map((v) => (
-              <a class="mk-video" href={v.url}>
+              <button
+                type="button"
+                class="mk-video"
+                data-video={youtubeEmbed(v.url)}
+                data-formato={v.url.includes("/shorts/") ? "vertical" : "horizontal"}
+                data-titulo={v.titulo}
+              >
                 <span class="mk-video-capa">
-                  <img src={v.imagem} alt={`Vídeo: ${v.titulo}`} width="405" height="720" />
+                  <img src={v.imagem} alt="" width="405" height="720" />
                   <i class="mk-play" aria-hidden="true"></i>
                 </span>
                 <span class="mk-video-info">
                   <strong>{v.titulo}</strong>
-                  <span>Assistir no YouTube</span>
+                  <span>Assistir aqui</span>
                   <small>{v.exibe}</small>
                 </span>
-              </a>
+              </button>
             ))}
           </div>
 
@@ -633,5 +648,39 @@ const pendente = "a preencher";
         </div>
       </section>
     </main>
+
+    <dialog class="mk-player" id="mk-player">
+      <form method="dialog" class="mk-player-barra">
+        <p class="mk-player-titulo"></p>
+        <button type="submit" class="mk-player-fechar">Fechar</button>
+      </form>
+      <div class="mk-player-quadro">
+        <iframe title="Vídeo" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+      </div>
+    </dialog>
+    <script>
+      const dialog = document.querySelector("#mk-player");
+      const frame = dialog.querySelector("iframe");
+      const titulo = dialog.querySelector(".mk-player-titulo");
+
+      document.querySelectorAll(".mk-video").forEach((botao) => {
+        botao.addEventListener("click", () => {
+          const nome = botao.dataset.titulo || "Vídeo";
+          frame.title = nome;
+          titulo.textContent = nome;
+          dialog.dataset.formato = botao.dataset.formato || "horizontal";
+          frame.src = botao.dataset.video || "";
+          dialog.showModal();
+        });
+      });
+
+      dialog.addEventListener("close", () => {
+        frame.src = "";
+      });
+
+      dialog.addEventListener("click", (evento) => {
+        if (evento.target === dialog) dialog.close();
+      });
+    </script>
   </body>
 </html>

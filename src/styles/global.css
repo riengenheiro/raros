@@ -1064,6 +1064,10 @@ body.editando [contenteditable="true"]:focus {
   background: var(--card);
   color: inherit;
   text-decoration: none;
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 .mk-video-capa { position: relative; display: block; }
 .mk-video-capa img { display: block; width: 96px; height: 170px; object-fit: cover; border: 1px solid var(--linha); border-radius: 8px; }
@@ -1092,6 +1096,48 @@ body.editando [contenteditable="true"]:focus {
 .mk-video-info strong { color: var(--titulo); font-family: var(--serifa); font-size: 17px; font-weight: 500; }
 .mk-video-info span { color: var(--ouro); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
 .mk-video-info small { color: var(--mudo); font-size: 11px; overflow-wrap: anywhere; }
+
+.mk-player {
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  padding: 0;
+  border: 0;
+  background: #07080b;
+  color: #f4f1ea;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.mk-player::backdrop { background: rgba(7, 8, 11, 0.86); }
+.mk-player-barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  padding: 10px 12px;
+}
+.mk-player-titulo { margin: 0; font-size: 14px; }
+.mk-player-fechar {
+  border: 1px solid var(--ouro);
+  background: transparent;
+  color: var(--ouro-claro);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.mk-player-quadro iframe {
+  display: block;
+  width: min(92vw, 960px);
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #000;
+}
+.mk-player[data-formato="vertical"] .mk-player-quadro iframe {
+  width: min(72vw, 400px);
+  aspect-ratio: 9 / 16;
+}
 
 .mk-tabela { width: 100%; margin-top: 28px; border-collapse: collapse; }
 .mk-tabela th, .mk-tabela td { padding: 12px 14px; border-bottom: 1px solid var(--linha); text-align: left; }
@@ -1188,7 +1234,7 @@ body.editando [contenteditable="true"]:focus {
 @media print {
   html, body, .mk-body { background: var(--fundo) !important; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .mk-barra { display: none; }
+  .mk-barra, .mk-player { display: none; }
   .mk-pag {
     min-height: 296mm;
     height: 296mm;
