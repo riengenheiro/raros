@@ -1,0 +1,464 @@
+---
+import "../styles/global.css";
+import "../styles/midiakit002.css";
+
+/**
+ * Proposta de parceria do RAROS, versão premium (/midiakit002).
+ * Independente do /midiakit: dados e estilos próprios (classes .k2-).
+ * Campos sem dado não aparecem; nada de "a preencher" nesta versão.
+ */
+const k2 = {
+  nome: "RAROS",
+  tema: "Inteligência Emocional para Liderar o Seu Negócio",
+  data: "Sábado, 5 de dezembro de 2026",
+  casa: "Tênis Clube de Campinas",
+  endereco: "R. Cel. Quirino, 1346 — Cambuí, Campinas — SP, 13015-330",
+
+  destaques: [
+    { valor: "120", rotulo: "lugares, em ambiente reservado" },
+    { valor: "84%", rotulo: "do público do clube nas classes A+ e A" },
+    { valor: "1913", rotulo: "ano de fundação do Tênis Clube de Campinas" },
+  ],
+
+  composicao: [
+    { pct: 20, rotulo: "Sócios do clube integrantes do Clube de Networking" },
+    { pct: 60, rotulo: "Sócios do Tênis Clube de Campinas" },
+    { pct: 20, rotulo: "Empresários e empreendedores convidados" },
+  ],
+  porte: "Pequenas, médias e grandes empresas",
+
+  // Perfil do público do clube (dados do Tênis Clube de Campinas)
+  perfilClube: [
+    { valor: "26%", rotulo: "classe A+" },
+    { valor: "58%", rotulo: "classe A" },
+    { valor: "70%", rotulo: "com ensino superior completo" },
+    { valor: "71%", rotulo: "com 36 anos ou mais" },
+  ],
+  clubeNumeros: [
+    { valor: "+8,5 mil", rotulo: "sócios ativos" },
+    { valor: "420 mil", rotulo: "acessos em 2024" },
+    { valor: "+1.200", rotulo: "acessos por dia" },
+  ],
+
+  programa: [
+    { hora: "8h30", tema: "Credenciamento", marca: true },
+    { hora: "9h00", tema: "Abertura e conteúdo", marca: false },
+    { hora: "10h30", tema: "Coffee break", marca: true },
+    { hora: "13h00", tema: "Almoço", marca: true },
+    { hora: "15h30", tema: "Coffee break", marca: true },
+    { hora: "18h00", tema: "Coquetel de encerramento", marca: true },
+  ],
+
+  palestrantes: [
+    {
+      nome: "Leandro Marcondes",
+      papel: "Empresário e estrategista de negócios",
+      foto: "/images/mk/leandro.jpg",
+      texto:
+        "Mais de 20 anos de experiência internacional em liderança e negócios, à frente de grandes projetos e eventos ao lado de nomes como T. Harv Eker e Nick Vujicic.",
+      numeros: [{ valor: "+20 anos", rotulo: "de experiência internacional" }],
+    },
+    {
+      nome: "Guaciara Fornaciari",
+      papel: "Empresária · Fundadora da Fábrica Mágica e do Doutora Escola",
+      foto: "/images/mk/guaciara.jpg",
+      texto:
+        "Especialista em aprendizagem acelerada e desenvolvimento socioemocional. Já dirigiu escola e transformou uma lacuna do mercado em negócio próprio.",
+      numeros: [
+        { valor: "12.000", rotulo: "pessoas treinadas" },
+        { valor: "21 anos", rotulo: "de experiência" },
+      ],
+    },
+    {
+      nome: "Tatiane Soldam",
+      papel: "Gestora e co-fundadora",
+      foto: "/images/mk/tatiane.jpg",
+      texto:
+        "Mais de 20 anos à frente de finanças, fiscal, RH e supply chain em empresas como AMBEV, Bosch e Eaton.",
+      numeros: [
+        { valor: "+20 anos", rotulo: "em gestão" },
+        { valor: "50", rotulo: "pessoas lideradas" },
+      ],
+    },
+  ],
+
+  cotas: [
+    {
+      nome: "Parceiro Master",
+      quantidade: "1 por edição",
+      resumo: "A sua categoria com exclusividade e o encerramento do dia com o nome da sua marca.",
+      entregas: [
+        "Exclusividade da sua categoria no evento",
+        "Coquetel de encerramento com o nome da marca",
+        "Espaço de exposição ou lounge",
+        "Marca na página oficial, nos materiais e no palco",
+        "Divulgação nos perfis dos palestrantes e do clube",
+        "Cortesias para convidados da marca",
+        "Relatório pós-evento",
+      ],
+    },
+    {
+      nome: "Parceiro de Experiência",
+      quantidade: "3 momentos disponíveis",
+      resumo: "Um momento do dia assinado pela sua marca: coffee break da manhã, almoço ou coffee break da tarde.",
+      entregas: [
+        "Um momento do dia com o nome da marca",
+        "Material no credenciamento",
+        "Menção no palco",
+        "Marca na página oficial e nos materiais",
+        "Cortesias para convidados da marca",
+        "Relatório pós-evento",
+      ],
+    },
+    {
+      nome: "Apoio",
+      quantidade: "Vagas limitadas",
+      resumo: "Presença da marca ao lado de um público de decisores.",
+      entregas: [
+        "Marca na página oficial e nos materiais",
+        "Presença no evento",
+        "Cortesia para convidado da marca",
+        "Relatório pós-evento",
+      ],
+    },
+  ],
+  categorias: [
+    "Automotivo",
+    "Relojoaria e joalheria",
+    "Bebidas",
+    "Serviços financeiros",
+    "Imobiliário de alto padrão",
+  ],
+  encaixes: [
+    { categoria: "Automotivo", ideia: "Veículo em exposição e agenda de test drive com os participantes." },
+    { categoria: "Bebidas", ideia: "Coquetel de encerramento assinado, com opção sem álcool." },
+    { categoria: "Relojoaria e joalheria", ideia: "Experiência privativa para convidados selecionados." },
+  ],
+
+  realizacao: "Tênis Clube de Campinas",
+  diretoria: [
+    { cargo: "Presidente", nome: "Antônio Grassi Júnior" },
+    { cargo: "Diretora Cultural", nome: "Ana Clara de Mello e Silva" },
+    { cargo: "Diretor de Marketing", nome: "Luis Roberto Brunialti" },
+  ],
+
+  videos: [
+    {
+      titulo: "Edição anterior",
+      url: "https://youtube.com/shorts/FGUNILyhjr0",
+      imagem: "/images/mk/evento-anterior-1.jpg",
+    },
+    {
+      titulo: "Edição anterior",
+      url: "https://www.youtube.com/watch?v=p2MD9QSiMCQ",
+      imagem: "/images/mk/evento-anterior-2.jpg",
+    },
+  ],
+
+  // Prints reais de depoimentos. Enquanto vazio, a seção não aparece.
+  depoimentos: [] as { imagem: string; alt: string }[],
+
+  seguidores: [22000, 61800, 14600],
+
+  relatorio: [
+    "Registro fotográfico das entregas da marca",
+    "Alcance das publicações nos perfis dos palestrantes e do clube",
+    "Visitas à página oficial no período da parceria",
+    "Resumo das interações no evento",
+  ],
+
+  contato: {
+    nome: "Ricardo Farias Alexandre",
+    telefone: "(19) 99432-8278",
+    whatsapp: "5519994328278",
+    email: "eventos@vivasuamissao.com.br",
+  },
+};
+
+function youtubeEmbed(url: string) {
+  const id =
+    url.match(/shorts\/([\w-]+)/)?.[1] ??
+    url.match(/[?&]v=([\w-]+)/)?.[1] ??
+    url.match(/youtu\.be\/([\w-]+)/)?.[1] ??
+    "";
+  return id ? `https://www.youtube.com/embed/${id}?autoplay=1` : url;
+}
+
+const totalSeguidores = k2.seguidores.reduce((s, n) => s + n, 0);
+const seguidoresMil =
+  (totalSeguidores / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mil";
+
+const zap =
+  "https://wa.me/" +
+  k2.contato.whatsapp +
+  "?text=" +
+  encodeURIComponent("Olá! Vi a proposta de parceria do RAROS e quero conversar sobre os formatos de parceria.");
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>Proposta de parceria | RAROS · Tênis Clube de Campinas</title>
+    <meta
+      name="description"
+      content="Proposta de parceria do RAROS: um encontro reservado de 120 lugares no Tênis Clube de Campinas."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="k2-body">
+    <main class="k2">
+      <!-- 1. Capa -->
+      <section class="k2-pag k2-capa" style="--capa: url('/images/mk/organizador.jpg')">
+        <div class="k2-wrap k2-capa-texto">
+          <h1 class="k2-sr">{k2.nome}</h1>
+          <p class="k2-rotulo">Proposta de parceria · 2026</p>
+          <p class="k2-capa-tema">{k2.tema}</p>
+          <p class="k2-capa-info">{k2.data} · {k2.casa}</p>
+        </div>
+      </section>
+
+      <!-- 2. O encontro -->
+      <section class="k2-pag k2-claro k2-centro">
+        <div class="k2-wrap">
+          <p class="k2-num">01 · O encontro</p>
+          <h2 class="k2-manifesto">Cento e vinte lugares. Uma única sala. As pessoas que decidem.</h2>
+          <p class="k2-lead">
+            O RAROS reúne, por um dia, sócios do {k2.casa} e empresários convidados em torno de
+            inteligência emocional aplicada aos negócios. Um ambiente reservado, pensado para
+            conversas que viram parcerias.
+          </p>
+          <ul class="k2-destaques">
+            {k2.destaques.map((d) => (
+              <li><strong>{d.valor}</strong><span>{d.rotulo}</span></li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <!-- 3. Público -->
+      <section class="k2-pag">
+        <div class="k2-wrap">
+          <p class="k2-num">02 · Público</p>
+          <h2>Quem está na sala</h2>
+
+          <div class="k2-barra" role="img" aria-label={k2.composicao.map((c) => `${c.pct}% ${c.rotulo}`).join("; ")}>
+            {k2.composicao.map((c, i) => (
+              <span class={`k2-seg k2-seg-${i + 1}`} style={`width: ${c.pct}%`}></span>
+            ))}
+          </div>
+          <ul class="k2-legenda">
+            {k2.composicao.map((c, i) => (
+              <li>
+                <i class={`k2-seg k2-seg-${i + 1}`} aria-hidden="true"></i>
+                <strong>{c.pct}%</strong>
+                <span>{c.rotulo}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="k2-linha">{k2.porte}.</p>
+
+          <h3 class="k2-sub">O perfil de quem frequenta o clube</h3>
+          <ul class="k2-grade-num k2-grade-4">
+            {k2.perfilClube.map((n) => (
+              <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>
+            ))}
+          </ul>
+          <ul class="k2-grade-num k2-grade-3 k2-menor">
+            {k2.clubeNumeros.map((n) => (
+              <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>
+            ))}
+          </ul>
+          <p class="k2-fonte">Fonte: dados do {k2.casa}.</p>
+        </div>
+      </section>
+
+      <!-- 4. O dia -->
+      <section class="k2-pag k2-claro k2-centro">
+        <div class="k2-wrap">
+          <p class="k2-num">03 · O dia</p>
+          <h2>Um cenário com mais de um século de tradição</h2>
+          <p class="k2-lead">
+            Fundado em 1913 como Lawn Tennis Club, o {k2.casa} recebe o RAROS no Cambuí. Do
+            credenciamento ao coquetel, o dia tem momentos pensados para a presença da sua marca.
+          </p>
+          <ol class="k2-jornada">
+            {k2.programa.map((p) => (
+              <li class={p.marca ? "k2-com-marca" : ""}>
+                <strong>{p.hora}</strong>
+                <span>{p.tema}</span>
+                {p.marca && <em>Momento de marca</em>}
+              </li>
+            ))}
+          </ol>
+          <p class="k2-fonte">{k2.data} · {k2.endereco}</p>
+        </div>
+      </section>
+
+      <!-- 5. Palestrantes -->
+      <section class="k2-pag">
+        <div class="k2-wrap">
+          <p class="k2-num">04 · Conteúdo</p>
+          <h2>Quem conduz o dia</h2>
+          <div class="k2-pals">
+            {k2.palestrantes.map((p) => (
+              <article class="k2-pal">
+                <img src={p.foto} alt={p.nome} width="520" height="650" />
+                <h3>{p.nome}</h3>
+                <p class="k2-pal-papel">{p.papel}</p>
+                <p class="k2-pal-texto">{p.texto}</p>
+                <ul>
+                  {p.numeros.map((n) => (
+                    <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Parceria -->
+      <section class="k2-pag k2-claro">
+        <div class="k2-wrap">
+          <p class="k2-num">05 · Parceria</p>
+          <h2>Formatos de parceria</h2>
+          <div class="k2-cotas">
+            {k2.cotas.map((c) => (
+              <article class="k2-cota">
+                <h3>{c.nome}</h3>
+                <p class="k2-cota-qtd">{c.quantidade}</p>
+                <p class="k2-cota-resumo">{c.resumo}</p>
+                <ul>
+                  {c.entregas.map((e) => <li>{e}</li>)}
+                </ul>
+                <p class="k2-cota-valor">Investimento sob consulta</p>
+              </article>
+            ))}
+          </div>
+
+          <div class="k2-categorias">
+            <h3 class="k2-sub">Categorias com exclusividade</h3>
+            <p>{k2.categorias.join(" · ")}</p>
+          </div>
+          <ul class="k2-encaixes">
+            {k2.encaixes.map((e) => (
+              <li><strong>{e.categoria}</strong><span>{e.ideia}</span></li>
+            ))}
+          </ul>
+          <p class="k2-fonte">Evento exclusivo para maiores de 18 anos.</p>
+        </div>
+      </section>
+
+      <!-- 7. Realização e visibilidade -->
+      <section class="k2-pag">
+        <div class="k2-wrap">
+          <p class="k2-num">06 · Realização</p>
+          <h2>{k2.realizacao}</h2>
+          <ul class="k2-diretoria">
+            {k2.diretoria.map((d) => (
+              <li><span>{d.cargo}</span><strong>{d.nome}</strong></li>
+            ))}
+          </ul>
+
+          <h3 class="k2-sub">Visibilidade antes do evento</h3>
+          <div class="k2-visib">
+            <p class="k2-visib-num"><strong>{seguidoresMil}</strong><span>seguidores somados nos perfis dos palestrantes e do clube</span></p>
+            <p>Além da página oficial do evento e das telas digitais do clube, vistas por mais de 1.200 frequentadores por dia.</p>
+          </div>
+
+          <h3 class="k2-sub">Edições anteriores</h3>
+          <p class="k2-fonte k2-fonte-topo">Registros de edições realizadas em outros locais.</p>
+          <div class="k2-videos">
+            {k2.videos.map((v, i) => (
+              <button
+                type="button"
+                class="k2-video"
+                data-video={youtubeEmbed(v.url)}
+                data-formato={v.url.includes("/shorts/") ? "vertical" : "horizontal"}
+                data-titulo={`${v.titulo} · vídeo ${i + 1}`}
+              >
+                <img src={v.imagem} alt="" width="405" height="720" />
+                <span class="k2-play" aria-hidden="true"></span>
+                <span class="k2-video-txt">Assistir · vídeo {i + 1}</span>
+              </button>
+            ))}
+          </div>
+
+          {k2.depoimentos.length > 0 && (
+            <>
+              <h3 class="k2-sub">O que dizem os participantes</h3>
+              <div class="k2-depoimentos">
+                {k2.depoimentos.map((d) => <img src={d.imagem} alt={d.alt} />)}
+              </div>
+            </>
+          )}
+        </div>
+      </section>
+
+      <!-- 8. Resultados e contato -->
+      <section class="k2-pag k2-final">
+        <div class="k2-wrap">
+          <p class="k2-num">07 · Resultados</p>
+          <h2>O que a sua marca recebe depois</h2>
+          <p class="k2-lead">Toda parceria fecha com um relatório do que foi entregue, onde e com qual alcance.</p>
+          <ol class="k2-relatorio">
+            {k2.relatorio.map((r) => <li>{r}</li>)}
+          </ol>
+
+          <div class="k2-contato">
+            <p class="k2-rotulo">Conversa reservada</p>
+            <p class="k2-contato-nome">{k2.contato.nome}</p>
+            <p><a href={zap}>WhatsApp {k2.contato.telefone}</a></p>
+            <p><a href={`mailto:${k2.contato.email}`}>{k2.contato.email}</a></p>
+            <a class="k2-botao" href={zap}>Agendar uma conversa</a>
+          </div>
+
+          <p class="k2-rodape">{k2.nome} · {k2.casa} · {k2.endereco}</p>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="k2-player" id="k2-player">
+      <form method="dialog" class="k2-player-barra">
+        <p class="k2-player-titulo"></p>
+        <button type="submit" class="k2-player-fechar">Fechar</button>
+      </form>
+      <iframe title="Vídeo" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    </dialog>
+    <script>
+      const dialog = document.querySelector<HTMLDialogElement>("#k2-player")!;
+      const frame = dialog.querySelector("iframe")!;
+      const titulo = dialog.querySelector(".k2-player-titulo")!;
+
+      document.querySelectorAll<HTMLButtonElement>(".k2-video").forEach((botao) => {
+        botao.addEventListener("click", () => {
+          const nome = botao.dataset.titulo || "Vídeo";
+          frame.title = nome;
+          titulo.textContent = nome;
+          dialog.dataset.formato = botao.dataset.formato || "horizontal";
+          frame.src = botao.dataset.video || "";
+          dialog.showModal();
+        });
+      });
+
+      dialog.addEventListener("close", () => {
+        frame.src = "";
+      });
+
+      dialog.addEventListener("click", (evento) => {
+        if (evento.target === dialog) dialog.close();
+      });
+    </script>
+  </body>
+</html>
