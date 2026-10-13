@@ -230,7 +230,6 @@ const mil = (n: number) =>
   (n / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mil";
 const totalSeguidores = mk.alcance.reduce((s, a) => s + (a.seguidores ?? 0), 0);
 
-const pdf = "/midiakit-raros.pdf";
 const zap =
   "https://wa.me/" +
   mk.contato.whatsapp +
@@ -263,7 +262,6 @@ const pendente = "a preencher";
   <body class="mk-body">
     <div class="mk-barra">
       <p><strong>RAROS</strong> · Mídia kit de patrocínio</p>
-      <a class="btn btn-sm" href={pdf} download="midiakit-raros.pdf">Baixar PDF</a>
     </div>
 
     <main class="mk">
