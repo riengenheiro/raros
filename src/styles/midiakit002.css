@@ -76,27 +76,31 @@
 .k2-fonte-topo { margin: -8px 0 16px; }
 .k2-linha { margin-top: 24px; font-size: 15px; }
 
-/* Capa */
+/* Capa: texto em preto chapado, foto real à direita, sem véu e sem degradê */
 .k2-capa {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   min-height: 100vh;
-  padding-bottom: 72px;
-  background: var(--capa) center / cover no-repeat;
+  padding: 0;
+  background: #141210;
 }
 .k2-capa::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: rgba(10, 10, 10, 0.5);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  background: var(--capa) center 42% / cover no-repeat;
 }
+.k2-capa .k2-wrap { width: min(540px, 50%); margin: 0; padding: 48px 36px 48px 56px; }
 .k2-capa-texto { position: relative; }
-.k2 .k2-capa-tema { max-width: 700px; margin: 0; color: var(--k2-marfim); font-family: var(--k2-serifa); font-size: clamp(34px, 5vw, 56px); font-weight: 500; line-height: 1.08; }
-.k2-capa-sub { max-width: 560px; margin-top: 20px; color: var(--k2-marfim); font-size: 16px; line-height: 1.6; }
-.k2-capa-info { margin-top: 18px; color: var(--k2-cinza-claro); font-size: 14px; letter-spacing: 0.02em; }
-.k2-capa-sub + .k2-capa-info { margin-top: 22px; }
+.k2 .k2-capa-tema { max-width: 700px; margin: 0; color: var(--k2-marfim); font-family: var(--k2-serifa); font-size: clamp(32px, 4vw, 48px); font-weight: 500; line-height: 1.08; }
+.k2-capa-sub { max-width: 560px; margin-top: 16px; color: var(--k2-marfim); font-size: 16px; line-height: 1.55; }
+.k2-capa-info { margin-top: 14px; color: #e4dfd4; font-size: 14px; letter-spacing: 0.02em; }
+.k2-capa-sub + .k2-capa-info { margin-top: 18px; }
 .k2-capa-info + .k2-capa-info { margin-top: 4px; }
-.k2-acoes { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+.k2-acoes { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; }
 
 /* Manifesto e números */
 .k2-manifesto { max-width: 800px; font-size: clamp(40px, 5.4vw, 60px) !important; line-height: 1.04 !important; }
@@ -197,9 +201,13 @@
 
 .k2 .k2-categorias .k2-sub { margin-top: 44px; margin-bottom: 8px; font-size: 22px; }
 .k2-categorias p { font-size: 15px; }
-.k2-encaixes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 24px 0 0; padding: 0; list-style: none; }
-.k2-encaixes strong { display: block; font-family: var(--k2-serifa); font-size: 20px; font-weight: 600; }
-.k2-encaixes span { display: block; margin-top: 4px; color: var(--k2-cinza); font-size: 13px; line-height: 1.5; }
+.k2-encaixes,
+.k2-experiencia { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 24px 0 0; padding: 0; list-style: none; }
+.k2-encaixes strong,
+.k2-experiencia strong { display: block; font-family: var(--k2-serifa); font-size: 20px; font-weight: 600; }
+.k2-encaixes span,
+.k2-experiencia span { display: block; margin-top: 4px; color: var(--k2-cinza); font-size: 13px; line-height: 1.5; }
+.k2-experiencia { margin-bottom: 8px; }
 
 /* Realização, visibilidade e vídeos */
 .k2-diretoria { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 28px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--k2-fio-escuro); }
@@ -351,12 +359,15 @@
 
 @media (max-width: 760px) {
   .k2-pag { padding: 64px 0; }
-  .k2-capa { min-height: 640px; }
+  .k2-capa { flex-direction: column; align-items: stretch; min-height: 0; padding: 0 0 48px; }
+  .k2-capa::before { position: relative; top: auto; right: auto; bottom: auto; width: 100%; height: 42vh; }
+  .k2-capa .k2-wrap { width: min(520px, calc(100% - 40px)); margin: 32px auto 0; padding: 0; }
   .k2-destaques,
   .k2-legenda,
   .k2-pals,
   .k2-cotas,
   .k2-encaixes,
+  .k2-experiencia,
   .k2-diretoria { grid-template-columns: 1fr; }
   .k2-destaques li + li,
   .k2-cota + .k2-cota,

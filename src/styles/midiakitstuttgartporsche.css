@@ -80,25 +80,28 @@
 .k4-fonte { margin-top: 22px; color: var(--k4-mudo); font-size: 12px; line-height: 1.6; }
 .k4-claro .k4-fonte { color: var(--k4-mudo-claro); }
 
-/* Capa */
+/* Capa: texto em preto chapado, foto real à direita, sem véu e sem degradê */
 .k4-capa {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   min-height: 100vh;
-  padding-bottom: 80px;
-  background: var(--capa) center / cover no-repeat;
+  padding: 0;
+  background: #141210;
 }
 .k4-capa::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: rgba(10, 10, 10, 0.55);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  background: var(--capa) center 42% / cover no-repeat;
 }
-.k4-capa-topo { position: absolute; top: 40px; left: 0; right: 0; z-index: 1; }
-.k4-capa-topo .k4-wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.k4-capa-topo { position: absolute; top: 40px; left: 0; z-index: 1; width: min(520px, 48%); }
+.k4-capa-topo .k4-wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; width: auto; padding-left: 64px; }
 .k4-capa-topo .k4-rotulo { margin: 0; color: var(--k4-texto); }
 .k4-logo { height: 46px; width: auto; }
-.k4-capa-texto { position: relative; z-index: 1; }
+.k4-capa .k4-capa-texto { position: relative; z-index: 1; width: min(520px, 48%); margin: 0; padding: 120px 40px 80px 64px; }
 .k4-capa-para { color: var(--k4-ouro); font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
 .k4-capa-titulo {
   margin: 14px 0 0;
@@ -110,7 +113,7 @@
   max-width: 800px;
   text-wrap: balance;
 }
-.k4-capa-info { margin-top: 22px; color: var(--k4-mudo); font-size: 14px; letter-spacing: 0.02em; line-height: 1.6; }
+.k4-capa-info { margin-top: 22px; color: #e4dfd4; font-size: 14px; letter-spacing: 0.02em; line-height: 1.6; }
 
 /* Carta */
 .k4-carta { max-width: 760px; }
@@ -192,6 +195,11 @@
 .k4-pal ul { display: flex; gap: 24px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--k4-fio-escuro); }
 .k4-pal li strong { display: block; font-family: var(--k4-titulo); font-size: 26px; font-weight: 500; line-height: 1; }
 .k4-pal li span { display: block; margin-top: 6px; color: var(--k4-mudo); font-size: 12px; }
+
+/* Experiência do patrocinador */
+.k4-experiencia { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 28px; }
+.k4-experiencia strong { display: block; font-family: var(--k4-titulo); font-size: 21px; font-weight: 600; }
+.k4-experiencia span { display: block; margin-top: 4px; color: var(--k4-mudo-claro); font-size: 13px; line-height: 1.5; }
 
 /* Formatos */
 .k4-cotas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 46px; border-top: 1px solid var(--k4-tinta); }
@@ -331,13 +339,17 @@
 
 @media (max-width: 760px) {
   .k4-pag { padding: 68px 0; }
-  .k4-capa { min-height: 640px; padding-bottom: 56px; }
-  .k4-capa-topo { top: 24px; }
+  .k4-capa { flex-direction: column; align-items: stretch; min-height: 0; padding: 0 0 48px; }
+  .k4-capa::before { position: relative; top: auto; right: auto; bottom: auto; width: 100%; height: 42vh; }
+  .k4-capa-topo { position: relative; top: auto; width: min(520px, calc(100% - 40px)); margin: 28px auto 0; }
+  .k4-capa-topo .k4-wrap { padding-left: 0; }
+  .k4-capa .k4-capa-texto { width: min(520px, calc(100% - 40px)); margin: 20px auto 0; padding: 0; }
   .k4-pilares,
   .k4-compromissos,
   .k4-legenda,
   .k4-pals,
   .k4-cotas,
+  .k4-experiencia,
   .k4-diretoria,
   .k4-opcoes-3,
   .k4-opcoes-2 { grid-template-columns: 1fr; }

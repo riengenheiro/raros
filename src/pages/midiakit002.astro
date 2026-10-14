@@ -15,16 +15,16 @@ const k2 = {
   endereco: "R. Cel. Quirino, 1346 — Cambuí, Campinas — SP, 13015-330",
 
   destaques: [
-    { valor: "120", rotulo: "lugares, em ambiente reservado" },
+    { valor: "140", rotulo: "lugares, em ambiente reservado" },
     { valor: "84%", rotulo: "do público do clube nas classes A+ e A" },
     { valor: "1913", rotulo: "ano de fundação do Tênis Clube de Campinas" },
   ],
 
-  // Composição prevista (meta de distribuição dos 120 lugares, até validar inscrições)
+  // Composição prevista (meta de distribuição dos 140 lugares, até validar inscrições)
   composicao: [
-    { pct: 60, qtd: 72, rotulo: "Sócios do Tênis Clube de Campinas" },
-    { pct: 20, qtd: 24, rotulo: "Sócios do clube integrantes do Clube de Networking" },
-    { pct: 20, qtd: 24, rotulo: "Empresários e empreendedores convidados" },
+    { pct: 60, qtd: 84, rotulo: "Sócios do Tênis Clube de Campinas" },
+    { pct: 20, qtd: 28, rotulo: "Sócios do clube integrantes do Clube de Networking" },
+    { pct: 20, qtd: 28, rotulo: "Empresários e empreendedores convidados" },
   ],
   porte: "Pequenas, médias e grandes empresas",
 
@@ -57,7 +57,10 @@ const k2 = {
       foto: "/images/mk/leandro.jpg",
       texto:
         "Mais de 20 anos de experiência internacional em liderança e negócios, à frente de grandes projetos e eventos ao lado de nomes como T. Harv Eker e Nick Vujicic.",
-      numeros: [{ valor: "+20 anos", rotulo: "de experiência internacional" }],
+      numeros: [
+        { valor: "+60.000", rotulo: "pessoas treinadas no Brasil" },
+        { valor: "+20 anos", rotulo: "de experiência internacional" },
+      ],
     },
     {
       nome: "Guaciara Fornaciari",
@@ -81,6 +84,13 @@ const k2 = {
         { valor: "50", rotulo: "pessoas lideradas" },
       ],
     },
+  ],
+
+  // Experiência do patrocinador: só o que já consta na proposta (sala única, programa, perfil do clube)
+  experiencia: [
+    { titulo: "Conversa direta", texto: "Uma única sala. A marca encontra cada convidado cara a cara, sem intermediários." },
+    { titulo: "A base de clientes na sala", texto: "Sócios do clube, Clube de Networking e empresários convidados, com 84% da base do clube nas classes A+ e A." },
+    { titulo: "Presença o dia todo", texto: "Credenciamento, coffee breaks, almoço e coquetel: momentos de marca ao longo de todo o programa." },
   ],
 
   cotas: [
@@ -172,7 +182,8 @@ const k2 = {
     imagem: `/images/mk/depo-${i + 1}.jpg`,
   })),
 
-  seguidores: [22000, 61800, 14600],
+  // Perfis dos palestrantes e do clube (22 mil + 61,8 mil + 14,6 mil) + página BEE - Business Explosion Experience no Facebook (188 mil)
+  seguidores: [22000, 61800, 14600, 188000],
 
   contato: {
     nome: "Ricardo Farias Alexandre",
@@ -214,7 +225,7 @@ const zap =
     <title>Proposta de parceria | RAROS · Tênis Clube de Campinas</title>
     <meta
       name="description"
-      content="Proposta de parceria do RAROS: um encontro reservado de 120 lugares no Tênis Clube de Campinas."
+      content="Proposta de parceria do RAROS: um encontro reservado de 140 lugares no Tênis Clube de Campinas."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -230,13 +241,13 @@ const zap =
         <div class="k2-wrap k2-capa-texto">
           <p class="k2-rotulo">{k2.nome} · Proposta de parceria 2026</p>
           <h1 class="k2-capa-tema">
-            <span class="k2-sr">{k2.nome}: </span>Uma experiência de marca para até 120 convidados em Campinas.
+            <span class="k2-sr">{k2.nome}: </span>Uma experiência de marca para até 140 convidados em Campinas.
           </h1>
           <p class="k2-capa-sub">
             Sócios do {k2.casa}, empresários e empreendedores em um dia de conteúdo sobre inteligência
             emocional aplicada aos negócios e novas conexões.
           </p>
-          <p class="k2-capa-info">{k2.data} · {k2.casa}, Cambuí · Até 120 convidados</p>
+          <p class="k2-capa-info">{k2.data} · {k2.casa}, Cambuí · Até 140 convidados</p>
           <p class="k2-capa-info">{k2.tema}</p>
           <div class="k2-acoes">
             <a class="k2-botao k2-botao-cheio" href={zap}>Agendar conversa</a>
@@ -249,7 +260,7 @@ const zap =
       <section class="k2-pag k2-claro k2-centro">
         <div class="k2-wrap">
           <p class="k2-num">01 · O encontro</p>
-          <h2 class="k2-manifesto">Cento e vinte lugares. Uma única sala. As pessoas que decidem.</h2>
+          <h2 class="k2-manifesto">Cento e quarenta lugares. Uma única sala. As pessoas que decidem.</h2>
           <p class="k2-lead">
             O RAROS reúne, por um dia, sócios do {k2.casa} e empresários convidados em torno de
             inteligência emocional aplicada aos negócios. Um ambiente reservado, pensado para
@@ -336,6 +347,15 @@ const zap =
         <div class="k2-wrap">
           <p class="k2-num">04 · Parceria</p>
           <h2>Formatos de parceria</h2>
+          <p class="k2-lead">
+            A experiência do patrocinador é o contato direto com a base de clientes: uma única sala, {k2.destaques[0].valor}
+            lugares, com a sua marca presente do credenciamento ao coquetel.
+          </p>
+          <ul class="k2-experiencia">
+            {k2.experiencia.map((e) => (
+              <li><strong>{e.titulo}</strong><span>{e.texto}</span></li>
+            ))}
+          </ul>
           <div class="k2-cotas">
             {k2.cotas.map((c) => (
               <article class="k2-cota">
@@ -450,7 +470,7 @@ const zap =
 
           <h3 class="k2-sub">Visibilidade antes do evento</h3>
           <div class="k2-visib">
-            <p class="k2-visib-num"><strong>{seguidoresMil}</strong><span>seguidores somados nos perfis dos palestrantes e do clube</span></p>
+            <p class="k2-visib-num"><strong>{seguidoresMil}</strong><span>seguidores somados nos perfis dos palestrantes, do clube e na página BEE - Business Explosion Experience (Facebook)</span></p>
             <p>Além da página oficial do evento e das telas digitais do clube, vistas por mais de 1.200 frequentadores por dia.</p>
           </div>
         </div>
