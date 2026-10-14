@@ -20,10 +20,11 @@ const k2 = {
     { valor: "1913", rotulo: "ano de fundação do Tênis Clube de Campinas" },
   ],
 
+  // Composição prevista (meta de distribuição dos 120 lugares, até validar inscrições)
   composicao: [
-    { pct: 20, rotulo: "Sócios do clube integrantes do Clube de Networking" },
-    { pct: 60, rotulo: "Sócios do Tênis Clube de Campinas" },
-    { pct: 20, rotulo: "Empresários e empreendedores convidados" },
+    { pct: 60, qtd: 72, rotulo: "Sócios do Tênis Clube de Campinas" },
+    { pct: 20, qtd: 24, rotulo: "Sócios do clube integrantes do Clube de Networking" },
+    { pct: 20, qtd: 24, rotulo: "Empresários e empreendedores convidados" },
   ],
   porte: "Pequenas, médias e grandes empresas",
 
@@ -86,6 +87,7 @@ const k2 = {
     {
       nome: "Parceiro Master",
       quantidade: "1 por edição",
+      valor: "R$ 27.000,00",
       resumo: "A sua categoria com exclusividade e o encerramento do dia com o nome da sua marca.",
       entregas: [
         "Exclusividade da sua categoria no evento",
@@ -100,6 +102,7 @@ const k2 = {
     {
       nome: "Parceiro de Experiência",
       quantidade: "3 momentos disponíveis",
+      valor: "R$ 15.000,00",
       resumo: "Um momento do dia assinado pela sua marca: coffee break da manhã, almoço ou coffee break da tarde.",
       entregas: [
         "Um momento do dia com o nome da marca",
@@ -113,6 +116,7 @@ const k2 = {
     {
       nome: "Apoio",
       quantidade: "Vagas limitadas",
+      valor: "R$ 2.000,00",
       resumo: "Presença da marca ao lado de um público de decisores.",
       entregas: [
         "Marca na página oficial e nos materiais",
@@ -136,10 +140,16 @@ const k2 = {
   ],
 
   realizacao: "Tênis Clube de Campinas",
+  organizacao: "G&R Instituto Educacional",
   diretoria: [
     { cargo: "Presidente", nome: "Antônio Grassi Júnior" },
     { cargo: "Diretora Cultural", nome: "Ana Clara de Mello e Silva" },
     { cargo: "Diretor de Marketing", nome: "Luis Roberto Brunialti" },
+  ],
+
+  fotos: [
+    { src: "/images/mk/edicao-homenagem.jpg", alt: "Convidado entregando certificado e muda de planta a uma homenageada do RAROS", legenda: "Momento de homenagem" },
+    { src: "/images/mk/edicao-networking.jpg", alt: "Convidados conversando em mesas durante o networking", legenda: "Networking entre os convidados" },
   ],
 
   videos: [
@@ -155,9 +165,11 @@ const k2 = {
     },
   ],
 
-  depoimentos: ["6FwxZEKQaC0", "kdY579l18To", "nP8JC4RUjfs"].map((id) => ({
+  // Miniaturas salvas em /images/mk/depo-N.jpg (evita depender do i.ytimg.com, que falha em alguns navegadores)
+  depoimentos: ["6FwxZEKQaC0", "kdY579l18To", "nP8JC4RUjfs"].map((id, i) => ({
     id,
     url: `https://youtube.com/shorts/${id}`,
+    imagem: `/images/mk/depo-${i + 1}.jpg`,
   })),
 
   seguidores: [22000, 61800, 14600],
@@ -214,12 +226,22 @@ const zap =
   <body class="k2-body">
     <main class="k2">
       <!-- 1. Capa -->
-      <section class="k2-pag k2-capa" style="--capa: url('/images/mk/organizador.jpg')">
+      <section class="k2-pag k2-capa" style="--capa: url('/images/mk/capa-clube.jpg')">
         <div class="k2-wrap k2-capa-texto">
-          <h1 class="k2-sr">{k2.nome}</h1>
-          <p class="k2-rotulo">Proposta de parceria · 2026</p>
-          <p class="k2-capa-tema">{k2.tema}</p>
-          <p class="k2-capa-info">{k2.data} · {k2.casa}</p>
+          <p class="k2-rotulo">{k2.nome} · Proposta de parceria 2026</p>
+          <h1 class="k2-capa-tema">
+            <span class="k2-sr">{k2.nome}: </span>Uma experiência de marca para até 120 convidados em Campinas.
+          </h1>
+          <p class="k2-capa-sub">
+            Sócios do {k2.casa}, empresários e empreendedores em um dia de conteúdo sobre inteligência
+            emocional aplicada aos negócios e novas conexões.
+          </p>
+          <p class="k2-capa-info">{k2.data} · {k2.casa}, Cambuí · Até 120 convidados</p>
+          <p class="k2-capa-info">{k2.tema}</p>
+          <div class="k2-acoes">
+            <a class="k2-botao k2-botao-cheio" href={zap}>Agendar conversa</a>
+            <a class="k2-botao" href="#formatos">Ver formatos</a>
+          </div>
         </div>
       </section>
 
@@ -245,9 +267,13 @@ const zap =
       <section class="k2-pag">
         <div class="k2-wrap">
           <p class="k2-num">02 · Público</p>
-          <h2>Quem está na sala</h2>
+          <h2>Quem estará na sala</h2>
+          <p class="k2-lead">
+            Composição prevista dos {k2.composicao.reduce((s, c) => s + c.qtd, 0)} lugares. É a meta de
+            distribuição do RAROS, a ser validada com as inscrições.
+          </p>
 
-          <div class="k2-barra" role="img" aria-label={k2.composicao.map((c) => `${c.pct}% ${c.rotulo}`).join("; ")}>
+          <div class="k2-barra" role="img" aria-label={k2.composicao.map((c) => `${c.qtd} lugares, ${c.pct}%: ${c.rotulo}`).join("; ")}>
             {k2.composicao.map((c, i) => (
               <span class={`k2-seg k2-seg-${i + 1}`} style={`width: ${c.pct}%`}></span>
             ))}
@@ -256,25 +282,30 @@ const zap =
             {k2.composicao.map((c, i) => (
               <li>
                 <i class={`k2-seg k2-seg-${i + 1}`} aria-hidden="true"></i>
-                <strong>{c.pct}%</strong>
-                <span>{c.rotulo}</span>
+                <strong>{c.qtd}</strong>
+                <span>{c.rotulo} · {c.pct}%</span>
               </li>
             ))}
           </ul>
           <p class="k2-linha">{k2.porte}.</p>
 
-          <h3 class="k2-sub">O perfil de quem frequenta o clube</h3>
-          <ul class="k2-grade-num k2-grade-4">
-            {k2.perfilClube.map((n) => (
-              <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>
-            ))}
-          </ul>
-          <ul class="k2-grade-num k2-grade-3 k2-menor">
-            {k2.clubeNumeros.map((n) => (
-              <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>
-            ))}
-          </ul>
-          <p class="k2-fonte">Fonte: dados do {k2.casa}.</p>
+          <div class="k2-clube">
+            <h3 class="k2-sub">Contexto do Tênis Clube</h3>
+            <p class="k2-fonte k2-fonte-topo">
+              Dados da base de sócios do clube. Não representam a audiência confirmada do RAROS.
+            </p>
+            <ul class="k2-grade-num k2-grade-4">
+              {k2.perfilClube.map((n) => (
+                <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>
+              ))}
+            </ul>
+            <ul class="k2-grade-num k2-grade-3 k2-menor">
+              {k2.clubeNumeros.map((n) => (
+                <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>
+              ))}
+            </ul>
+            <p class="k2-fonte">Fonte: dados do {k2.casa}.</p>
+          </div>
         </div>
       </section>
 
@@ -300,10 +331,47 @@ const zap =
         </div>
       </section>
 
-      <!-- 5. Palestrantes -->
+      <!-- 5. Parceria -->
+      <section class="k2-pag k2-claro" id="formatos">
+        <div class="k2-wrap">
+          <p class="k2-num">04 · Parceria</p>
+          <h2>Formatos de parceria</h2>
+          <div class="k2-cotas">
+            {k2.cotas.map((c) => (
+              <article class="k2-cota">
+                <h3>{c.nome}</h3>
+                <p class="k2-cota-qtd">{c.quantidade}</p>
+                <p class="k2-cota-resumo">{c.resumo}</p>
+                <ul>
+                  {c.entregas.map((e) => <li>{e}</li>)}
+                </ul>
+                <p class="k2-cota-valor">{c.valor}</p>
+              </article>
+            ))}
+          </div>
+
+          <div class="k2-categorias">
+            <h3 class="k2-sub">Categorias com exclusividade</h3>
+            <p>{k2.categorias.join(" · ")}</p>
+          </div>
+          <ul class="k2-encaixes">
+            {k2.encaixes.map((e) => (
+              <li><strong>{e.categoria}</strong><span>{e.ideia}</span></li>
+            ))}
+          </ul>
+          <p class="k2-fonte">Evento exclusivo para maiores de 18 anos.</p>
+
+          <div class="k2-cta-linha">
+            <p>Qual formato combina com a sua marca? Conversamos sobre entregas, momentos e exclusividade.</p>
+            <a class="k2-botao k2-botao-cheio" href={zap}>Agendar conversa</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Provas -->
       <section class="k2-pag">
         <div class="k2-wrap">
-          <p class="k2-num">04 · Conteúdo</p>
+          <p class="k2-num">05 · Provas</p>
           <h2>Quem conduz o dia</h2>
           <div class="k2-pals">
             {k2.palestrantes.map((p) => (
@@ -320,60 +388,17 @@ const zap =
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <!-- 6. Parceria -->
-      <section class="k2-pag k2-claro">
-        <div class="k2-wrap">
-          <p class="k2-num">05 · Parceria</p>
-          <h2>Formatos de parceria</h2>
-          <div class="k2-cotas">
-            {k2.cotas.map((c) => (
-              <article class="k2-cota">
-                <h3>{c.nome}</h3>
-                <p class="k2-cota-qtd">{c.quantidade}</p>
-                <p class="k2-cota-resumo">{c.resumo}</p>
-                <ul>
-                  {c.entregas.map((e) => <li>{e}</li>)}
-                </ul>
-                <p class="k2-cota-valor">Investimento sob consulta</p>
-              </article>
-            ))}
-          </div>
-
-          <div class="k2-categorias">
-            <h3 class="k2-sub">Categorias com exclusividade</h3>
-            <p>{k2.categorias.join(" · ")}</p>
-          </div>
-          <ul class="k2-encaixes">
-            {k2.encaixes.map((e) => (
-              <li><strong>{e.categoria}</strong><span>{e.ideia}</span></li>
-            ))}
-          </ul>
-          <p class="k2-fonte">Evento exclusivo para maiores de 18 anos.</p>
-        </div>
-      </section>
-
-      <!-- 7. Realização e visibilidade -->
-      <section class="k2-pag">
-        <div class="k2-wrap">
-          <p class="k2-num">06 · Realização</p>
-          <h2>{k2.realizacao}</h2>
-          <ul class="k2-diretoria">
-            {k2.diretoria.map((d) => (
-              <li><span>{d.cargo}</span><strong>{d.nome}</strong></li>
-            ))}
-          </ul>
-
-          <h3 class="k2-sub">Visibilidade antes do evento</h3>
-          <div class="k2-visib">
-            <p class="k2-visib-num"><strong>{seguidoresMil}</strong><span>seguidores somados nos perfis dos palestrantes e do clube</span></p>
-            <p>Além da página oficial do evento e das telas digitais do clube, vistas por mais de 1.200 frequentadores por dia.</p>
-          </div>
 
           <h3 class="k2-sub">Edições anteriores</h3>
           <p class="k2-fonte k2-fonte-topo">Registros de edições realizadas em outros locais.</p>
+          <ul class="k2-fotos">
+            {k2.fotos.map((f) => (
+              <li>
+                <img src={f.src} alt={f.alt} width="480" height="600" loading="lazy" />
+                <span>{f.legenda}</span>
+              </li>
+            ))}
+          </ul>
           <div class="k2-videos">
             {k2.videos.map((v, i) => (
               <button
@@ -401,12 +426,32 @@ const zap =
                 data-titulo={`Depoimento ${i + 1}`}
               >
                 <span class="k2-depo-capa">
-                  <img src={`https://i.ytimg.com/vi/${d.id}/hqdefault.jpg`} alt="" width="480" height="360" />
+                  <img src={d.imagem} alt="" width="1080" height="1920" loading="lazy" />
                   <span class="k2-play" aria-hidden="true"></span>
                 </span>
                 <span class="k2-depo-txt">Assistir depoimento {i + 1}</span>
               </button>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Realização e visibilidade -->
+      <section class="k2-pag">
+        <div class="k2-wrap">
+          <p class="k2-num">06 · Realização</p>
+          <h2>{k2.realizacao}</h2>
+          <p class="k2-lead">Realização do {k2.realizacao}. Organização e produção: {k2.organizacao}.</p>
+          <ul class="k2-diretoria">
+            {k2.diretoria.map((d) => (
+              <li><span>{d.cargo}</span><strong>{d.nome}</strong></li>
+            ))}
+          </ul>
+
+          <h3 class="k2-sub">Visibilidade antes do evento</h3>
+          <div class="k2-visib">
+            <p class="k2-visib-num"><strong>{seguidoresMil}</strong><span>seguidores somados nos perfis dos palestrantes e do clube</span></p>
+            <p>Além da página oficial do evento e das telas digitais do clube, vistas por mais de 1.200 frequentadores por dia.</p>
           </div>
         </div>
       </section>
@@ -419,10 +464,13 @@ const zap =
             <p class="k2-contato-nome">{k2.contato.nome}</p>
             <p><a href={zap}>WhatsApp {k2.contato.telefone}</a></p>
             <p><a href={`mailto:${k2.contato.email}`}>{k2.contato.email}</a></p>
-            <a class="k2-botao" href={zap}>Agendar uma conversa</a>
+            <a class="k2-botao k2-botao-cheio" href={zap}>Agendar conversa</a>
           </div>
 
-          <p class="k2-rodape">{k2.nome} · {k2.casa} · {k2.endereco}</p>
+          <p class="k2-rodape">
+            {k2.nome} · {k2.casa} · {k2.endereco}<br />
+            G&R INSTITUTO EDUCACIONAL LTDA · CNPJ: 39.969.764/0001-25
+          </p>
         </div>
       </section>
     </main>

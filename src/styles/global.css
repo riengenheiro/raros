@@ -1328,7 +1328,7 @@ body.editando [contenteditable="true"]:focus {
 .mk-prazo { margin-top: 14px !important; }
 .mk-prazo strong { margin-left: 6px; color: var(--titulo); }
 .mk-cta { margin-top: 20px; }
-.mk-rodape { margin-top: 32px; color: #666a76; font-size: 11px; text-align: center; }
+.mk-rodape { margin-top: 32px; color: #666a76; font-size: 11px; line-height: 1.7; text-align: center; }
 
 @media (max-width: 760px) {
   .mk-pag { padding: 44px 0; }

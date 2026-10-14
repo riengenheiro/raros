@@ -12,6 +12,8 @@ import "../styles/midiakitstuttgartporsche.css";
  * O restante (dados do evento) vem do objeto `evento`.
  *
  * Logo: se existir public/images/stuttgart/logo.(svg|png|webp), ele aparece no topo da capa.
+ * Só coloque o arquivo depois que a Stuttgart/Porsche aprovar o uso do logo oficial.
+ * Identidade visual: paleta e tipografia do RAROS (iguais ao /midiakit002); a personalização fica no conteúdo.
  * Capa: troque `capa` por uma foto de modelo Porsche em /images/stuttgart/capa.jpg, se houver.
  */
 const evento = {
@@ -26,10 +28,11 @@ const evento = {
     { valor: "84%", rotulo: "do público do clube nas classes A+ e A" },
     { valor: "1913", rotulo: "ano de fundação do Tênis Clube de Campinas" },
   ],
+  // Composição prevista (meta de distribuição dos 120 lugares, até validar inscrições)
   composicao: [
-    { pct: 20, rotulo: "Sócios do clube integrantes do Clube de Networking" },
-    { pct: 60, rotulo: "Sócios do Tênis Clube de Campinas" },
-    { pct: 20, rotulo: "Empresários e empreendedores convidados" },
+    { pct: 60, qtd: 72, rotulo: "Sócios do Tênis Clube de Campinas" },
+    { pct: 20, qtd: 24, rotulo: "Sócios do clube integrantes do Clube de Networking" },
+    { pct: 20, qtd: 24, rotulo: "Empresários e empreendedores convidados" },
   ],
   porte: "Pequenas, médias e grandes empresas",
   perfilClube: [
@@ -78,15 +81,25 @@ const evento = {
   ],
 
   realizacao: "Tênis Clube de Campinas",
+  organizacao: "G&R Instituto Educacional",
   diretoria: [
     { cargo: "Presidente", nome: "Antônio Grassi Júnior" },
     { cargo: "Diretora Cultural", nome: "Ana Clara de Mello e Silva" },
     { cargo: "Diretor de Marketing", nome: "Luis Roberto Brunialti" },
   ],
+  fotos: [
+    { src: "/images/mk/edicao-homenagem.jpg", alt: "Convidado entregando certificado e muda de planta a uma homenageada do RAROS", legenda: "Momento de homenagem" },
+    { src: "/images/mk/edicao-networking.jpg", alt: "Convidados conversando em mesas durante o networking", legenda: "Networking entre os convidados" },
+  ],
   videos: [
     { titulo: "Edição anterior", url: "https://youtube.com/shorts/FGUNILyhjr0", imagem: "/images/mk/evento-anterior-1.jpg" },
     { titulo: "Edição anterior", url: "https://youtube.com/shorts/nmYrXJ7qWfY", imagem: "/images/mk/evento-anterior-2.jpg" },
   ],
+  // Miniaturas salvas em /images/mk/depo-N.jpg (evita depender do i.ytimg.com, que falha em alguns navegadores)
+  depoimentos: ["6FwxZEKQaC0", "kdY579l18To", "nP8JC4RUjfs"].map((id, i) => ({
+    url: `https://youtube.com/shorts/${id}`,
+    imagem: `/images/mk/depo-${i + 1}.jpg`,
+  })),
   seguidores: [22000, 61800, 14600],
 
   contato: {
@@ -103,7 +116,7 @@ const evento = {
 const h = {
   empresa: "Stuttgart Porsche",
   marca: "Stuttgart Porsche",
-  capa: "/images/mk/organizador.jpg",
+  capa: "/images/mk/capa-clube.jpg",
 
   carta: [
     "Esta proposta foi escrita para a Stuttgart Porsche, não adaptada de outra.",
@@ -187,19 +200,19 @@ const h = {
       { id: "abertura", hora: "9h00", nome: "Abertura e conteúdo", marca: false, nivel: "apoio", selecionavel: true, ideia: "O conteúdo fica livre de marca. Apenas a abertura cita a Stuttgart Porsche e o que ela traz ao dia." },
       { id: "coffee-manha", hora: "10h30", nome: "Coffee break da manhã", marca: true, nivel: "experiencia", selecionavel: true, ideia: "Mesa de personalização: configurador, materiais e conversa sobre o Sonderwunsch, ao lado do café." },
       { id: "almoco", hora: "13h00", nome: "Almoço", marca: false, nivel: "apoio", selecionavel: false, ideia: "Sem marca. O almoço é do networking e da conversa entre os convidados." },
-      { id: "coffee-tarde", hora: "15h30", nome: "Coffee break da tarde", marca: true, nivel: "experiencia", selecionavel: true, ideia: "Cadastro de test drive: quem quiser dirigir deixa os dados e agenda para depois do evento, com o Porsche Center." },
+      { id: "coffee-tarde", hora: "15h30", nome: "Coffee break da tarde", marca: true, nivel: "experiencia", selecionavel: true, ideia: "Cadastro de test drive: quem quiser dirigir, e autorizar o contato, deixa os dados e agenda para depois do evento, com o Porsche Center." },
       { id: "coquetel", hora: "18h00", nome: "Coquetel de encerramento", marca: true, nivel: "master", selecionavel: true, ideia: "A Stuttgart assina o fechamento do dia e convida quem quiser a dirigir depois, no Porsche Center Campinas." },
     ],
     extra: {
       id: "exposicao",
       nome: "Espaço de marca",
       nivel: "experiencia",
-      ideia: "Um canto da marca na sala, com configurador e materiais."
+      ideia: "Um canto da marca na sala, com configurador e materiais. Exposição de veículo só com autorização do clube e local definido."
     },
     testdrive: {
       titulo: "Test drive depois do evento",
       texto:
-        "O convite é feito durante o RAROS, com cadastro dos interessados, e o test drive acontece depois, no Porsche Center Campinas, em data a combinar.",
+        "O convite é feito durante o RAROS, com cadastro dos interessados, e o test drive acontece depois, no Porsche Center Campinas, em data a combinar. O cadastro e qualquer exposição de veículo dependem de autorização do clube, de definição de local e do consentimento de cada interessado.",
     },
   },
 
@@ -219,11 +232,11 @@ const h = {
       entregas: [
         "Exclusividade da categoria de automóveis premium no evento",
         "Coquetel de encerramento com o nome da Stuttgart Porsche",
-        "Cadastro de test drive durante o dia, para dirigir depois no Porsche Center Campinas",
+        "Cadastro de test drive durante o dia, com autorização do clube e consentimento dos interessados, para dirigir depois no Porsche Center Campinas",
         "Marca na página oficial, nos materiais e no palco",
         "Divulgação nos perfis dos palestrantes e do clube",
         "Cortesias para convidados da marca",
-        "Relatório pós-evento e lista dos interessados no test drive",
+        "Relatório pós-evento e lista dos interessados no test drive que autorizarem o contato",
       ],
     },
     {
@@ -259,6 +272,7 @@ const h = {
     { titulo: "Test drive feito pela marca", texto: "O test drive é conduzido pelo Porsche Center Campinas, seguindo as regras da Stuttgart, em data posterior." },
     { titulo: "Cadastro com consentimento", texto: "Quem se cadastra sabe para quem os dados vão e para quê. As informações são entregues apenas à Stuttgart, de acordo com a LGPD." },
     { titulo: "Conteúdo sem interferência", texto: "As palestras ficam livres de marca. A presença da Stuttgart Porsche acontece nos momentos combinados." },
+    { titulo: "Logo e materiais só com aprovação", texto: "O logo oficial da Stuttgart Porsche e qualquer material com a marca só entram nesta proposta e no evento depois da aprovação da Stuttgart." },
     { titulo: "Comunicação aprovada pela marca", texto: "Nenhum material com a marca Stuttgart Porsche ou Porsche sai sem a aprovação prévia da equipe de marketing da Stuttgart." },
   ],
 };
@@ -305,7 +319,7 @@ const opcoesMomento = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#0a0a0b" />
+    <meta name="theme-color" content="#0a0a0a" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -317,7 +331,7 @@ const opcoesMomento = [
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -338,8 +352,12 @@ const opcoesMomento = [
           </h1>
           <p class="k4-capa-info">
             {evento.nome} · {evento.tema}<br />
-            {evento.data} · {evento.casa}
+            {evento.data} · {evento.casa}, Cambuí · Até 120 convidados
           </p>
+          <div class="k4-acoes">
+            <a class="k4-botao" href={zap}>Agendar conversa</a>
+            <a class="k4-botao k4-botao-sec" href="#formatos">Ver formatos</a>
+          </div>
         </div>
       </section>
 
@@ -405,35 +423,44 @@ const opcoesMomento = [
       <!-- 03 O encontro -->
       <section class="k4-pag">
         <div class="k4-wrap">
-          <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>03 · O encontro</p>
+          <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>03 · Quem estará na sala</p>
           <h2>Cento e vinte lugares. Uma única sala. As pessoas que decidem.</h2>
           <p class="k4-lead">
             O {evento.nome} reúne, por um dia, sócios do {evento.casa} e empresários convidados em torno de inteligência
             emocional aplicada aos negócios. Um ambiente reservado, pensado para conversas que viram parcerias.
           </p>
+          <p class="k4-lead">
+            Composição prevista dos {evento.composicao.reduce((s, c) => s + c.qtd, 0)} lugares. É a meta de
+            distribuição do RAROS, a ser validada com as inscrições.
+          </p>
 
-          <div class="k4-barra" role="img" aria-label={evento.composicao.map((c) => `${c.pct}% ${c.rotulo}`).join("; ")}>
+          <div class="k4-barra" role="img" aria-label={evento.composicao.map((c) => `${c.qtd} lugares, ${c.pct}%: ${c.rotulo}`).join("; ")}>
             {evento.composicao.map((c, i) => <span class={`k4-seg k4-seg-${i + 1}`} style={`width: ${c.pct}%`}></span>)}
           </div>
           <ul class="k4-legenda">
             {evento.composicao.map((c, i) => (
               <li>
                 <i class={`k4-seg k4-seg-${i + 1}`} aria-hidden="true"></i>
-                <strong>{c.pct}%</strong>
-                <span>{c.rotulo}</span>
+                <strong>{c.qtd}</strong>
+                <span>{c.rotulo} · {c.pct}%</span>
               </li>
             ))}
           </ul>
           <p class="k4-linha">{evento.porte}.</p>
 
-          <h3 class="k4-sub">O perfil de quem frequenta o clube</h3>
-          <ul class="k4-grade k4-grade-4">
-            {evento.perfilClube.map((n) => <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>)}
-          </ul>
-          <ul class="k4-grade k4-grade-3">
-            {evento.clubeNumeros.map((n) => <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>)}
-          </ul>
-          <p class="k4-fonte">Fonte: dados do {evento.casa}. Evento exclusivo para maiores de 18 anos.</p>
+          <div class="k4-clube">
+            <h3 class="k4-sub">Contexto do Tênis Clube</h3>
+            <p class="k4-fonte" style="margin: -8px 0 16px">
+              Dados da base de sócios do clube. Não representam a audiência confirmada do RAROS.
+            </p>
+            <ul class="k4-grade k4-grade-4">
+              {evento.perfilClube.map((n) => <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>)}
+            </ul>
+            <ul class="k4-grade k4-grade-3">
+              {evento.clubeNumeros.map((n) => <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>)}
+            </ul>
+            <p class="k4-fonte">Fonte: dados do {evento.casa}. Evento exclusivo para maiores de 18 anos.</p>
+          </div>
         </div>
       </section>
 
@@ -488,7 +515,7 @@ const opcoesMomento = [
       </section>
 
       <!-- 06 Formatos -->
-      <section class="k4-pag k4-claro">
+      <section class="k4-pag k4-claro" id="formatos">
         <div class="k4-wrap">
           <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>06 · Parceria</p>
           <h2>Três formatos para a Stuttgart Porsche estar presente</h2>
@@ -502,6 +529,10 @@ const opcoesMomento = [
                 <p class="k4-cota-valor">Investimento apresentado em conversa</p>
               </article>
             ))}
+          </div>
+          <div class="k4-cta-linha">
+            <p>Qual formato combina com a Stuttgart Porsche? Conversamos sobre entregas, momentos e exclusividade.</p>
+            <a class="k4-botao" href={zap}>Agendar conversa</a>
           </div>
         </div>
       </section>
@@ -554,7 +585,7 @@ const opcoesMomento = [
                   <input type="checkbox" name="testdrive" checked />
                   <span>
                     <strong>Abrir cadastro de test drive para depois do evento</strong>
-                    <small>Convidados interessados deixam os dados e agendam com o Porsche Center Campinas, em data a combinar.</small>
+                    <small>Convidados interessados, com consentimento e sujeito à autorização do clube, deixam os dados e agendam com o Porsche Center Campinas, em data a combinar.</small>
                   </span>
                 </label>
               </div>
@@ -586,7 +617,7 @@ const opcoesMomento = [
           <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>08 · Nosso compromisso</p>
           <h2>Cuidar da marca é parte da proposta</h2>
           <p class="k4-lead">
-            Sabemos o que a marca Porsche representa e o cuidado que a Stuttgart tem com ela. Por isso assumimos cinco compromissos desde já.
+            Sabemos o que a marca Porsche representa e o cuidado que a Stuttgart tem com ela. Por isso assumimos seis compromissos desde já.
           </p>
           <ul class="k4-compromissos">
             {h.compromissos.map((c) => (
@@ -604,6 +635,7 @@ const opcoesMomento = [
         <div class="k4-wrap">
           <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>09 · Realização</p>
           <h2>{evento.realizacao}</h2>
+          <p class="k4-lead">Realização do {evento.realizacao}. Organização e produção: {evento.organizacao}.</p>
           <ul class="k4-diretoria">
             {evento.diretoria.map((d) => <li><span>{d.cargo}</span><strong>{d.nome}</strong></li>)}
           </ul>
@@ -621,6 +653,14 @@ const opcoesMomento = [
 
           <h3 class="k4-sub">Edições anteriores</h3>
           <p class="k4-fonte" style="margin: -8px 0 16px">Registros de edições realizadas em outros locais.</p>
+          <ul class="k4-fotos">
+            {evento.fotos.map((f) => (
+              <li>
+                <img src={f.src} alt={f.alt} width="480" height="600" loading="lazy" />
+                <span>{f.legenda}</span>
+              </li>
+            ))}
+          </ul>
           <div class="k4-videos">
             {evento.videos.map((v, i) => (
               <button
@@ -636,6 +676,25 @@ const opcoesMomento = [
               </button>
             ))}
           </div>
+
+          <h3 class="k4-sub">O que dizem os participantes</h3>
+          <div class="k4-depoimentos">
+            {evento.depoimentos.map((d, i) => (
+              <button
+                type="button"
+                class="k4-depo"
+                data-video={youtubeEmbed(d.url)}
+                data-formato="vertical"
+                data-titulo={`Depoimento ${i + 1}`}
+              >
+                <span class="k4-depo-capa">
+                  <img src={d.imagem} alt="" width="1080" height="1920" loading="lazy" />
+                  <span class="k4-play" aria-hidden="true"></span>
+                </span>
+                <span class="k4-depo-txt">Assistir depoimento {i + 1}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -647,9 +706,12 @@ const opcoesMomento = [
             <p class="k4-contato-nome">{evento.contato.nome}</p>
             <p><a href={zap}>WhatsApp {evento.contato.telefone}</a></p>
             <p><a href={`mailto:${evento.contato.email}`}>{evento.contato.email}</a></p>
-            <a class="k4-botao" href={zap}>Agendar uma conversa</a>
+            <a class="k4-botao" href={zap}>Agendar conversa</a>
           </div>
-          <p class="k4-rodape">{evento.nome} · {evento.casa} · {evento.endereco}</p>
+          <p class="k4-rodape">
+            {evento.nome} · {evento.casa} · {evento.endereco}<br />
+            G&R INSTITUTO EDUCACIONAL LTDA · CNPJ: 39.969.764/0001-25
+          </p>
         </div>
       </section>
     </main>
@@ -668,7 +730,7 @@ const opcoesMomento = [
       const frame = dialog.querySelector("iframe");
       const titulo = dialog.querySelector(".k4-player-titulo");
 
-      document.querySelectorAll(".k4-video").forEach((botao) => {
+      document.querySelectorAll(".k4-video, .k4-depo").forEach((botao) => {
         botao.addEventListener("click", () => {
           const nome = botao.dataset.titulo || "Vídeo";
           frame.title = nome;
