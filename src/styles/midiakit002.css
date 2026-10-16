@@ -198,6 +198,7 @@
 .k2-cota ul { flex: 1; margin: 18px 0 0; padding: 0; list-style: none; }
 .k2-cota li { padding: 8px 0; border-top: 1px solid var(--k2-fio-claro); font-size: 13px; line-height: 1.45; }
 .k2-cota-valor { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--k2-tinta); font-family: var(--k2-serifa); font-size: 22px; font-style: italic; }
+.k2-sem-preco .k2-cota ul { padding-bottom: 8px; border-bottom: 1px solid var(--k2-tinta); }
 
 .k2 .k2-categorias .k2-sub { margin-top: 44px; margin-bottom: 8px; font-size: 22px; }
 .k2-categorias p { font-size: 15px; }
