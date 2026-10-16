@@ -150,7 +150,6 @@ const k2 = {
   ],
 
   realizacao: "Tênis Clube de Campinas",
-  organizacao: "G&R Instituto Educacional",
   diretoria: [
     { cargo: "Presidente", nome: "Antônio Grassi Júnior" },
     { cargo: "Diretora Cultural", nome: "Ana Clara de Mello e Silva" },
@@ -159,7 +158,7 @@ const k2 = {
 
   fotos: [
     { src: "/images/mk/edicao-homenagem.jpg", alt: "Convidado entregando certificado e muda de planta a uma homenageada do RAROS", legenda: "Momento de homenagem" },
-    { src: "/images/mk/edicao-networking.jpg", alt: "Convidados conversando em mesas durante o networking", legenda: "Networking entre os convidados" },
+    { src: "/images/mk/edicao-networking.jpg", alt: "Convidados conversando em mesas durante o networking", legenda: "Networking, ação da Diretoria Cultural" },
   ],
 
   videos: [
@@ -247,6 +246,7 @@ const zap =
             Sócios do {k2.casa}, empresários e empreendedores em um dia de conteúdo sobre inteligência
             emocional aplicada aos negócios e novas conexões.
           </p>
+          <p class="k2-capa-info">Evento da Diretoria Cultural do {k2.casa}</p>
           <p class="k2-capa-info">{k2.data} · {k2.casa}, Cambuí · Até 140 convidados</p>
           <p class="k2-capa-info">{k2.tema}</p>
           <div class="k2-acoes">
@@ -299,6 +299,7 @@ const zap =
             ))}
           </ul>
           <p class="k2-linha">{k2.porte}.</p>
+          <p class="k2-fonte">O Clube de Networking é uma ação idealizada e desenvolvida pela Diretoria Cultural do {k2.casa}.</p>
 
           <div class="k2-clube">
             <h3 class="k2-sub">Contexto do Tênis Clube</h3>
@@ -460,8 +461,16 @@ const zap =
       <section class="k2-pag">
         <div class="k2-wrap">
           <p class="k2-num">06 · Realização</p>
-          <h2>{k2.realizacao}</h2>
-          <p class="k2-lead">Realização do {k2.realizacao}. Organização e produção: {k2.organizacao}.</p>
+          <h2>Diretoria Cultural</h2>
+          <p class="k2-lead">O RAROS é um evento da Diretoria Cultural do {k2.realizacao}.</p>
+          <article class="k2-cultural">
+            <img src="/images/mk/ana-clara.png" alt="Ana Clara de Mello e Silva, Diretora Cultural do Tênis Clube de Campinas" width="640" height="800" />
+            <div>
+              <span>Diretora Cultural do Tênis Clube de Campinas</span>
+              <strong>Ana Clara de Mello e Silva</strong>
+              <p>O encontro acontece dentro da proposta da Diretoria Cultural. O Clube de Networking é uma ação idealizada e desenvolvida por esta diretoria.</p>
+            </div>
+          </article>
           <ul class="k2-diretoria">
             {k2.diretoria.map((d) => (
               <li><span>{d.cargo}</span><strong>{d.nome}</strong></li>

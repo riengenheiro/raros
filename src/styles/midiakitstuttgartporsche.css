@@ -253,6 +253,11 @@
 .k4-compromissos span { display: block; margin-top: 8px; color: var(--k4-mudo-claro); font-size: 14px; line-height: 1.6; }
 
 /* Realização, visibilidade e vídeos */
+.k4-cultural { display: grid; grid-template-columns: 168px 1fr; gap: 28px; align-items: center; margin-top: 32px; }
+.k4-cultural img { width: 168px; height: 214px; object-fit: cover; object-position: center 12%; }
+.k4-cultural span { display: block; color: var(--k4-ouro); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
+.k4-cultural strong { display: block; margin-top: 6px; font-family: var(--k4-titulo); font-size: 32px; font-weight: 500; line-height: 1.1; }
+.k4-cultural p { margin: 10px 0 0; max-width: 48ch; color: var(--k4-mudo); font-size: 15px; line-height: 1.55; }
 .k4-diretoria { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 28px; border-top: 1px solid var(--k4-fio-escuro); }
 .k4-diretoria li { padding: 18px 18px 0 0; }
 .k4-diretoria li + li { padding-left: 18px; border-left: 1px solid var(--k4-fio-escuro); }
@@ -350,6 +355,7 @@
   .k4-pals,
   .k4-cotas,
   .k4-experiencia,
+  .k4-cultural,
   .k4-diretoria,
   .k4-opcoes-3,
   .k4-opcoes-2 { grid-template-columns: 1fr; }

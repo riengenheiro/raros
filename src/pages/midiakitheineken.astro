@@ -323,6 +323,7 @@ const opcoesMomento = [
             <span class="k3-sr">{evento.nome}: </span>Um dia de decisões, um brinde no fim.
           </h1>
           <p class="k3-capa-info">
+            Evento da Diretoria Cultural do {evento.casa}<br />
             {evento.nome} · {evento.tema}<br />
             {evento.data} · {evento.casa}
           </p>
@@ -411,6 +412,7 @@ const opcoesMomento = [
             ))}
           </ul>
           <p class="k3-linha">{evento.porte}.</p>
+          <p class="k3-fonte">O Clube de Networking é uma ação idealizada e desenvolvida pela Diretoria Cultural do {evento.casa}.</p>
 
           <h3 class="k3-sub">O perfil de quem frequenta o clube</h3>
           <ul class="k3-grade k3-grade-4">
@@ -569,7 +571,16 @@ const opcoesMomento = [
       <section class="k3-pag">
         <div class="k3-wrap">
           <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>09 · Realização</p>
-          <h2>{evento.realizacao}</h2>
+          <h2>Diretoria Cultural</h2>
+          <p class="k3-lead">O RAROS é um evento da Diretoria Cultural do {evento.realizacao}.</p>
+          <article class="k3-cultural">
+            <img src="/images/mk/ana-clara.png" alt="Ana Clara de Mello e Silva, Diretora Cultural do Tênis Clube de Campinas" width="640" height="800" />
+            <div>
+              <span>Diretora Cultural do Tênis Clube de Campinas</span>
+              <strong>Ana Clara de Mello e Silva</strong>
+              <p>O encontro acontece dentro da proposta da Diretoria Cultural. O Clube de Networking é uma ação idealizada e desenvolvida por esta diretoria.</p>
+            </div>
+          </article>
           <ul class="k3-diretoria">
             {evento.diretoria.map((d) => <li><span>{d.cargo}</span><strong>{d.nome}</strong></li>)}
           </ul>

@@ -84,7 +84,6 @@ const evento = {
   ],
 
   realizacao: "Tênis Clube de Campinas",
-  organizacao: "G&R Instituto Educacional",
   diretoria: [
     { cargo: "Presidente", nome: "Antônio Grassi Júnior" },
     { cargo: "Diretora Cultural", nome: "Ana Clara de Mello e Silva" },
@@ -92,7 +91,7 @@ const evento = {
   ],
   fotos: [
     { src: "/images/mk/edicao-homenagem.jpg", alt: "Convidado entregando certificado e muda de planta a uma homenageada do RAROS", legenda: "Momento de homenagem" },
-    { src: "/images/mk/edicao-networking.jpg", alt: "Convidados conversando em mesas durante o networking", legenda: "Networking entre os convidados" },
+    { src: "/images/mk/edicao-networking.jpg", alt: "Convidados conversando em mesas durante o networking", legenda: "Networking, ação da Diretoria Cultural" },
   ],
   videos: [
     { titulo: "Edição anterior", url: "https://youtube.com/shorts/FGUNILyhjr0", imagem: "/images/mk/evento-anterior-1.jpg" },
@@ -363,6 +362,7 @@ const opcoesMomento = [
           </h1>
           <p class="k4-capa-info">
             {evento.nome} · {evento.tema}<br />
+            Evento da Diretoria Cultural do {evento.casa}<br />
             {evento.data} · {evento.casa}, Cambuí · Até 140 convidados
           </p>
           <div class="k4-acoes">
@@ -458,6 +458,7 @@ const opcoesMomento = [
             ))}
           </ul>
           <p class="k4-linha">{evento.porte}.</p>
+          <p class="k4-fonte">O Clube de Networking é uma ação idealizada e desenvolvida pela Diretoria Cultural do {evento.casa}.</p>
 
           <div class="k4-clube">
             <h3 class="k4-sub">Contexto do Tênis Clube</h3>
@@ -654,8 +655,16 @@ const opcoesMomento = [
       <section class="k4-pag">
         <div class="k4-wrap">
           <p class="k4-num"><i class="k4-filete" aria-hidden="true"></i>09 · Realização</p>
-          <h2>{evento.realizacao}</h2>
-          <p class="k4-lead">Realização do {evento.realizacao}. Organização e produção: {evento.organizacao}.</p>
+          <h2>Diretoria Cultural</h2>
+          <p class="k4-lead">O RAROS é um evento da Diretoria Cultural do {evento.realizacao}.</p>
+          <article class="k4-cultural">
+            <img src="/images/mk/ana-clara.png" alt="Ana Clara de Mello e Silva, Diretora Cultural do Tênis Clube de Campinas" width="640" height="800" />
+            <div>
+              <span>Diretora Cultural do Tênis Clube de Campinas</span>
+              <strong>Ana Clara de Mello e Silva</strong>
+              <p>O encontro acontece dentro da proposta da Diretoria Cultural. O Clube de Networking é uma ação idealizada e desenvolvida por esta diretoria.</p>
+            </div>
+          </article>
           <ul class="k4-diretoria">
             {evento.diretoria.map((d) => <li><span>{d.cargo}</span><strong>{d.nome}</strong></li>)}
           </ul>
