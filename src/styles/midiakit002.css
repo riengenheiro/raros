@@ -179,7 +179,7 @@
 .k2-jornada em { display: block; margin-top: 8px; color: var(--k2-ouro-escuro); font-size: 10px; font-style: normal; letter-spacing: 0.16em; text-transform: uppercase; }
 
 /* Palestrantes */
-.k2-pals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 48px; }
+.k2-pals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 48px; }
 .k2-pal img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: saturate(0.9); }
 .k2-pal h3 { margin-top: 20px; font-size: 26px; }
 .k2-pal-papel { margin-top: 6px; color: var(--k2-ouro); font-size: 12px; letter-spacing: 0.04em; }
@@ -221,6 +221,9 @@
 .k2-diretoria li + li { padding-left: 18px; border-left: 1px solid var(--k2-fio-escuro); }
 .k2-diretoria span { display: block; color: var(--k2-ouro); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
 .k2-diretoria strong { display: block; margin-top: 6px; font-family: var(--k2-serifa); font-size: 21px; font-weight: 500; }
+.k2-organiza { margin-top: 8px; }
+.k2-organiza strong { display: block; font-family: var(--k2-serifa); font-size: 28px; font-weight: 500; line-height: 1.15; }
+.k2-organiza span { display: block; margin-top: 6px; color: var(--k2-cinza-claro); font-size: 13px; letter-spacing: 0.08em; }
 
 .k2-visib { display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: end; }
 .k2-visib p { color: var(--k2-cinza-claro); font-size: 14px; line-height: 1.6; }

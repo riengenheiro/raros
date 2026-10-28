@@ -187,7 +187,7 @@
 .k4-testdrive strong { display: block; margin-bottom: 4px; color: var(--k4-tinta); font-family: var(--k4-titulo); font-size: 17px; font-weight: 500; }
 
 /* Palestrantes */
-.k4-pals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 48px; }
+.k4-pals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 48px; }
 .k4-pal img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(0.25); }
 .k4-pal h3 { margin-top: 20px; font-size: 25px; }
 .k4-pal-papel { margin-top: 6px; color: var(--k4-ouro); font-size: 12px; letter-spacing: 0.04em; }
@@ -263,6 +263,9 @@
 .k4-diretoria li + li { padding-left: 18px; border-left: 1px solid var(--k4-fio-escuro); }
 .k4-diretoria span { display: block; color: var(--k4-ouro); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
 .k4-diretoria strong { display: block; margin-top: 6px; font-family: var(--k4-titulo); font-size: 20px; font-weight: 500; }
+.k4-organiza { margin-top: 8px; }
+.k4-organiza strong { display: block; font-family: var(--k4-titulo); font-size: 28px; font-weight: 500; line-height: 1.15; }
+.k4-organiza span { display: block; margin-top: 6px; color: var(--k4-mudo); font-size: 13px; letter-spacing: 0.08em; }
 .k4-visib { display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: end; }
 .k4-visib p { color: var(--k4-mudo); font-size: 14px; line-height: 1.6; }
 .k4-visib-num strong { display: block; color: var(--k4-ouro); font-family: var(--k4-titulo); font-size: 56px; font-weight: 500; line-height: 1; letter-spacing: -0.01em; }
