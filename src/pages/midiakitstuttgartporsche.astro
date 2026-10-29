@@ -186,14 +186,14 @@ const h = {
   dia: {
     ideia: "Durante o dia, a conversa. Depois do evento, o convite para dirigir no Porsche Center.",
     detalhe:
-      "Um caminho sugerido, que respeita o ritmo do evento: a marca ocupa o dia com presença elegante, sem interromper o conteúdo, e assina o fechamento. Tudo é ajustável.",
+      "Um caminho sugerido, que respeita o ritmo do evento: a marca ocupa o dia com presença elegante, sem interromper o conteúdo. O encontro encerra às 17h. Tudo é ajustável.",
     momentos: [
       { id: "credenciamento", hora: "8h30", nome: "Credenciamento", marca: true, nivel: "apoio", selecionavel: true, ideia: "Material da marca na entrega do crachá e o convite para dirigir depois, no Porsche Center Campinas." },
       { id: "abertura", hora: "9h00", nome: "Abertura e conteúdo", marca: false, nivel: "apoio", selecionavel: true, ideia: "O conteúdo fica livre de marca. Apenas a abertura cita a Stuttgart Porsche e o que ela traz ao dia." },
       { id: "coffee-manha", hora: "10h30", nome: "Coffee break da manhã", marca: true, nivel: "experiencia", selecionavel: true, ideia: "Mesa de personalização: configurador, materiais e conversa sobre o Sonderwunsch, ao lado do café." },
       { id: "almoco", hora: "13h00", nome: "Almoço", marca: false, nivel: "apoio", selecionavel: false, ideia: "Sem marca. O almoço é do networking e da conversa entre os convidados." },
       { id: "coffee-tarde", hora: "15h30", nome: "Coffee break da tarde", marca: true, nivel: "experiencia", selecionavel: true, ideia: "Cadastro de test drive: quem quiser dirigir, e autorizar o contato, deixa os dados e agenda para depois do evento, com o Porsche Center." },
-      { id: "coquetel", hora: "18h00", nome: "Coquetel de encerramento", marca: true, nivel: "master", selecionavel: true, ideia: "A Stuttgart assina o fechamento do dia e convida quem quiser a dirigir depois, no Porsche Center Campinas." },
+      { id: "encerramento", hora: "17h00", nome: "Encerramento", marca: false, nivel: "apoio", selecionavel: false, ideia: "O encontro se encerra às 17h. O convite para dirigir fica para depois, no Porsche Center Campinas." },
     ],
     extra: {
       id: "exposicao",
@@ -227,10 +227,9 @@ const h = {
       nome: "Patrono",
       quantidade: "1 por edição",
       destaque: true,
-      resumo: "Exclusividade em automóveis premium e o Momento Porsche, no coquetel de encerramento.",
+      resumo: "Exclusividade em automóveis premium e o cadastro de test drive para depois do evento.",
       entregas: [
         "Exclusividade da categoria de automóveis premium no evento",
-        "Coquetel de encerramento com o nome da Stuttgart Porsche",
         "Cadastro de test drive durante o dia, com autorização do clube e consentimento dos interessados, para dirigir depois no Porsche Center Campinas",
         "Marca na página oficial, nos materiais e no palco",
         "Divulgação nos perfis dos palestrantes e do clube",
@@ -522,7 +521,7 @@ const opcoesMomento = [
           <h2>Três formatos para a Stuttgart Porsche estar presente</h2>
           <p class="k4-lead">
             A experiência do patrocinador é o contato direto com a base de clientes: uma única sala, {evento.destaques[0].valor}
-            lugares, com a Stuttgart Porsche presente do credenciamento ao coquetel.
+            lugares, com a Stuttgart Porsche presente do credenciamento ao encerramento, às 17h.
           </p>
           <ul class="k4-experiencia">
             {h.experiencia.map((e) => (
@@ -775,7 +774,7 @@ const opcoesMomento = [
       const formatos = {
         master: {
           nome: "Patrono",
-          texto: "Inclui o coquetel de encerramento, o Momento Porsche, e com ele a exclusividade em automóveis premium no evento.",
+          texto: "Inclui a exclusividade em automóveis premium no evento e o cadastro de test drive para depois.",
         },
         experiencia: {
           nome: "Anfitrião",

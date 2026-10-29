@@ -166,16 +166,16 @@ const h = {
   ],
 
   dia: {
-    ideia: "Durante o dia, Heineken 0.0. À noite, o brinde.",
+    ideia: "Durante o dia, a Heineken acompanha o trabalho. O encontro encerra às 17h.",
     detalhe:
-      "Um caminho sugerido, que respeita o ritmo do evento: a marca acompanha o trabalho com a Heineken 0.0 e assina o fechamento do dia. Tudo é ajustável.",
+      "Um caminho sugerido, que respeita o ritmo do evento: a marca acompanha o dia, do credenciamento ao coffee da tarde. O encontro encerra às 17h. Tudo é ajustável.",
     momentos: [
       { id: "credenciamento", hora: "8h30", nome: "Credenciamento", marca: true, nivel: "apoio", ideia: "Boas-vindas com Heineken 0.0 gelada e material da marca na entrega do crachá." },
       { id: "abertura", hora: "9h00", nome: "Abertura e conteúdo", marca: false, nivel: "apoio", ideia: "O conteúdo fica livre de marca. Apenas a abertura cita a Heineken e a mensagem de moderação." },
       { id: "coffee-manha", hora: "10h30", nome: "Coffee break da manhã", marca: true, nivel: "experiencia", ideia: "Ponto Heineken 0.0 ao lado do café, para quem quer uma pausa diferente." },
       { id: "almoco", hora: "13h00", nome: "Almoço", marca: true, nivel: "experiencia", ideia: "O “Agora você pode” na prática: Heineken 0.0 à mesa, em pleno dia de trabalho." },
       { id: "coffee-tarde", hora: "15h30", nome: "Coffee break da tarde", marca: true, nivel: "experiencia", ideia: "Pausa da tarde com a marca nas mesas, sem interromper a programação." },
-      { id: "coquetel", hora: "18h00", nome: "Coquetel de encerramento", marca: true, nivel: "master", ideia: "O brinde final, assinado pela Heineken. Cheers to all: com a leveza da Heineken Ultimate, ou sem álcool, com a 0.0." },
+      { id: "encerramento", hora: "17h00", nome: "Encerramento", marca: false, nivel: "apoio", ideia: "O encontro se encerra às 17h." },
     ],
     extra: {
       id: "lounge",
@@ -187,8 +187,8 @@ const h = {
 
   linhas: [
     { valor: "Heineken 0.0", texto: "A marca acompanha o dia de trabalho." },
-    { valor: "Heineken Ultimate", texto: "A novidade da marca, leve e sem glúten, no brinde do fim do dia." },
-    { valor: "Heineken", texto: "A cerveja original no brinde do fim do dia." },
+    { valor: "Heineken Ultimate", texto: "A novidade da marca, leve e sem glúten, presente ao longo do dia." },
+    { valor: "Heineken", texto: "A cerveja original presente ao longo do dia." },
     { valor: "Mais de uma linha", texto: "Uma combinação, cada linha no seu momento." },
   ],
 
@@ -197,10 +197,9 @@ const h = {
       nome: "Parceiro Master",
       quantidade: "1 por edição",
       destaque: true,
-      resumo: "Exclusividade em cervejas e o brinde de encerramento assinado pela Heineken.",
+      resumo: "Exclusividade em cervejas no evento.",
       entregas: [
         "Exclusividade da categoria cervejas no evento",
-        "Coquetel de encerramento com o nome da Heineken",
         "Espaço de exposição ou lounge, a combinar com o clube",
         "Marca na página oficial, nos materiais e no palco",
         "Divulgação nos perfis dos palestrantes e do clube",
@@ -270,7 +269,9 @@ const zap =
   encodeURIComponent("Olá! Vi a proposta do RAROS preparada para a Heineken e quero conversar sobre ela.");
 
 const opcoesMomento = [
-  ...h.dia.momentos.map((m) => ({ id: m.id, hora: m.hora, nome: m.nome, ideia: m.ideia, nivel: m.nivel })),
+  ...h.dia.momentos
+    .filter((m) => m.id !== "encerramento")
+    .map((m) => ({ id: m.id, hora: m.hora, nome: m.nome, ideia: m.ideia, nivel: m.nivel })),
   { id: h.dia.extra.id, hora: "A combinar", nome: h.dia.extra.nome, ideia: h.dia.extra.ideia, nivel: h.dia.extra.nivel },
 ];
 ---
@@ -309,7 +310,7 @@ const opcoesMomento = [
         <div class="k3-wrap k3-capa-texto">
           <p class="k3-capa-para">Preparada para o {h.empresa}</p>
           <h1 class="k3-capa-titulo">
-            <span class="k3-sr">{evento.nome}: </span>Um dia de decisões, um brinde no fim.
+            <span class="k3-sr">{evento.nome}: </span>Um dia de decisões, até as 17h.
           </h1>
           <p class="k3-capa-info">
             Evento da Diretoria Cultural do {evento.casa}<br />
@@ -663,7 +664,7 @@ const opcoesMomento = [
       const formatos = {
         master: {
           nome: "Parceiro Master",
-          texto: "Inclui o coquetel de encerramento e, com ele, a exclusividade em cervejas no evento.",
+          texto: "Inclui a exclusividade em cervejas no evento.",
         },
         experiencia: {
           nome: "Parceiro de Experiência",

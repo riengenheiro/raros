@@ -47,7 +47,7 @@ const k2 = {
     { hora: "10h30", tema: "Coffee break", marca: true },
     { hora: "13h00", tema: "Almoço", marca: true },
     { hora: "15h30", tema: "Coffee break", marca: true },
-    { hora: "18h00", tema: "Coquetel de encerramento", marca: true },
+    { hora: "17h00", tema: "Encerramento", marca: false },
   ],
 
   palestrantes: [
@@ -79,17 +79,16 @@ const k2 = {
   experiencia: [
     { titulo: "Conversa direta", texto: "Uma única sala. A marca encontra cada convidado cara a cara, sem intermediários." },
     { titulo: "A base de clientes na sala", texto: "Sócios do clube, Clube de Networking e empresários convidados, com 84% da base do clube nas classes A+ e A." },
-    { titulo: "Presença o dia todo", texto: "Credenciamento, coffee breaks, almoço e coquetel: momentos de marca ao longo de todo o programa." },
+    { titulo: "Presença o dia todo", texto: "Credenciamento, coffee breaks e almoço: momentos de marca ao longo de todo o programa, até as 17h." },
   ],
 
   cotas: [
     {
       nome: "Patrono",
       quantidade: "1 por edição",
-      resumo: "A sua categoria com exclusividade e o encerramento do dia com o nome da sua marca.",
+      resumo: "A sua categoria com exclusividade no evento.",
       entregas: [
         "Exclusividade da sua categoria no evento",
-        "Coquetel de encerramento com o nome da marca",
         "Espaço de exposição ou lounge",
         "Marca na página oficial, nos materiais e no palco",
         "Divulgação nos perfis dos palestrantes e do clube",
@@ -131,7 +130,7 @@ const k2 = {
   ],
   encaixes: [
     { categoria: "Automotivo", ideia: "Veículo em exposição e agenda de test drive com os participantes." },
-    { categoria: "Bebidas", ideia: "Coquetel de encerramento assinado, com opção sem álcool." },
+    { categoria: "Bebidas", ideia: "Presença da marca nos coffee breaks e no almoço, com opção sem álcool." },
     { categoria: "Relojoaria e joalheria", ideia: "Experiência privativa para convidados selecionados." },
   ],
 
@@ -314,7 +313,7 @@ const zap =
           <h2>Um cenário com mais de um século de tradição</h2>
           <p class="k2-lead">
             Fundado em 1913 como Lawn Tennis Club, o {k2.casa} recebe o RAROS no Cambuí. Do
-            credenciamento ao coquetel, o dia tem momentos pensados para a presença da sua marca.
+            credenciamento ao encerramento, às 17h, o dia tem momentos pensados para a presença da sua marca.
           </p>
           <ol class="k2-jornada">
             {k2.programa.map((p) => (
@@ -336,7 +335,7 @@ const zap =
           <h2>Formatos de parceria</h2>
           <p class="k2-lead">
             A experiência do patrocinador é o contato direto com a base de clientes: uma única sala, {k2.destaques[0].valor}
-            lugares, com a sua marca presente do credenciamento ao coquetel.
+            lugares, com a sua marca presente do credenciamento ao encerramento, às 17h.
           </p>
           <ul class="k2-experiencia">
             {k2.experiencia.map((e) => (
