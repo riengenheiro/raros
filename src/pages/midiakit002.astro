@@ -15,9 +15,7 @@ const k2 = {
   endereco: "R. Cel. Quirino, 1346 — Cambuí, Campinas — SP, 13015-330",
 
   destaques: [
-    { valor: "140", rotulo: "lugares, em ambiente reservado" },
-    { valor: "84%", rotulo: "do público do clube nas classes A+ e A" },
-    { valor: "1913", rotulo: "ano de fundação do Tênis Clube de Campinas" },
+    { valor: "140", rotulo: "lugares na sala do dia, em ambiente reservado" },
   ],
 
   // Composição prevista (meta de distribuição dos 140 lugares, até validar inscrições)
@@ -87,14 +85,15 @@ const k2 = {
       nome: "Patrono",
       quantidade: "1 por edição",
       valor: "R$ 15.000,00",
-      resumo: "A sua categoria com exclusividade no evento.",
+      resumo: "A sua categoria com exclusividade no evento: nenhuma outra marca da mesma categoria ocupa o encontro.",
       entregas: [
-        "Exclusividade da sua categoria no evento",
-        "Espaço de exposição ou lounge",
-        "Marca na página oficial, nos materiais e no palco",
-        "Divulgação nos perfis dos palestrantes e do clube",
-        "Cortesias para convidados da marca",
-        "Relatório pós-evento",
+        "Relacionamento. Tempo na sala com quem decide. Formato a combinar.",
+        "Relacionamento. Espaço de exposição ou lounge. Área a combinar.",
+        "Posicionamento. Exclusividade da sua categoria: nenhuma outra marca da mesma categoria ocupa o encontro.",
+        "Visibilidade. Marca na página oficial, nos materiais e no palco. Quantidade de peças a combinar.",
+        "Visibilidade. Divulgação nos perfis dos palestrantes e do clube. Quantidade de posts a combinar.",
+        "Relacionamento. Cortesias para convidados da marca. Quantidade a combinar.",
+        "Relatório do que foi entregue: onde a marca apareceu e a composição da sala.",
       ],
     },
     {
@@ -103,27 +102,76 @@ const k2 = {
       valor: "R$ 5.000,00",
       resumo: "Um momento do dia assinado pela sua marca: coffee break da manhã, almoço ou coffee break da tarde.",
       entregas: [
-        "Um momento do dia com o nome da marca",
-        "Material no credenciamento",
-        "Menção no palco",
-        "Marca na página oficial e nos materiais",
-        "Cortesias para convidados da marca",
-        "Relatório pós-evento",
+        "Relacionamento. Um momento do dia, coffee da manhã, almoço ou coffee da tarde. Formato e área a combinar.",
+        "Visibilidade. Material no credenciamento. Quantidade a combinar.",
+        "Visibilidade. Menção no palco. Formato a combinar.",
+        "Visibilidade. Marca na página oficial e nos materiais. Quantidade de peças a combinar.",
+        "Relacionamento. Cortesias para convidados da marca. Quantidade a combinar.",
+        "Relatório do que foi entregue: onde a marca apareceu e a composição da sala.",
       ],
     },
     {
       nome: "Presença",
       quantidade: "Vagas limitadas",
       valor: "R$ 2.000,00",
-      resumo: "Presença da marca ao lado de um público de decisores.",
+      resumo: "Presença da marca ao lado de quem decide.",
       entregas: [
-        "Marca na página oficial e nos materiais",
-        "Presença no evento",
-        "Cortesia para convidado da marca",
-        "Relatório pós-evento",
+        "Relacionamento. Presença ao lado de quem decide. Formato a combinar.",
+        "Visibilidade. Marca na página oficial e nos materiais. Quantidade de peças a combinar.",
+        "Relacionamento. 1 cortesia para convidado da marca.",
+        "Relatório do que foi entregue: onde a marca apareceu e a composição da sala.",
       ],
     },
   ],
+  matriz: {
+    colunas: [
+      { nome: "Presença", valor: "R$ 2.000,00" },
+      { nome: "Anfitrião", valor: "R$ 5.000,00" },
+      { nome: "Patrono", valor: "R$ 15.000,00" },
+    ],
+    linhas: [
+      {
+        item: "Relacionamento na sala",
+        celulas: [
+          "Presença ao lado de quem decide. Formato a combinar.",
+          "1 momento do dia. Formato e área a combinar.",
+          "Tempo na sala e espaço de marca. Área a combinar.",
+        ],
+      },
+      {
+        item: "Exclusividade de categoria",
+        celulas: ["—", "—", "Nenhuma outra marca da mesma categoria ocupa o encontro."],
+      },
+      {
+        item: "Página, materiais e palco",
+        celulas: [
+          "Página e materiais. Quantidade a combinar.",
+          "Página, materiais e menção no palco. Quantidade e formato a combinar.",
+          "Página, materiais e palco. Quantidade a combinar.",
+        ],
+      },
+      {
+        item: "Posts nos perfis",
+        celulas: ["—", "—", "Quantidade a combinar."],
+      },
+      {
+        item: "Material no credenciamento",
+        celulas: ["—", "Quantidade a combinar.", "—"],
+      },
+      {
+        item: "Cortesias",
+        celulas: ["1", "Quantidade a combinar.", "Quantidade a combinar."],
+      },
+      {
+        item: "Relatório",
+        celulas: [
+          "Onde a marca apareceu e a composição da sala.",
+          "Onde a marca apareceu e a composição da sala.",
+          "Onde a marca apareceu e a composição da sala.",
+        ],
+      },
+    ],
+  },
   categorias: [
     "Automotivo",
     "Relojoaria e joalheria",
@@ -227,6 +275,10 @@ const zap =
       <section class="k2-pag k2-capa" style="--capa: url('/images/mk/capa-clube.jpg')">
         <div class="k2-wrap k2-capa-texto">
           <p class="k2-rotulo">{k2.nome} · Proposta de parceria 2026</p>
+          <p class="k2-capa-fato">
+            {k2.nome} · {k2.tema}<br />
+            {k2.data} · {k2.casa} · 140 lugares
+          </p>
           <h1 class="k2-capa-tema">
             <span class="k2-sr">{k2.nome}: </span>Uma experiência de marca para até 140 convidados em Campinas.
           </h1>
@@ -304,7 +356,7 @@ const zap =
                 <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>
               ))}
             </ul>
-            <p class="k2-fonte">Fonte: dados do {k2.casa}.</p>
+            <p class="k2-fonte">Fonte: dados do {k2.casa}. As telas digitais do clube são vistas por mais de 1.200 frequentadores por dia.</p>
           </div>
         </div>
       </section>
@@ -357,6 +409,28 @@ const zap =
                 <p class="k2-cota-valor">{c.valor}</p>
               </article>
             ))}
+          </div>
+
+          <h3 class="k2-sub">O que muda de uma cota para a outra</h3>
+          <div class="k2-matriz-rola">
+            <table class="k2-matriz">
+              <thead>
+                <tr>
+                  <th scope="col">Entrega</th>
+                  {k2.matriz.colunas.map((c) => (
+                    <th scope="col">{c.nome}{c.valor && <small>{c.valor}</small>}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {k2.matriz.linhas.map((l) => (
+                  <tr>
+                    <th scope="row">{l.item}</th>
+                    {l.celulas.map((c) => <td>{c}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
 
           <div class="k2-categorias">
@@ -471,10 +545,11 @@ const zap =
             <span>G&R INSTITUTO EDUCACIONAL</span>
           </div>
 
-          <h3 class="k2-sub">Visibilidade antes do evento</h3>
+          <h3 class="k2-sub">Alcance digital</h3>
+          <p class="k2-fonte k2-fonte-topo">Fonte: perfis dos palestrantes, do clube e a página BEE - Business Explosion Experience no Facebook. A soma não desconta quem segue mais de um perfil.</p>
           <div class="k2-visib">
             <p class="k2-visib-num"><strong>{seguidoresMil}</strong><span>seguidores somados nos perfis dos palestrantes, do clube e na página BEE - Business Explosion Experience (Facebook)</span></p>
-            <p>Além da página oficial do evento e das telas digitais do clube, vistas por mais de 1.200 frequentadores por dia.</p>
+            <p>A página oficial do evento também leva a marca.</p>
           </div>
         </div>
       </section>

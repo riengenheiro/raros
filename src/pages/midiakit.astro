@@ -138,13 +138,13 @@ const mk = {
       vagas: "1 cota, exclusividade de segmento",
       preco: "R$ 27.000,00",
       entregas: [
-        "Exclusividade no seu segmento de atuação",
-        "Logo em destaque na landing page e nos materiais de divulgação",
-        "Logo no telão e menção de agradecimento no palco",
-        "Espaço de ativação da marca no evento",
-        "Ingressos de cortesia",
-        "Divulgação dedicada nas redes do evento",
-        "Relatório pós-evento",
+        "Relacionamento. Espaço de ativação da marca no evento. Formato a combinar.",
+        "Relacionamento. Ingressos de cortesia. Quantidade a combinar.",
+        "Posicionamento. Exclusividade no segmento de atuação: nenhuma outra marca do mesmo segmento ocupa o encontro.",
+        "Visibilidade. Logo em destaque na landing page e nos materiais. Quantidade de peças a combinar.",
+        "Visibilidade. Logo no telão e menção de agradecimento no palco.",
+        "Visibilidade. Divulgação dedicada nas redes do evento. Quantidade de posts a combinar.",
+        "Relatório do que foi entregue: onde a marca apareceu, a composição da sala e as visitas da landing page.",
       ],
     },
     {
@@ -153,12 +153,12 @@ const mk = {
       vagas: "Cotas limitadas",
       preco: "R$ 15.000,00",
       entregas: [
-        "Logo na landing page e nos materiais de divulgação",
-        "Logo no telão e menção no palco",
-        "Material da marca no credenciamento",
-        "Ingressos de cortesia",
-        "Divulgação nas redes do evento",
-        "Relatório pós-evento",
+        "Relacionamento. Material da marca no credenciamento. Quantidade a combinar.",
+        "Relacionamento. Ingressos de cortesia. Quantidade a combinar.",
+        "Visibilidade. Logo na landing page e nos materiais. Quantidade de peças a combinar.",
+        "Visibilidade. Logo no telão e menção no palco. Formato da menção a combinar.",
+        "Visibilidade. Divulgação nas redes do evento. Quantidade de posts a combinar.",
+        "Relatório do que foi entregue: onde a marca apareceu, a composição da sala e as visitas da landing page.",
       ],
     },
     {
@@ -167,13 +167,59 @@ const mk = {
       vagas: "Cotas limitadas",
       preco: "R$ 2.000,00",
       entregas: [
-        "Logo na landing page e nos materiais de divulgação",
-        "Divulgação nas redes do evento",
-        "Ingressos de cortesia",
-        "Relatório pós-evento",
+        "Relacionamento. Ingressos de cortesia. Quantidade a combinar.",
+        "Visibilidade. Logo na landing page e nos materiais. Quantidade de peças a combinar.",
+        "Visibilidade. Divulgação nas redes do evento. Quantidade de posts a combinar.",
+        "Relatório do que foi entregue: onde a marca apareceu, a composição da sala e as visitas da landing page.",
       ],
     },
   ],
+
+  matriz: {
+    colunas: [
+      { nome: "Apoio", valor: "R$ 2.000,00" },
+      { nome: "Ouro", valor: "R$ 15.000,00" },
+      { nome: "Master", valor: "R$ 27.000,00" },
+    ],
+    linhas: [
+      {
+        item: "Relacionamento na sala",
+        celulas: [
+          "Ingressos de cortesia. Quantidade a combinar.",
+          "Material no credenciamento e ingressos. Quantidade a combinar.",
+          "Espaço de ativação e ingressos. Formato e quantidade a combinar.",
+        ],
+      },
+      {
+        item: "Exclusividade de segmento",
+        celulas: ["—", "—", "Nenhuma outra marca do mesmo segmento ocupa o encontro."],
+      },
+      {
+        item: "Landing page, materiais e palco",
+        celulas: [
+          "Logo na landing page e nos materiais. Quantidade a combinar.",
+          "Logo na landing page, nos materiais, no telão e menção no palco.",
+          "Logo em destaque, telão e menção de agradecimento no palco.",
+        ],
+      },
+      {
+        item: "Posts nas redes",
+        celulas: [
+          "Quantidade a combinar.",
+          "Quantidade a combinar.",
+          "Divulgação dedicada. Quantidade a combinar.",
+        ],
+      },
+      {
+        item: "Relatório",
+        celulas: [
+          "Onde a marca apareceu, a composição da sala e as visitas da landing page.",
+          "Onde a marca apareceu, a composição da sala e as visitas da landing page.",
+          "Onde a marca apareceu, a composição da sala e as visitas da landing page.",
+        ],
+      },
+    ],
+  },
 
   // Contato comercial
   contato: {
@@ -322,7 +368,7 @@ const pendente = "a preencher";
             ))}
           </ul>
 
-          <p class="mk-nota">O Clube de Networking é uma ação idealizada e desenvolvida pela Diretoria Cultural do {mk.casa}.</p>
+          <p class="mk-nota">Fonte: composição prevista da sala do RAROS. A distribuição se confirma com as inscrições. O Clube de Networking é uma ação idealizada e desenvolvida pela Diretoria Cultural do {mk.casa}.</p>
 
           <div class="mk-dados mk-dados-1">
             <div>
@@ -371,7 +417,7 @@ const pendente = "a preencher";
               width="1024"
               height="565"
             />
-            <figcaption>Perfil demográfico do público do {mk.clube.nome}.</figcaption>
+            <figcaption>Fonte: dados do {mk.clube.nome}. Perfil da casa, separado da sala do dia.</figcaption>
           </figure>
         </div>
       </section>
@@ -479,7 +525,7 @@ const pendente = "a preencher";
             </tbody>
           </table>
           <p class="mk-nota">
-            A soma é simples: não desconta pessoas que seguem mais de um perfil. Projeções serão
+            Fonte: os perfis listados acima. A soma é simples e não desconta pessoas que seguem mais de um perfil. Projeções serão
             sempre identificadas como estimativa.
           </p>
 
@@ -521,6 +567,28 @@ const pendente = "a preencher";
                 </ul>
               </article>
             ))}
+          </div>
+
+          <h3 class="mk-sub">O que muda de uma cota para a outra</h3>
+          <div class="mk-matriz-rola">
+            <table class="mk-tabela mk-matriz">
+              <thead>
+                <tr>
+                  <th scope="col">Entrega</th>
+                  {mk.matriz.colunas.map((c) => (
+                    <th scope="col">{c.nome}{c.valor && <small>{c.valor}</small>}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {mk.matriz.linhas.map((l) => (
+                  <tr>
+                    <th scope="row">{l.item}</th>
+                    {l.celulas.map((c) => <td>{c}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>

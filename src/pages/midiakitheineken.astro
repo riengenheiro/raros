@@ -46,21 +46,25 @@ const evento = {
   palestrantes: [
     {
       nome: "Leandro Marcondes",
-      papel: "Empresário e estrategista de negócios",
+      papel: "Empresário · Estrategista de negócios · Mentor · Autor",
       foto: "/images/mk/leandro.jpg",
       texto:
-        "Mais de 20 anos de experiência internacional em liderança e negócios, à frente de grandes projetos e eventos ao lado de nomes como T. Harv Eker e Nick Vujicic.",
-      numeros: [{ valor: "+20 anos", rotulo: "de experiência internacional" }],
+        "Autor do livro “O Poder Milionário do Networking”, com mais de 20 anos de experiência internacional em liderança, negócios e desenvolvimento pessoal. Esteve à frente de grandes projetos e eventos ao lado de nomes como T. Harv Eker, Jordan Belfort e Nick Vujicic.",
+      numeros: [
+        { valor: "+20 anos", rotulo: "de experiência internacional" },
+        { valor: "Autor", rotulo: "de “O Poder Milionário do Networking”" },
+      ],
     },
     {
       nome: "Guaciara Fornaciari",
-      papel: "Empresária · Fundadora do Doutora Escola",
+      papel: "Empresária - Fonoaudióloga - Professora - Autora",
       foto: "/images/mk/guaciara.jpg",
       texto:
-        "Especialista em aprendizagem acelerada e desenvolvimento socioemocional. Já dirigiu escola e transformou uma lacuna do mercado em negócio próprio.",
+        "Especialista em aprendizagem acelerada, Educação 5.0 com foco no socioemocional e metodologias ativas, com ampla experiência em educação. Já atuou como diretora de escola e abriu um negócio próprio, a Fábrica Mágica.",
       numeros: [
-        { valor: "12.000", rotulo: "pessoas treinadas" },
+        { valor: "12.000", rotulo: "pessoas já treinadas" },
         { valor: "21 anos", rotulo: "de experiência" },
+        { valor: "11.800+", rotulo: "documentos criados na Fábrica Mágica" },
       ],
     },
   ],
@@ -73,9 +77,10 @@ const evento = {
   ],
   videos: [
     { titulo: "Edição anterior", url: "https://youtube.com/shorts/FGUNILyhjr0", imagem: "/images/mk/evento-anterior-1.jpg" },
-    { titulo: "Edição anterior", url: "https://youtube.com/shorts/nmYrXJ7qWfY", imagem: "/images/mk/evento-anterior-2.jpg" },
+    { titulo: "Edição anterior", url: "https://youtube.com/shorts/6JuHeCETFT0", imagem: "/images/mk/evento-anterior-2.jpg" },
   ],
-  seguidores: [22000, 61800, 14600],
+  // Perfis dos palestrantes e do clube (22 mil + 61,8 mil + 14,6 mil) + página BEE - Business Explosion Experience no Facebook (188 mil)
+  seguidores: [22000, 61800, 14600, 188000],
 
   contato: {
     nome: "Ricardo Farias Alexandre",
@@ -93,7 +98,7 @@ const h = {
   marca: "Heineken",
 
   carta: [
-    "Esta proposta foi escrita para a Heineken, não adaptada de outra.",
+    "Esta proposta foi escrita para a Heineken.",
     "Antes de desenhar qualquer formato, estudamos como a marca se posiciona: a tradição desde 1873, a ideia de socialização de qualidade, a moderação como atitude, que ganhou um novo capítulo com a Heineken Ultimate, e a presença em experiências onde o público está. Cada página a seguir parte desse estudo.",
     "O que a Heineken não reconhecer como seu, nós ajustamos juntos.",
   ],
@@ -166,21 +171,22 @@ const h = {
   ],
 
   dia: {
-    ideia: "Durante o dia, a Heineken acompanha o trabalho. O encontro encerra às 17h.",
+    ideia: "A escolha dos momentos e o formato de cada um ficam em aberto.",
     detalhe:
-      "Um caminho sugerido, que respeita o ritmo do evento: a marca acompanha o dia, do credenciamento ao coffee da tarde. O encontro encerra às 17h. Tudo é ajustável.",
+      "Abaixo, o que o dia oferece. O formato, a área e a mensagem da Heineken em cada momento ficam para a conversa. O encontro encerra às 17h.",
     momentos: [
-      { id: "credenciamento", hora: "8h30", nome: "Credenciamento", marca: true, nivel: "apoio", ideia: "Boas-vindas com Heineken 0.0 gelada e material da marca na entrega do crachá." },
-      { id: "abertura", hora: "9h00", nome: "Abertura e conteúdo", marca: false, nivel: "apoio", ideia: "O conteúdo fica livre de marca. Apenas a abertura cita a Heineken e a mensagem de moderação." },
-      { id: "coffee-manha", hora: "10h30", nome: "Coffee break da manhã", marca: true, nivel: "experiencia", ideia: "Ponto Heineken 0.0 ao lado do café, para quem quer uma pausa diferente." },
-      { id: "almoco", hora: "13h00", nome: "Almoço", marca: true, nivel: "experiencia", ideia: "O “Agora você pode” na prática: Heineken 0.0 à mesa, em pleno dia de trabalho." },
-      { id: "coffee-tarde", hora: "15h30", nome: "Coffee break da tarde", marca: true, nivel: "experiencia", ideia: "Pausa da tarde com a marca nas mesas, sem interromper a programação." },
-      { id: "encerramento", hora: "17h00", nome: "Encerramento", marca: false, nivel: "apoio", ideia: "O encontro se encerra às 17h." },
+      { id: "credenciamento", hora: "8h30", nome: "Credenciamento", marca: true, nivel: "apoio", funcao: "Primeiro contato com todos.", ideia: "Momento disponível. Material, espaço e quantidade a combinar." },
+      { id: "abertura", hora: "9h00", nome: "Abertura e conteúdo", marca: false, nivel: "apoio", funcao: "Conteúdo do dia, livre de marca.", ideia: "O conteúdo fica livre de marca. Menção institucional a combinar, se fizer sentido para a Heineken." },
+      { id: "coffee-manha", hora: "10h30", nome: "Coffee break da manhã", marca: true, nivel: "experiencia", funcao: "Tempo de conversa.", ideia: "Momento disponível. Formato e área da ativação a combinar." },
+      { id: "almoco", hora: "13h00", nome: "Almoço", marca: true, nivel: "experiencia", funcao: "Tempo de conversa.", ideia: "Momento disponível. Formato e área da ativação a combinar." },
+      { id: "coffee-tarde", hora: "15h30", nome: "Coffee break da tarde", marca: true, nivel: "experiencia", funcao: "Tempo de conversa.", ideia: "Momento disponível. Formato e área da ativação a combinar." },
+      { id: "encerramento", hora: "17h00", nome: "Encerramento", marca: false, nivel: "apoio", funcao: "Fim do encontro.", ideia: "O encontro encerra às 17h." },
     ],
     extra: {
       id: "lounge",
       nome: "Espaço de marca",
       nivel: "experiencia",
+      funcao: "Área de marca.",
       ideia: "Exposição ou lounge da marca, se for do interesse da Heineken. Formato e local a combinar com o clube.",
     },
   },
@@ -197,14 +203,15 @@ const h = {
       nome: "Parceiro Master",
       quantidade: "1 por edição",
       destaque: true,
-      resumo: "Exclusividade em cervejas no evento.",
+      resumo: "Exclusividade em cervejas no evento: nenhuma outra marca de cerveja ocupa o encontro.",
       entregas: [
-        "Exclusividade da categoria cervejas no evento",
-        "Espaço de exposição ou lounge, a combinar com o clube",
-        "Marca na página oficial, nos materiais e no palco",
-        "Divulgação nos perfis dos palestrantes e do clube",
-        "Cortesias para convidados da marca",
-        "Relatório pós-evento",
+        "Relacionamento. Tempo na sala com quem decide. Formato a combinar.",
+        "Relacionamento. Espaço de exposição ou lounge. Área a combinar com o clube.",
+        "Posicionamento. Exclusividade da categoria cervejas: nenhuma outra marca de cerveja ocupa o encontro.",
+        "Visibilidade. Marca na página oficial, nos materiais e no palco. Quantidade de peças a combinar.",
+        "Visibilidade. Divulgação nos perfis dos palestrantes e do clube. Quantidade de posts a combinar.",
+        "Relacionamento. Cortesias para convidados da marca. Quantidade a combinar.",
+        "Relatório do que foi entregue: onde a marca apareceu e a composição da sala.",
       ],
     },
     {
@@ -213,27 +220,73 @@ const h = {
       destaque: false,
       resumo: "Um momento do dia assinado pela marca: coffee break da manhã, almoço ou coffee break da tarde.",
       entregas: [
-        "Um momento do dia com o nome da marca",
-        "Material no credenciamento",
-        "Menção no palco",
-        "Marca na página oficial e nos materiais",
-        "Cortesias para convidados da marca",
-        "Relatório pós-evento",
+        "Relacionamento. Um momento do dia, coffee da manhã, almoço ou coffee da tarde. Formato e área a combinar.",
+        "Visibilidade. Material no credenciamento. Quantidade a combinar.",
+        "Visibilidade. Menção no palco. Formato a combinar.",
+        "Visibilidade. Marca na página oficial e nos materiais. Quantidade de peças a combinar.",
+        "Relacionamento. Cortesias para convidados da marca. Quantidade a combinar.",
+        "Relatório do que foi entregue: onde a marca apareceu e a composição da sala.",
       ],
     },
     {
       nome: "Apoio",
       quantidade: "Vagas limitadas",
       destaque: false,
-      resumo: "Presença da marca ao lado de um público de decisores.",
+      resumo: "Presença da marca ao lado de quem decide.",
       entregas: [
-        "Marca na página oficial e nos materiais",
-        "Presença no evento",
-        "Cortesia para convidado da marca",
-        "Relatório pós-evento",
+        "Relacionamento. Presença ao lado de quem decide. Formato a combinar.",
+        "Visibilidade. Marca na página oficial e nos materiais. Quantidade de peças a combinar.",
+        "Relacionamento. 1 cortesia para convidado da marca.",
+        "Relatório do que foi entregue: onde a marca apareceu e a composição da sala.",
       ],
     },
   ],
+
+  matriz: {
+    colunas: ["Apoio", "Parceiro de Experiência", "Parceiro Master"],
+    linhas: [
+      {
+        item: "Relacionamento na sala",
+        celulas: [
+          "Presença ao lado de quem decide. Formato a combinar.",
+          "1 momento do dia. Formato e área a combinar.",
+          "Tempo na sala e espaço de marca. Área a combinar.",
+        ],
+      },
+      {
+        item: "Exclusividade de cervejas",
+        celulas: ["—", "—", "Nenhuma outra marca de cerveja ocupa o encontro."],
+      },
+      {
+        item: "Página, materiais e palco",
+        celulas: [
+          "Página e materiais. Quantidade a combinar.",
+          "Página, materiais e menção no palco. Quantidade e formato a combinar.",
+          "Página, materiais e palco. Quantidade a combinar.",
+        ],
+      },
+      {
+        item: "Posts nos perfis",
+        celulas: ["—", "—", "Quantidade a combinar."],
+      },
+      {
+        item: "Material no credenciamento",
+        celulas: ["—", "Quantidade a combinar.", "—"],
+      },
+      {
+        item: "Cortesias",
+        celulas: ["1", "Quantidade a combinar.", "Quantidade a combinar."],
+      },
+      {
+        item: "Relatório",
+        celulas: [
+          "Onde a marca apareceu e a composição da sala.",
+          "Onde a marca apareceu e a composição da sala.",
+          "Onde a marca apareceu e a composição da sala.",
+        ],
+      },
+    ],
+  },
 
   compromissos: [
     { titulo: "95% acima de 18", texto: "95% do público do RAROS está acima de 18 anos, em todas as edições e em todos os materiais." },
@@ -251,7 +304,7 @@ function youtubeEmbed(url: string) {
     url.match(/[?&]v=([\w-]+)/)?.[1] ??
     url.match(/youtu\.be\/([\w-]+)/)?.[1] ??
     "";
-  return id ? `https://www.youtube.com/embed/${id}?autoplay=1` : url;
+  return id ? `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&playsinline=1` : url;
 }
 
 const totalSeguidores = evento.seguidores.reduce((s, n) => s + n, 0);
@@ -271,8 +324,8 @@ const zap =
 const opcoesMomento = [
   ...h.dia.momentos
     .filter((m) => m.id !== "encerramento")
-    .map((m) => ({ id: m.id, hora: m.hora, nome: m.nome, ideia: m.ideia, nivel: m.nivel })),
-  { id: h.dia.extra.id, hora: "A combinar", nome: h.dia.extra.nome, ideia: h.dia.extra.ideia, nivel: h.dia.extra.nivel },
+    .map((m) => ({ id: m.id, hora: m.hora, nome: m.nome, funcao: m.funcao, ideia: m.ideia, nivel: m.nivel })),
+  { id: h.dia.extra.id, hora: "A combinar", nome: h.dia.extra.nome, funcao: h.dia.extra.funcao, ideia: h.dia.extra.ideia, nivel: h.dia.extra.nivel },
 ];
 ---
 
@@ -281,7 +334,7 @@ const opcoesMomento = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#04180d" />
+    <meta name="theme-color" content="#141210" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -293,7 +346,7 @@ const opcoesMomento = [
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -309,14 +362,14 @@ const opcoesMomento = [
         </div>
         <div class="k3-wrap k3-capa-texto">
           <p class="k3-capa-para">Preparada para o {h.empresa}</p>
+          <p class="k3-capa-fato">
+            {evento.nome} · {evento.tema}<br />
+            {evento.data} · {evento.casa} · 140 lugares
+          </p>
           <h1 class="k3-capa-titulo">
             <span class="k3-sr">{evento.nome}: </span>Um dia de decisões, até as 17h.
           </h1>
-          <p class="k3-capa-info">
-            Evento da Diretoria Cultural do {evento.casa}<br />
-            {evento.nome} · {evento.tema}<br />
-            {evento.data} · {evento.casa}
-          </p>
+          <p class="k3-capa-info">Evento da Diretoria Cultural do {evento.casa}</p>
         </div>
       </section>
 
@@ -388,6 +441,8 @@ const opcoesMomento = [
             emocional aplicada aos negócios. Um ambiente reservado, pensado para conversas que viram parcerias.
           </p>
 
+          <h3 class="k3-sub">A sala do dia</h3>
+          <p class="k3-fonte k3-fonte-topo">140 lugares. Composição prevista, a confirmar com as inscrições. Quem está nesta sala decide.</p>
           <div class="k3-barra" role="img" aria-label={evento.composicao.map((c) => `${c.pct}% ${c.rotulo}`).join("; ")}>
             {evento.composicao.map((c, i) => <span class={`k3-seg k3-seg-${i + 1}`} style={`width: ${c.pct}%`}></span>)}
           </div>
@@ -401,24 +456,25 @@ const opcoesMomento = [
             ))}
           </ul>
           <p class="k3-linha">{evento.porte}.</p>
-          <p class="k3-fonte">O Clube de Networking é uma ação idealizada e desenvolvida pela Diretoria Cultural do {evento.casa}.</p>
+          <p class="k3-fonte">Fonte: composição prevista da sala do RAROS. 95% do público acima de 18 anos. O Clube de Networking é uma ação idealizada e desenvolvida pela Diretoria Cultural do {evento.casa}.</p>
 
-          <h3 class="k3-sub">O perfil de quem frequenta o clube</h3>
+          <h3 class="k3-sub">A casa</h3>
+          <p class="k3-fonte k3-fonte-topo">Dados da base de sócios do clube. Não representam a audiência confirmada do RAROS.</p>
           <ul class="k3-grade k3-grade-4">
             {evento.perfilClube.map((n) => <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>)}
           </ul>
           <ul class="k3-grade k3-grade-3">
             {evento.clubeNumeros.map((n) => <li><strong>{n.valor}</strong><span>{n.rotulo}</span></li>)}
           </ul>
-          <p class="k3-fonte">Fonte: dados do {evento.casa}. 95% do público acima de 18 anos.</p>
+          <p class="k3-fonte">Fonte: dados do {evento.casa}. As telas digitais do clube são vistas por mais de 1.200 frequentadores por dia.</p>
         </div>
       </section>
 
       <!-- 04 O dia -->
       <section class="k3-pag k3-claro">
         <div class="k3-wrap">
-          <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>04 · O dia da Heineken</p>
-          <h2>Cada momento do dia, uma ideia para a marca</h2>
+          <p class="k3-num"><i class="k3-estrela" aria-hidden="true"></i>04 · Momentos disponíveis</p>
+          <h2>O que o dia oferece para a marca</h2>
           <p class="k3-lead">
             {evento.data}, no {evento.casa}. {h.dia.detalhe}
           </p>
@@ -429,6 +485,7 @@ const opcoesMomento = [
                 <i class="k3-estrela" aria-hidden="true"></i>
                 <div>
                   <h3>{m.nome}</h3>
+                  <p class="k3-momento-funcao">{m.funcao}</p>
                   <p>{m.ideia}</p>
                 </div>
               </li>
@@ -476,6 +533,26 @@ const opcoesMomento = [
               </article>
             ))}
           </div>
+
+          <h3 class="k3-sub">O que muda de uma cota para a outra</h3>
+          <div class="k3-matriz-rola">
+            <table class="k3-matriz">
+              <thead>
+                <tr>
+                  <th scope="col">Entrega</th>
+                  {h.matriz.colunas.map((c) => <th scope="col">{c}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {h.matriz.linhas.map((l) => (
+                  <tr>
+                    <th scope="row">{l.item}</th>
+                    {l.celulas.map((c) => <td>{c}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
@@ -511,7 +588,7 @@ const opcoesMomento = [
                 {opcoesMomento.map((m) => (
                   <label class="k3-escolha">
                     <input type="checkbox" name="momento" value={m.nome} data-nivel={m.nivel} />
-                    <span><em>{m.hora}</em><strong>{m.nome}</strong><small>{m.ideia}</small></span>
+                    <span><em>{m.hora}</em><strong>{m.nome}</strong><small>{m.funcao} {m.ideia}</small></span>
                   </label>
                 ))}
               </div>
@@ -534,6 +611,9 @@ const opcoesMomento = [
               <a class="k3-botao" id="k3-enviar" href={zap}>Enviar esta composição</a>
             </div>
           </form>
+          <p class="k3-fecho">
+            Quando a Heineken envia esta composição, ela chega na conversa pelo WhatsApp {evento.contato.telefone}. O que ficou em aberto se ajusta ali.
+          </p>
         </div>
       </section>
 
@@ -580,15 +660,14 @@ const opcoesMomento = [
             <span>G&R INSTITUTO EDUCACIONAL</span>
           </div>
 
-          <h3 class="k3-sub">Visibilidade antes do evento</h3>
+          <h3 class="k3-sub">Alcance digital</h3>
+          <p class="k3-fonte k3-fonte-topo">Fonte: perfis dos palestrantes, do clube e a página BEE - Business Explosion Experience no Facebook. A soma não desconta quem segue mais de um perfil.</p>
           <div class="k3-visib">
             <p class="k3-visib-num">
               <strong>{seguidoresMil}</strong>
-              <span>seguidores somados nos perfis dos palestrantes e do clube</span>
+              <span>seguidores somados nos perfis dos palestrantes, do clube e na página BEE - Business Explosion Experience (Facebook)</span>
             </p>
-            <p>
-              Além da página oficial do evento e das telas digitais do clube, vistas por mais de 1.200 frequentadores por dia.
-            </p>
+            <p>A página oficial do evento também leva a marca.</p>
           </div>
 
           <h3 class="k3-sub">Edições anteriores</h3>
@@ -633,7 +712,7 @@ const opcoesMomento = [
         <p class="k3-player-titulo"></p>
         <button type="submit" class="k3-player-fechar">Fechar</button>
       </form>
-      <iframe title="Vídeo" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+      <iframe title="Vídeo" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </dialog>
 
     <script is:inline define:vars={{ whatsapp: evento.contato.whatsapp }}>
@@ -664,7 +743,7 @@ const opcoesMomento = [
       const formatos = {
         master: {
           nome: "Parceiro Master",
-          texto: "Inclui a exclusividade em cervejas no evento.",
+          texto: "Inclui a exclusividade em cervejas: nenhuma outra marca de cerveja ocupa o encontro.",
         },
         experiencia: {
           nome: "Parceiro de Experiência",

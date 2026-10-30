@@ -1247,6 +1247,10 @@ body.editando [contenteditable="true"]:focus {
 .mk-numeros-1 { max-width: 420px; margin-inline: auto; }
 .mk-numeros-1 li + li { border-left: 0; }
 .mk-tabela td:last-child { text-align: right; }
+.mk-matriz-rola { margin-top: 28px; overflow-x: auto; }
+.mk-matriz { min-width: 720px; }
+.mk-matriz th, .mk-matriz td, .mk-matriz td:last-child { text-align: left; vertical-align: top; }
+.mk-matriz thead small { display: block; margin-top: 4px; letter-spacing: 0; text-transform: none; }
 
 .mk-landing { display: grid; grid-template-columns: 200px 1fr; gap: 28px; align-items: center; margin-top: 36px; }
 .mk-landing img { width: 200px; height: 200px; object-fit: cover; border: 1px solid var(--ouro-linha); border-radius: 10px; }

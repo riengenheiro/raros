@@ -97,6 +97,7 @@
 .k2-capa-texto { position: relative; }
 .k2 .k2-capa-tema { max-width: 700px; margin: 0; color: var(--k2-marfim); font-family: var(--k2-serifa); font-size: clamp(32px, 4vw, 48px); font-weight: 500; line-height: 1.08; }
 .k2-capa-sub { max-width: 560px; margin-top: 16px; color: var(--k2-marfim); font-size: 16px; line-height: 1.55; }
+.k2-capa-fato { margin-top: 16px; color: var(--k2-marfim); font-size: 15px; font-weight: 500; line-height: 1.55; }
 .k2-capa-info { margin-top: 14px; color: #e4dfd4; font-size: 14px; letter-spacing: 0.02em; }
 .k2-capa-sub + .k2-capa-info { margin-top: 18px; }
 .k2-capa-info + .k2-capa-info { margin-top: 4px; }
@@ -199,6 +200,12 @@
 .k2-cota li { padding: 8px 0; border-top: 1px solid var(--k2-fio-claro); font-size: 13px; line-height: 1.45; }
 .k2-cota-valor { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--k2-tinta); font-family: var(--k2-serifa); font-size: 22px; font-style: italic; }
 .k2-sem-preco .k2-cota ul { padding-bottom: 8px; border-bottom: 1px solid var(--k2-tinta); }
+.k2-matriz-rola { margin-top: 8px; overflow-x: auto; }
+.k2-matriz { width: 100%; min-width: 720px; border-collapse: collapse; }
+.k2-matriz th, .k2-matriz td { padding: 12px 14px; border-bottom: 1px solid var(--k2-fio-claro); text-align: left; vertical-align: top; font-size: 13px; font-weight: 400; line-height: 1.45; }
+.k2-matriz thead th { color: var(--k2-ouro-escuro); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.k2-matriz thead small { display: block; margin-top: 6px; color: var(--k2-tinta); font-family: var(--k2-serifa); font-size: 16px; font-style: italic; font-weight: 500; letter-spacing: 0; text-transform: none; }
+.k2-matriz tbody th { width: 22%; font-weight: 600; }
 
 .k2 .k2-categorias .k2-sub { margin-top: 44px; margin-bottom: 8px; font-size: 22px; }
 .k2-categorias p { font-size: 15px; }
