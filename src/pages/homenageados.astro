@@ -1,0 +1,314 @@
+---
+import "../styles/global.css";
+import "../styles/homenageados.css";
+
+/**
+ * Release do RAROS para os homenageados (/homenageados).
+ * Página privada (noindex), enviada por link a quem será homenageado.
+ * Estilos próprios com prefixo .hm-, sobre a paleta do global.css.
+ *
+ * Campos com `null` aparecem como "a confirmar" (destaque tracejado vermelho)
+ * para não irem vazios ou inventados. Preencha e o aviso some sozinho.
+ */
+const hm = {
+  nome: "RAROS",
+  tema: "Inteligência Emocional para Liderar o Seu Negócio",
+  data: "Sábado, 5 de dezembro de 2026",
+  casa: "Tênis Clube de Campinas",
+  endereco: "R. Cel. Quirino, 1346 — Cambuí, Campinas — SP, 13015-330",
+  lugares: 140,
+
+  // Janela do momento de homenagem. null = a confirmar.
+  horarioHomenagem: { inicio: "11h30", fim: "13h00" } as { inicio: string; fim: string } | null,
+  // Dia do evento. O momento de homenagem entra na linha do tempo com o horário acima.
+  programa: [
+    { hora: "8h30", tema: "Credenciamento" },
+    { hora: "9h00", tema: "Início" },
+    { hora: "10h30", tema: "Coffee break" },
+    { hora: "13h00", tema: "Almoço" },
+    { hora: "15h30", tema: "Coffee break" },
+    { hora: "17h00", tema: "Encerramento" },
+  ] as { hora: string; tema: string }[],
+
+  palestrantes: [
+    {
+      nome: "Leandro Marcondes",
+      papel: "Empresário · Estrategista de negócios · Mentor · Autor",
+      foto: "/images/mk/leandro.jpg",
+      texto:
+        "Autor de “O Poder Milionário do Networking”, com mais de 20 anos de experiência internacional em liderança, negócios e desenvolvimento pessoal.",
+    },
+    {
+      nome: "Guaciara Fornaciari",
+      papel: "Fundadora do Doutora Escola",
+      foto: "/images/mk/guaciara.jpg",
+      texto:
+        "Especialista em aprendizagem acelerada e Educação 5.0, com 21 anos de experiência e mais de 12 mil pessoas treinadas.",
+    },
+  ],
+
+  diretoria: [
+    { cargo: "Presidente", nome: "Antônio Grassi Júnior" },
+    { cargo: "Diretora Cultural", nome: "Ana Clara de Mello e Silva" },
+    { cargo: "Diretor de Marketing", nome: "Luis Roberto Brunialti" },
+  ],
+
+  contato: {
+    nome: "Ricardo Farias Alexandre",
+    instituicao: "G&R Instituto Educacional",
+    telefone: "(19) 99432-8278",
+    whatsapp: "5519994328278",
+  },
+};
+
+const pendente = "a confirmar";
+
+const mapa =
+  "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent("Tênis Clube de Campinas, R. Cel. Quirino, 1346, Cambuí, Campinas - SP");
+
+const zap =
+  "https://wa.me/" +
+  hm.contato.whatsapp +
+  "?text=" +
+  encodeURIComponent("Olá! Recebi o release do RAROS para os homenageados e quero confirmar minha presença.");
+
+// Converte "11h45" ou "9h" em minutos, para ordenar a linha do tempo.
+const emMinutos = (hora: string) => {
+  const [h, m] = hora.split("h");
+  return Number(h) * 60 + Number(m || 0);
+};
+
+const homenagem = {
+  hora: hm.horarioHomenagem?.inicio ?? null,
+  ate: hm.horarioHomenagem ? `até ${hm.horarioHomenagem.fim}` : null,
+  tema: "Momento de homenagem",
+  detalhe: "É uma surpresa.",
+  homenagem: true,
+};
+
+// Com horário conhecido, a homenagem entra na ordem certa da linha do tempo.
+// Sem horário, ela não é encaixada num ponto inventado: aparece em destaque logo abaixo da lista.
+const linhaDoTempo: { hora: string | null; ate?: string | null; tema: string; detalhe?: string; homenagem: boolean }[] =
+  hm.programa.map((p) => ({ ...p, homenagem: false }));
+if (hm.horarioHomenagem) {
+  const alvo = emMinutos(hm.horarioHomenagem.inicio);
+  const posicao = linhaDoTempo.findIndex((p) => emMinutos(p.hora!) > alvo);
+  linhaDoTempo.splice(posicao === -1 ? linhaDoTempo.length : posicao, 0, homenagem);
+}
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#07080b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>Homenageados | RAROS · Tênis Clube de Campinas</title>
+    <meta
+      name="description"
+      content="Release do RAROS para os homenageados: o que é o evento e o que vai acontecer no dia."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="hm-body">
+    <main class="hm">
+      <!-- 1. Capa -->
+      <section class="hm-capa" style="--capa: url('/images/mk/organizador.jpg')">
+        <div class="hm-wrap hm-capa-texto">
+          <p class="hm-kicker">Release para os homenageados</p>
+          <h1><span class="hm-sr">{hm.nome}: </span>Você foi escolhido para ser homenageado.</h1>
+          <p class="hm-capa-sub">
+            Este é o seu guia do <strong>{hm.nome}</strong>: o que é o evento e o que vai acontecer
+            no dia.
+          </p>
+          <ul class="hm-capa-info">
+            <li><span>Quando</span>{hm.data}</li>
+            <li><span>Onde</span>{hm.casa}, Cambuí · Campinas, SP</li>
+            <li><span>Realização</span>Diretoria Cultural do {hm.casa}</li>
+          </ul>
+          <a class="btn" href="#confirmar">Confirmar presença</a>
+        </div>
+      </section>
+
+      <!-- 2. Carta de boas-vindas -->
+      <section class="hm-secao hm-carta">
+        <div class="hm-wrap hm-estreito">
+          <p class="hm-kicker">Boas-vindas</p>
+          <h2>Você foi escolhido para ser homenageado no {hm.nome}</h2>
+          <p class="hm-lead">
+            O {hm.nome} reúne empresários, empreendedores e líderes em um dia inteiro de conteúdo e
+            conexões. Esta página conta o que é o evento e como será o dia.
+          </p>
+          <p class="hm-lead">
+            Nas próximas seções, você vai ver como será o evento, como o dia se desenrola e quando
+            acontece o seu momento.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. O que é o evento -->
+      <section class="hm-secao hm-suave">
+        <div class="hm-wrap">
+          <p class="hm-kicker">O evento</p>
+          <h2>O que é o {hm.nome}</h2>
+          <p class="hm-lead">
+            Um encontro presencial de 1 dia, no {hm.casa}, criado para aproximar empresários,
+            empreendedores e líderes de conexões que abrem portas e de parcerias que antes pareciam
+            inalcançáveis. O conteúdo é um treinamento de {hm.tema.toLowerCase()}.
+          </p>
+
+          <ul class="hm-numeros">
+            <li><strong>1 dia</strong><span>de treinamento presencial</span></li>
+            <li><strong>até {hm.lugares}</strong><span>lugares, em ambiente reservado</span></li>
+            <li><strong>2</strong><span>palestrantes conduzem o dia</span></li>
+          </ul>
+
+          <div class="hm-duas">
+            <article>
+              <h3>Quem estará na sala</h3>
+              <p>
+                Sócios do {hm.casa}, integrantes do Clube de Networking e empresários e
+                empreendedores convidados. Um público qualificado, aberto a conversar e a fazer
+                negócios.
+              </p>
+            </article>
+            <article>
+              <h3>Uma ação da Diretoria Cultural</h3>
+              <p>
+                O {hm.nome} é um evento da Diretoria Cultural do clube. O Clube de Networking é uma
+                ação idealizada e desenvolvida por ela.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. A homenagem -->
+      <section class="hm-secao">
+        <div class="hm-wrap hm-estreito">
+          <div>
+            <p class="hm-kicker">A homenagem</p>
+            <h2>O seu momento é uma surpresa</h2>
+            <p class="hm-lead">
+              Os detalhes da homenagem ficam guardados para o dia do evento.
+            </p>
+            <ul class="hm-lista">
+              <li>
+                Horário previsto:
+                <strong>
+                  {hm.horarioHomenagem
+                    ? `${hm.horarioHomenagem.inicio} às ${hm.horarioHomenagem.fim}`
+                    : <span class="pendente">{pendente}</span>}
+                </strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. O dia -->
+      <section class="hm-secao hm-suave">
+        <div class="hm-wrap hm-estreito">
+          <p class="hm-kicker">O dia</p>
+          <h2>O que vai acontecer</h2>
+          <p class="hm-lead">
+            {hm.data}, no {hm.casa}. Do credenciamento ao encerramento, às 17h.
+          </p>
+
+          <ol class="hm-tempo">
+            {linhaDoTempo.map((p) => (
+              <li class:list={{ "hm-tempo-destaque": p.homenagem }}>
+                <strong class="hm-hora">
+                  {p.hora ?? <span class="pendente">{pendente}</span>}
+                  {p.ate && <small>{p.ate}</small>}
+                </strong>
+                <div>
+                  <h3>{p.tema}</h3>
+                  {p.detalhe && <p>{p.detalhe}</p>}
+                </div>
+              </li>
+            ))}
+          </ol>
+          {!hm.horarioHomenagem && (
+            <div class="hm-tempo-avulso">
+              <strong class="hm-hora"><span class="pendente">{pendente}</span></strong>
+              <div>
+                <h3>{homenagem.tema}</h3>
+                <p>{homenagem.detalhe}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <!-- 6. Quem conduz -->
+      <section class="hm-secao">
+        <div class="hm-wrap">
+          <p class="hm-kicker">Palestrantes</p>
+          <h2>Quem conduz o dia</h2>
+          <div class="hm-pals">
+            {hm.palestrantes.map((p) => (
+              <article class="hm-pal">
+                <img src={p.foto} alt={`Foto de ${p.nome}`} width="520" height="650" loading="lazy" />
+                <div>
+                  <h3>{p.nome}</h3>
+                  <p class="hm-pal-papel">{p.papel}</p>
+                  <p>{p.texto}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Local -->
+      <section class="hm-secao hm-noite">
+        <div class="hm-wrap hm-estreito hm-centro">
+          <p class="hm-kicker">Onde</p>
+          <h2>{hm.casa}</h2>
+          <p class="hm-forte">{hm.data}</p>
+          <p class="hm-mudo">{hm.endereco}</p>
+          <p class="hm-lead hm-lead-centro">
+            Fundado em 1913 como Lawn Tennis Club, o clube recebe o {hm.nome} no Cambuí, em um
+            ambiente reservado e de prestígio.
+          </p>
+          <a class="btn btn-claro" href={mapa} target="_blank" rel="noopener">Ver no mapa</a>
+        </div>
+      </section>
+
+      <!-- 8. Combinados e confirmação -->
+      <section class="hm-secao" id="confirmar">
+        <div class="hm-wrap hm-estreito">
+          <p class="hm-kicker">Próximo passo</p>
+          <h2>Confirme a sua presença</h2>
+          <p class="hm-lead">Confirme a sua presença pelo WhatsApp da produção.</p>
+
+          <div class="hm-contato">
+            <p class="hm-kicker">Fale com a produção</p>
+            <p class="hm-forte">{hm.contato.nome}</p>
+            <p class="hm-mudo">{hm.contato.instituicao}</p>
+            <p>WhatsApp <a href={zap}>{hm.contato.telefone}</a></p>
+            <a class="btn" href={zap}>Confirmar presença</a>
+          </div>
+
+          <ul class="hm-diretoria">
+            {hm.diretoria.map((d) => (
+              <li><span>{d.cargo}</span><strong>{d.nome}</strong></li>
+            ))}
+          </ul>
+
+          <p class="hm-rodape">{hm.nome} · {hm.casa} · {hm.endereco}</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
