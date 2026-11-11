@@ -29,13 +29,13 @@ const palestrantes = [
     nome: "Leandro Marcondes",
     papel: "Empresário · Estrategista de negócios · Mentor · Autor",
     bio: "Autor de “O Poder Milionário do Networking”.",
-    foto: "/images/leandro.jpg",
+    foto: "/images/leandro.webp",
   },
   {
     nome: "Guaciara Fornaciari",
     papel: "Empresária · Fonoaudióloga · Professora · Autora",
     bio: "Fundadora do Doutora Escola.",
-    foto: "/images/guaciara.jpg",
+    foto: "/images/guaciara.webp",
   },
 ];
 
@@ -47,7 +47,7 @@ const depoimentos = [
 
 const cta = "Quero meu ingresso";
 const ctaHero = "Garantir meu ingresso por R$ 197";
-const heroFundo = "/images/hero-leandro.jpg";
+const heroFundo = "/images/hero-leandro.webp";
 const mapa =
   "https://www.google.com/maps/search/?api=1&query=" +
   encodeURIComponent("Tênis Clube de Campinas, R. Cel. Quirino, 1346, Cambuí, Campinas - SP");
@@ -58,22 +58,38 @@ const mapa =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {rastrear && <script is:inline>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
+      /* Pixel e Clarity entram na fila agora e só baixam o script na primeira interação
+         (ou 3 s depois do load), para não disputar banda com a primeira tela. */
+      (function (w, d) {
+        if (w.fbq) return;
+        var n = (w.fbq = function () {
           n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
+        });
+        if (!w._fbq) w._fbq = n;
         n.push = n;
-        n.loaded = !0;
+        n.loaded = true;
         n.version = "2.0";
         n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+        w.clarity = w.clarity || function () {
+          (w.clarity.q = w.clarity.q || []).push(arguments);
+        };
+
+        var carregado = false;
+        var gatilhos = ["pointerdown", "keydown", "touchstart", "scroll"];
+        function carregar() {
+          if (carregado) return;
+          carregado = true;
+          gatilhos.forEach(function (e) { w.removeEventListener(e, carregar); });
+          ["https://connect.facebook.net/en_US/fbevents.js", "https://www.clarity.ms/tag/yujxos97gk"].forEach(function (src) {
+            var s = d.createElement("script");
+            s.async = true;
+            s.src = src;
+            d.head.appendChild(s);
+          });
+        }
+        gatilhos.forEach(function (e) { w.addEventListener(e, carregar, { passive: true }); });
+        w.addEventListener("load", function () { setTimeout(carregar, 3000); });
+      })(window, document);
       fbq("init", "456669227289266");
       fbq("track", "PageView");
       fbq("track", "ViewContent", {
@@ -93,10 +109,9 @@ const mapa =
       name="description"
       content="Sábado, 5 de dezembro, das 9h às 17h, no Tênis Clube de Campinas. Treinamento para quem lidera equipe. Ingresso R$ 197, com reembolso de 100% até 2 de dezembro."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href={heroFundo} type="image/webp" fetchpriority="high" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -162,6 +177,7 @@ const mapa =
             alt="Leandro Marcondes falando para a plateia"
             width="682"
             height="1024"
+            fetchpriority="high"
           />
         </div>
       </section>
@@ -211,10 +227,12 @@ const mapa =
         <div class="edicao-video depo-video" data-id="6JuHeCETFT0" data-titulo="Edições anteriores" data-rotulo="Assistir edições anteriores">
           <button type="button" class="depo-capa" aria-label="Assistir edições anteriores">
             <img
-              src="https://i.ytimg.com/vi/6JuHeCETFT0/hqdefault.jpg"
+              src="/images/yt/6JuHeCETFT0.webp"
               alt=""
               width="480"
               height="360"
+              loading="lazy"
+              decoding="async"
             />
             <span class="depo-play" aria-hidden="true"></span>
           </button>
@@ -310,7 +328,7 @@ const mapa =
           <div class="grade-3">
             {palestrantes.map((p) => (
               <article class="card palestrante">
-                <img class="redonda" src={p.foto} alt={p.nome} width="240" height="240" />
+                <img class="redonda" src={p.foto} alt={p.nome} width="240" height="240" loading="lazy" decoding="async" />
                 <h3>{p.nome}</h3>
                 <p class="papel">{p.papel}</p>
                 <p class="bio-palestrante">{p.bio}</p>
@@ -332,10 +350,12 @@ const mapa =
               <div class="depo-video" data-id={id}>
                 <button type="button" class="depo-capa" aria-label="Assistir depoimento">
                   <img
-                    src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
+                    src={`/images/yt/${id}.webp`}
                     alt=""
                     width="480"
                     height="360"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <span class="depo-play" aria-hidden="true"></span>
                 </button>
@@ -352,10 +372,19 @@ const mapa =
           <h2>Tênis Clube de Campinas</h2>
           <p class="apoio">Fundado em 1913. Sede social na R. Cel. Quirino, 1346, Cambuí.</p>
           <div class="grade-4">
-            <img class="foto-show" src="/images/ambiente-1.webp" alt="Ambiente do evento" width="280" height="210" />
-            <img class="foto-show" src="/images/ambiente-2.webp" alt="Ambiente do evento" width="280" height="210" />
-            <img class="foto-show" src="/images/ambiente-3.webp" alt="Ambiente do evento" width="280" height="210" />
-            <img class="foto-show" src="/images/ambiente-4.webp" alt="Ambiente do evento" width="280" height="210" />
+            {[1, 2, 3, 4].map((n) => (
+              <img
+                class="foto-show"
+                src={`/images/ambiente-${n}-960.webp`}
+                srcset={`/images/ambiente-${n}-480.webp 480w, /images/ambiente-${n}-960.webp 960w`}
+                sizes="(max-width: 760px) calc(100vw - 32px), 270px"
+                alt="Ambiente do evento"
+                width="280"
+                height="210"
+                loading="lazy"
+                decoding="async"
+              />
+            ))}
           </div>
           <p class="centro"><a class="btn" href="#ingressos">{cta}</a></p>
         </div>
@@ -519,10 +548,12 @@ const mapa =
             </div>
             <img
               class="sobre-foto"
-              src="/images/mk/ana-clara.png"
+              src="/images/ana-clara.webp"
               alt="Ana Clara de Mello e Silva, Diretora Cultural do Tênis Clube de Campinas"
               width="480"
               height="640"
+              loading="lazy"
+              decoding="async"
             />
             <p class="sobre-bio" data-edit>
               Os RAROS são um encontro presencial de 1 dia no Tênis Clube de Campinas, realizado
@@ -684,7 +715,7 @@ const mapa =
 
         const capa = (id, rotulo) => `
           <button type="button" class="depo-capa" aria-label="${rotulo}">
-            <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" width="480" height="360" />
+            <img src="/images/yt/${id}.webp" alt="" width="480" height="360" />
             <span class="depo-play" aria-hidden="true"></span>
           </button>`;
 
@@ -726,19 +757,5 @@ const mapa =
         });
       });
     </script>
-    {rastrear && <script is:inline>
-      (function (c, l, a, r, i, t, y) {
-        c[a] =
-          c[a] ||
-          function () {
-            (c[a].q = c[a].q || []).push(arguments);
-          };
-        t = l.createElement(r);
-        t.async = 1;
-        t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
-      })(window, document, "clarity", "script", "yujxos97gk");
-    </script>}
   </body>
 </html>
