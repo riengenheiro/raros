@@ -369,6 +369,21 @@ h3 { font-size: 24px; color: var(--ouro); }
   list-style: none;
 }
 .faixa-beneficios li + li { border-left: 1px solid var(--linha); }
+.faixa-beneficios ul.faixa-frases {
+  grid-template-columns: 1fr;
+  max-width: 640px;
+  margin-inline: auto;
+  gap: 16px;
+}
+.faixa-beneficios ul.faixa-frases li,
+.faixa-beneficios ul.faixa-frases li + li {
+  border: 0;
+  color: var(--titulo);
+  font-family: var(--fonte);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
 .faixa-beneficios strong {
   display: block;
   color: var(--ouro);
@@ -957,6 +972,7 @@ body.editando [contenteditable="true"]:focus {
   .topbar-frase { font-size: 12px; line-height: 1.35; }
   .topbar-timer { font-size: 20px; }
   .faixa-beneficios ul { grid-template-columns: 1fr 1fr; gap: 20px 12px; }
+  .faixa-beneficios ul.faixa-frases { grid-template-columns: 1fr; }
   .faixa-beneficios li:nth-child(odd) { border-left: 0; }
   .faixa-beneficios strong { font-size: 18px; }
   .experiencia h2 { font-size: 30px; }
