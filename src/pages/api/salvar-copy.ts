@@ -19,6 +19,11 @@ const CAMPOS = new Set([
 
 const NUMERICOS = new Set(["vendidos", "lugares"]);
 
+const PAGINAS: Record<string, string> = {
+  index: "index.astro",
+  v1: "v1.astro",
+};
+
 function escapar(valor: string) {
   return valor.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
 }
@@ -65,6 +70,7 @@ export const POST: APIRoute = async ({ request }) => {
   let corpo: {
     textos?: { de?: string; para?: string }[];
     campos?: { campo?: string; para?: string }[];
+    pagina?: string;
   };
   try {
     corpo = (await request.json()) as typeof corpo;
@@ -72,7 +78,11 @@ export const POST: APIRoute = async ({ request }) => {
     return Response.json({ ok: false, erro: "Não entendi o que salvar." }, { status: 400 });
   }
 
-  const arquivo = path.join(process.cwd(), "src", "pages", "index.astro");
+  const nomeArquivo = PAGINAS[corpo.pagina ?? "index"];
+  if (!nomeArquivo) {
+    return Response.json({ ok: false, erro: "Não sei qual página salvar." }, { status: 400 });
+  }
+  const arquivo = path.join(process.cwd(), "src", "pages", nomeArquivo);
   let origem: string;
   try {
     origem = fs.readFileSync(arquivo, "utf8");

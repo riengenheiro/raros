@@ -115,7 +115,11 @@ async function salvar() {
   const resposta = await fetch("/api/salvar-copy", {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ textos, campos }),
+    body: JSON.stringify({
+      textos,
+      campos,
+      pagina: location.pathname.startsWith("/v1") ? "v1" : "index",
+    }),
   });
   let corpo: { ok?: boolean; gravou?: boolean; falhas?: string[]; erro?: string } = {};
   try {

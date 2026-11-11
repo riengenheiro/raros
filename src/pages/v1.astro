@@ -1,0 +1,682 @@
+---
+import "../styles/global.css";
+
+/**
+ * Campos do evento.
+ * A copy da página está no HTML abaixo — edite o texto direto em cada bloco.
+ *
+ * Imagens: todas ficam em /public/images. Para trocar, basta substituir o arquivo
+ * mantendo o mesmo nome (lista completa no final da conversa com o assistente).
+ */
+const evento = {
+  cidade: "Campinas",
+  dataBarra: "5 de dezembro",
+  dataShow: "Dia 5 de dezembro (Sábado), até as 17h",
+  casa: "Tênis Clube de Campinas",
+  endereco: "R. Cel. Quirino, 1346 — Cambuí, Campinas — SP, 13015-330",
+  video: "",
+  vendidos: 78,
+  lugares: 23,
+  produtora: "G&R Instituto Educacional",
+  telefone: "(19) 99432-8278",
+  whatsapp: "(XX) 9 XXXX-XXXX",
+  links: {
+    individual: "https://pay.hotmart.com/W107941887P?off=vyswj0sp",
+    combo: "https://pay.hotmart.com/W107941887P?off=bndwz2ti",
+    socio: "https://pay.hotmart.com/W107941887P?off=1or0i69a",
+  },
+};
+
+const palestrantes = [
+  {
+    nome: "Leandro Marcondes",
+    papel: "Empresário · Estrategista de negócios · Mentor · Autor",
+    foto: "/images/leandro.jpg",
+  },
+  {
+    nome: "Guaciara Fornaciari",
+    papel: "Empresária - Fonoaudióloga - Professora - Autora",
+    foto: "/images/guaciara.jpg",
+  },
+];
+
+const depoimentos = [
+  "6FwxZEKQaC0",
+  "kdY579l18To",
+  "nP8JC4RUjfs",
+];
+
+const cta = "Sim, quero fazer parte dos RAROS";
+const heroFundo = "/images/hero-entrada.webp";
+const mapa =
+  "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent("Tênis Clube de Campinas, R. Cel. Quirino, 1346, Cambuí, Campinas - SP");
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Meta Pixel: fila oficial antes do script, PageView único e ViewContent da oferta. -->
+    <script is:inline>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      fbq("init", "456669227289266");
+      fbq("track", "PageView");
+      fbq("track", "ViewContent", {
+        content_name: "RAROS",
+        content_category: "Evento presencial",
+        content_type: "product",
+        content_ids: ["raros-individual", "raros-combo", "raros-socio"],
+        currency: "BRL",
+      });
+    </script>
+    <meta name="theme-color" content="#07080b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>RAROS | Encontro presencial no Tênis Clube de {evento.cidade}</title>
+    <meta
+      name="description"
+      content="RAROS: um dia de treinamento presencial no Tênis Clube de Campinas para empresários, empreendedores e líderes que querem abrir portas e fechar grandes parcerias."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display:none"
+        src="https://www.facebook.com/tr?id=456669227289266&ev=PageView&noscript=1"
+        alt=""
+      />
+    </noscript>
+    <div id="palco">
+    <!-- 1. Barra fixa -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <p class="topbar-frase" data-edit><strong>VEJA:</strong> Como Empresários, Empreendedores e Líderes Estão Fechando Grandes Parcerias em Salas Que 99% do Mercado Nem Sabe Que Existem</p>
+        <p class="topbar-timer" id="topbar-timer" aria-live="polite">15:00</p>
+      </div>
+    </header>
+
+    <main>
+      <!-- 2. Hero + headline -->
+      <section class="hero" style={`--hero: url('${heroFundo}')`}>
+        <div class="wrap wrap-820">
+          <div class="hero-intro">
+            <p class="hero-olho" data-edit><span class="frase">"Sentado na mesa dos grandes…</span> <span class="frase">mesmo que você não conheça quase ninguém…</span> <span class="frase">no AMBIENTE CERTO!"</span></p>
+            <h1>
+              <span data-edit><span class="frase"><span class="frase">O Que Pode Acontecer</span> <span class="frase">Com o Seu Negócio</span></span> <span class="frase"><span class="frase">Quando Você Está</span> <span class="frase">na Sala Certa,</span></span> <span class="frase">Com as Pessoas Certas?</span></span>
+            </h1>
+          </div>
+          <div class="evento-resumo">
+            <p class="evento-nome"><span class="frase">Inteligência Emocional</span> <span class="frase">para Liderar o Seu Negócio</span></p>
+            <p class="evento-local">Um encontro da Diretoria Cultural no Tênis Clube de Campinas.</p>
+          </div>
+          <a class="btn btn-lg hero-cta" href="#ingressos">{cta}</a>
+          <p class="nota">
+            <span class="frase">{evento.dataShow}</span> · <strong class="frase">Vagas limitadas</strong>
+          </p>
+          <img
+            class="hero-foto"
+            src={heroFundo}
+            alt="Pessoas entrando no Tênis Clube de Campinas"
+            width="985"
+            height="1024"
+          />
+          <p class="seta" aria-hidden="true">▼</p>
+        </div>
+      </section>
+
+      <!-- 3. Vídeo (opcional: preencha "video" no topo do arquivo para exibir) -->
+      {evento.video && (
+        <section class="video-box">
+          <iframe
+            src={evento.video}
+            title="Apresentação do evento RAROS"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </section>
+      )}
+
+      <!-- 4. Resumo do evento -->
+      <section class="faixa-beneficios">
+        <div class="wrap">
+          <ul>
+            <li>
+              <strong>1 dia</strong>
+              <span>de treinamento presencial</span>
+            </li>
+            <li>
+              <strong>Networking</strong>
+              <span>ação da Diretoria Cultural</span>
+            </li>
+            <li>
+              <strong>Tênis Clube</strong>
+              <span>de Campinas, no Cambuí</span>
+            </li>
+            <li>
+              <strong>Vagas</strong>
+              <span>limitadas</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 5. Edições anteriores -->
+      <section class="edicao">
+        <div class="edicao-video depo-video" data-id="6JuHeCETFT0" data-titulo="Edições anteriores" data-rotulo="Assistir edições anteriores">
+          <button type="button" class="depo-capa" aria-label="Assistir edições anteriores">
+            <img
+              src="https://i.ytimg.com/vi/6JuHeCETFT0/hqdefault.jpg"
+              alt=""
+              width="480"
+              height="360"
+            />
+            <span class="depo-play" aria-hidden="true"></span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 6. Agitação -->
+      <section class="experiencia" id="experiencia">
+        <div class="wrap">
+          <h2>E se a próxima grande parceria…</h2>
+          <p class="continuacao">…estiver a uma conversa de distância?</p>
+          <p class="desce">Entenda aqui embaixo ▼</p>
+        </div>
+      </section>
+
+      <section class="secao">
+        <div class="wrap">
+          <div class="grade-3">
+            <article class="card">
+              <img
+                class="redonda"
+                src="/images/card-treinamento.webp"
+                alt="Participantes durante o treinamento"
+                width="240"
+                height="240"
+              />
+              <h3>Um dia inteiro de treinamento</h3>
+              <p>
+                Um treinamento presencial de 1 dia sobre inteligência emocional aplicada aos negócios —
+                para você conduzir conversas, construir confiança e abrir portas que antes pareciam
+                fechadas.
+              </p>
+            </article>
+            <article class="card">
+              <img
+                class="redonda"
+                src="/images/card-conexoes.webp"
+                alt="Empresários conversando durante o evento"
+                width="240"
+                height="240"
+              />
+              <h3>Conexões que destravam parcerias</h3>
+              <p>
+                Esteja na mesma sala que empresários, empreendedores e líderes abertos a fazer
+                negócios. Mesmo que você não conheça quase ninguém, o ambiente certo faz a aproximação
+                acontecer.
+              </p>
+            </article>
+            <article class="card">
+              <img
+                class="redonda"
+                src="/images/card-ambiente.webp"
+                alt="Entrada do Tênis Clube de Campinas"
+                width="240"
+                height="240"
+              />
+              <h3>No Tênis Clube de Campinas</h3>
+              <p>
+                Um cenário à altura do encontro, no Cambuí. Um ambiente reservado, pensado para você
+                se sentir à vontade para conversar, ouvir e construir relações que valem negócio.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Depoimentos em vídeo -->
+      <section class="secao secao-suave depoimentos">
+        <div class="wrap">
+          <h2>O que dizem os participantes:</h2>
+          <div class="depo-videos">
+            {depoimentos.map((id) => (
+              <div class="depo-video" data-id={id}>
+                <button type="button" class="depo-capa" aria-label="Assistir depoimento">
+                  <img
+                    src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
+                    alt=""
+                    width="480"
+                    height="360"
+                  />
+                  <span class="depo-play" aria-hidden="true"></span>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Ambiente -->
+      <section class="secao casa">
+        <div class="wrap">
+          <p class="kicker">Ambiente restrito</p>
+          <h2>O cenário onde as conexões acontecem</h2>
+          <p class="apoio">Um encontro presencial, reservado e de vagas limitadas, no Tênis Clube de Campinas.</p>
+          <div class="grade-4">
+            <img class="foto-show" src="/images/ambiente-1.webp" alt="Ambiente do evento" width="280" height="210" />
+            <img class="foto-show" src="/images/ambiente-2.webp" alt="Ambiente do evento" width="280" height="210" />
+            <img class="foto-show" src="/images/ambiente-3.webp" alt="Ambiente do evento" width="280" height="210" />
+            <img class="foto-show" src="/images/ambiente-4.webp" alt="Ambiente do evento" width="280" height="210" />
+          </div>
+          <p class="centro"><a class="btn" href="#ingressos">{cta}</a></p>
+        </div>
+      </section>
+
+      <!-- 9. Logística -->
+      <section class="secao secao-noite logistica">
+        <div class="wrap wrap-760">
+          <h2>Reserve seu lugar nos RAROS</h2>
+          <p class="apoio">
+            Um único dia, presencial, no Tênis Clube de Campinas. As vagas são limitadas.
+          </p>
+          <p class="icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2" /><path d="M3 9.5h18M8 2.5v4M16 2.5v4" /></svg>
+          </p>
+          <p class="quando" data-campo="dataShow">{evento.dataShow}</p>
+          <p class="icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.5" /></svg>
+          </p>
+          <p class="onde" data-campo="casa">{evento.casa}</p>
+          <p class="endereco" data-campo="endereco">{evento.endereco}</p>
+          <p class="mapa"><a href={mapa} target="_blank" rel="noopener">Ver no mapa →</a></p>
+        </div>
+      </section>
+
+      <!-- 10. Oferta -->
+      <section class="secao secao-suave oferta" id="ingressos">
+        <div class="wrap">
+          <h2>Garanta sua vaga nos RAROS</h2>
+          <p class="aviso">
+            Nota: se ao clicar nos botões abaixo nada acontecer, é porque as vagas esgotaram.
+            Pedimos desculpas.
+          </p>
+
+          <div class="escassez">
+            <div class="escassez-topo">
+              <span>Vagas preenchidas</span>
+              <strong><span data-campo="vendidos">{evento.vendidos}</span>%</strong>
+            </div>
+            <div class="trilho" aria-hidden="true">
+              <span style={`width: ${evento.vendidos}%`}></span>
+            </div>
+            <p>
+              <span data-edit>Restam apenas</span>
+              <strong><span data-campo="lugares">{evento.lugares}</span></strong>
+              <span data-edit>vagas neste lote</span>
+            </p>
+          </div>
+
+          <div class="grade-3">
+            <article class="lote">
+              <p class="lote-nome">Individual</p>
+              <p class="lote-tipo"><strong>1 pessoa</strong></p>
+              <ul>
+                <li>✓ Ingresso válido para 1 pessoa</li>
+                <li>✓ Treinamento completo de 1 dia</li>
+                <li>✓ Networking, ação da Diretoria Cultural</li>
+                <li>✓ Confirmação imediata por e-mail</li>
+              </ul>
+              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">197</span></p>
+              <p class="a-vista">à vista</p>
+              <a
+                class="btn btn-bloco"
+                href={evento.links.individual}
+                data-checkout
+                data-content-id="raros-individual"
+                data-content-name="Ingresso individual RAROS"
+                data-value="197"
+                data-num-items="1"
+              >{cta}</a>
+              <p class="via">Pagamento seguro via Hotmart</p>
+            </article>
+
+            <article class="lote lote-destaque">
+              <p class="lote-nome">Combo</p>
+              <p class="lote-tipo"><strong>4 pessoas</strong></p>
+              <ul>
+                <li>✓ Ingresso válido para 4 pessoas</li>
+                <li>✓ Treinamento completo de 1 dia</li>
+                <li>✓ Networking, ação da Diretoria Cultural</li>
+                <li>✓ Confirmação imediata por e-mail</li>
+              </ul>
+              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">388</span></p>
+              <p class="a-vista">à vista</p>
+              <a
+                class="btn btn-bloco"
+                href={evento.links.combo}
+                data-checkout
+                data-content-id="raros-combo"
+                data-content-name="Combo 4 pessoas RAROS"
+                data-value="388"
+                data-num-items="4"
+              >{cta}</a>
+              <p class="via">Pagamento seguro via Hotmart</p>
+            </article>
+
+            <article class="lote">
+              <p class="lote-nome">Sócio do Clube</p>
+              <p class="lote-tipo"><strong>Tênis Clube</strong></p>
+              <p class="lote-nota">Obrigatório apresentar a carteirinha</p>
+              <ul>
+                <li>✓ Ingresso de sócio do Tênis Clube</li>
+                <li>✓ Treinamento completo de 1 dia</li>
+                <li>✓ Networking, ação da Diretoria Cultural</li>
+                <li>✓ Confirmação imediata por e-mail</li>
+              </ul>
+              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">47</span></p>
+              <p class="a-vista">à vista</p>
+              <a
+                class="btn btn-bloco"
+                href={evento.links.socio}
+                data-checkout
+                data-content-id="raros-socio"
+                data-content-name="Ingresso sócio do clube RAROS"
+                data-value="47"
+                data-num-items="1"
+              >{cta}</a>
+              <p class="via">Pagamento seguro via Hotmart</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11. Como funciona -->
+      <section class="secao passos">
+        <div class="wrap wrap-960">
+          <h2>Garantir sua vaga é simples e rápido</h2>
+          <p class="apoio">Em menos de 2 minutos sua vaga está garantida</p>
+          <div class="grade-3">
+            <article class="passo">
+              <p class="numero">1</p>
+              <h3>Escolha seu ingresso</h3>
+              <p>Clique no botão do ingresso e finalize o pagamento na Hotmart — cartão, Pix ou boleto.</p>
+            </article>
+            <article class="passo">
+              <p class="numero">2</p>
+              <h3>Receba no e-mail</h3>
+              <p>Assim que o pagamento é confirmado, o seu acesso chega na hora no seu e-mail.</p>
+            </article>
+            <article class="passo">
+              <p class="numero">3</p>
+              <h3>Apresente na porta</h3>
+              <p>Apresente seu ingresso no credenciamento do Tênis Clube. Pronto, é só aproveitar o dia!</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. Garantia -->
+      <section class="secao secao-noite garantia">
+        <div class="wrap wrap-680">
+          <p class="escudo" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path class="escudo-forma" d="M12 3 4.5 6v5.5c0 4.4 3.1 8.3 7.5 9.5 4.4-1.2 7.5-5.1 7.5-9.5V6L12 3Z" /><path class="escudo-ok" d="m8.8 12.2 2.4 2.4 4.2-4.6" /></svg>
+          </p>
+          <h2>100% de garantia na sua compra</h2>
+          <p>
+            Caso se arrependa da compra, você pode solicitar seu dinheiro de volta dentro do prazo
+            de garantia, diretamente pela Hotmart. Tudo fácil e sem burocracia.
+          </p>
+          <a class="btn btn-claro" href="#ingressos">{cta}</a>
+        </div>
+      </section>
+
+      <!-- 13. Palestrantes -->
+      <section class="secao palestrantes">
+        <div class="wrap">
+          <p class="kicker">Palestrantes</p>
+          <h2>Quem conduz o dia</h2>
+          <div class="grade-3">
+            {palestrantes.map((p) => (
+              <article class="card palestrante">
+                <img class="redonda" src={p.foto} alt={p.nome} width="240" height="240" />
+                <h3>{p.nome}</h3>
+                <p>{p.papel}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 14. Quem está realizando -->
+      <section class="secao">
+        <div class="wrap wrap-1100 sobre">
+          <div class="sobre-grid">
+            <div class="sobre-cabeca">
+              <h2>Quem está Realizando o evento?</h2>
+              <div class="realizacao">
+                <span class="realizacao-rotulo">Diretora Cultural do Tênis Clube de Campinas</span>
+                <strong>Ana Clara de Mello e Silva</strong>
+                <span>Evento da Diretoria Cultural · Presidente Antônio Grassi Júnior</span>
+              </div>
+            </div>
+            <img
+              class="sobre-foto"
+              src="/images/mk/ana-clara.png"
+              alt="Ana Clara de Mello e Silva, Diretora Cultural do Tênis Clube de Campinas"
+              width="480"
+              height="640"
+            />
+            <p class="sobre-bio" data-edit>
+              Os RAROS são um encontro presencial de 1 dia no Tênis Clube de Campinas, realizado
+              pela Diretoria Cultural. O Networking é uma ação idealizada e desenvolvida por esta
+              diretoria, para aproximar empresários, empreendedores e líderes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 15. FAQ -->
+      <section class="secao faq" id="faq">
+        <div class="wrap wrap-720">
+          <h2>Ainda com dúvidas?</h2>
+          <p class="apoio">Veja nossa lista de perguntas frequentes…</p>
+          <details>
+            <summary>Como é o formato do evento?</summary>
+            <p>Evento presencial de 1 dia, em formato de treinamento, no Tênis Clube de Campinas.</p>
+          </details>
+          <details>
+            <summary>Onde fica o evento?</summary>
+            <p>No Tênis Clube de Campinas: R. Cel. Quirino, 1346 — Cambuí, Campinas — SP, 13015-330.</p>
+          </details>
+          <details>
+            <summary>Posso levar acompanhantes?</summary>
+            <p>
+              O ingresso individual é para 1 pessoa. Para ir em grupo, escolha o combo de 4 pessoas.
+              O valor de sócio vale apenas para quem apresenta a carteirinha do Tênis Clube de Campinas.
+            </p>
+          </details>
+          <details>
+            <summary>Quais são as formas de pagamento?</summary>
+            <p>Cartão de crédito em até 12x, PIX ou boleto bancário.</p>
+          </details>
+          <details>
+            <summary>O site de pagamento é seguro?</summary>
+            <p>Sim. Usamos a Hotmart, uma das maiores plataformas de pagamento do Brasil. 100% seguro e confiável.</p>
+          </details>
+          <details>
+            <summary>Não posso mais comparecer, e agora?</summary>
+            <p>
+              Fique tranquilo, você pode solicitar o cancelamento dentro do prazo de garantia, direto
+              pela Hotmart, e receber o reembolso.
+            </p>
+          </details>
+          <details>
+            <summary>Para mais informações, como faço?</summary>
+            <p>
+              <span data-edit>Entre em contato com nosso produtor: WhatsApp</span>
+              <span data-campo="whatsapp">{evento.whatsapp}</span>
+            </p>
+          </details>
+          <p class="centro"><a class="btn" href="#ingressos">{cta}</a></p>
+        </div>
+      </section>
+
+      <!-- 16. Quem está organizando -->
+      <section class="secao">
+        <div class="wrap wrap-720 sobre">
+          <h2>Quem está Organizando o Evento:</h2>
+          <div class="realizacao">
+            <strong>Ricardo Farias Alexandre</strong>
+            <span>G&R INSTITUTO EDUCACIONAL</span>
+          </div>
+          <p class="fechamento">
+            As vagas são limitadas e o ambiente é restrito. Garanta a sua enquanto ainda há lugar!
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="rodape">
+      <div class="wrap wrap-1100">
+        <div class="rodape-cols">
+          <div>
+            <h2>Links</h2>
+            <p><a href="#faq">Perguntas frequentes</a></p>
+            <p><a href="#privacidade">Políticas de privacidade</a></p>
+            <p><a href="#termos">Termos e condições</a></p>
+          </div>
+          <div>
+            <h2>Formas de pagamento</h2>
+            <p>Cartão até 12x · Pix · Boleto</p>
+          </div>
+          <div>
+            <h2>Ambiente seguro</h2>
+            <p>Pagamento processado pela Hotmart</p>
+          </div>
+        </div>
+        <p class="aviso-legal" id="privacidade">
+          <strong>AVISO:</strong> Este site não é afiliado ao Facebook ou a qualquer entidade do mesmo.
+          A responsabilidade de todas as informações aqui contidas é do produtor.
+          A navegação pode ser registrada pelo Microsoft Clarity e pelo Pixel da Meta para medir visitas e cliques nos ingressos.
+        </p>
+        <p class="cnpj">
+          Telefone para dúvidas
+          <a href="tel:+5519994328278" data-campo="telefone">{evento.telefone}</a>
+        </p>
+      </div>
+    </footer>
+    </div>
+    <script>
+      import "../scripts/editor.ts";
+    </script>
+    <script is:inline>
+      (() => {
+        if (!document.querySelector(".depo-video")) return;
+
+        const capa = (id, rotulo) => `
+          <button type="button" class="depo-capa" aria-label="${rotulo}">
+            <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" width="480" height="360" />
+            <span class="depo-play" aria-hidden="true"></span>
+          </button>`;
+
+        document.addEventListener("click", (evento) => {
+          const card = evento.target.closest(".depo-video");
+          if (!card || card.querySelector("iframe")) return;
+
+          document.querySelectorAll(".depo-video").forEach((outro) => {
+            if (outro !== card && outro.querySelector("iframe")) {
+              outro.innerHTML = capa(outro.dataset.id, outro.dataset.rotulo || "Assistir depoimento");
+            }
+          });
+
+          const frame = document.createElement("iframe");
+          frame.src = `https://www.youtube.com/embed/${card.dataset.id}?autoplay=1&rel=0&playsinline=1`;
+          frame.title = card.dataset.titulo || "Depoimento de participante";
+          frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          frame.allowFullscreen = true;
+          card.replaceChildren(frame);
+        });
+      })();
+    </script>
+    <script is:inline>
+      (() => {
+        const el = document.getElementById("topbar-timer");
+        if (!el) return;
+        let restante = 15 * 60;
+        const mostrar = () => {
+          const min = String(Math.floor(restante / 60)).padStart(2, "0");
+          const seg = String(restante % 60).padStart(2, "0");
+          el.textContent = min + ":" + seg;
+        };
+        mostrar();
+        const id = setInterval(() => {
+          if (restante <= 0) {
+            clearInterval(id);
+            return;
+          }
+          restante -= 1;
+          mostrar();
+        }, 1000);
+      })();
+    </script>
+    <script is:inline>
+      document.addEventListener("click", (eventoClique) => {
+        const link = eventoClique.target.closest("[data-checkout]");
+        if (!link || typeof fbq !== "function") return;
+        const valor = Number(link.dataset.value);
+        const quantidade = Number(link.dataset.numItems);
+        if (!link.dataset.contentId || !Number.isFinite(valor) || !Number.isFinite(quantidade)) return;
+        fbq("track", "InitiateCheckout", {
+          content_ids: [link.dataset.contentId],
+          content_name: link.dataset.contentName,
+          content_category: "Evento presencial",
+          content_type: "product",
+          contents: [{ id: link.dataset.contentId, quantity: quantidade, item_price: valor }],
+          num_items: quantidade,
+          value: valor,
+          currency: "BRL",
+        });
+      });
+    </script>
+    <script is:inline>
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "yujxos97gk");
+    </script>
+  </body>
+</html>
