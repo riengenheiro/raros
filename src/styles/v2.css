@@ -1568,4 +1568,38 @@ body.editando [contenteditable="true"]:focus {
   text-align: center;
   text-wrap: balance;
 }
+.quem-apoia h2 { text-align: center; }
+.apoio-logos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 36px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.apoio-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  margin: 0;
+  padding: 22px 28px;
+  border: 1px solid rgba(217, 176, 98, 0.35);
+  border-radius: 12px;
+}
+.apoio-logo.claro { background: #fff; }
+.apoio-logo.escuro { background: #000; }
+.apoio-logo img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 84px;
+  object-fit: contain;
+}
+@media (max-width: 800px) {
+  .apoio-logos { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .apoio-logos { grid-template-columns: 1fr; }
+}
 .depoimentos .apoio { margin-top: 8px; text-align: center; }

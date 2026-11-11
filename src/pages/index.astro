@@ -27,14 +27,19 @@ const evento = {
 const palestrantes = [
   {
     nome: "Leandro Marcondes",
-    papel: "Empresário · Estrategista de negócios · Mentor · Autor",
-    bio: "Autor de “O Poder Milionário do Networking”.",
+    papel: "Empresário, estrategista de negócios, mentor e autor.",
+    bio: [
+      "Com trajetória internacional e experiência na realização de grandes eventos de desenvolvimento pessoal e empresarial, Leandro esteve à frente da operação brasileira responsável por trazer ao país nomes internacionais como Jordan Belfort, o Lobo de Wall Street, T. Harv Eker, autor de Os Segredos da Mente Milionária, e Nick Vujicic.",
+      "Diretamente de Londres para compartilhar experiências e conhecimentos sobre mentalidade, desenvolvimento pessoal e negócios.",
+    ],
     foto: "/images/leandro.webp",
   },
   {
     nome: "Guaciara Fornaciari",
-    papel: "Empresária · Fonoaudióloga · Professora · Autora",
-    bio: "Fundadora do Doutora Escola.",
+    papel: "Empresária, fonoaudióloga, professora e autora.",
+    bio: [
+      "Fundadora do Doutora Escola, Guaciara reúne sua experiência como empresária e educadora para abordar o desenvolvimento humano, a comunicação, as relações e a inteligência emocional.",
+    ],
     foto: "/images/guaciara.webp",
   },
 ];
@@ -147,7 +152,7 @@ const mapa =
     <!-- 1. Barra fixa: informação real, sem cronômetro -->
     <header class="topbar">
       <div class="topbar-inner">
-        <p class="topbar-frase" data-edit><strong>Treinamento presencial</strong> · Sábado, 5 de dezembro · 9h às 17h · Tênis Clube de Campinas · R$ 197</p>
+        <p class="topbar-frase" data-edit><strong>Treinamento presencial</strong> · Sábado, 5 de dezembro · 9h às 17h · Tênis Clube de Campinas</p>
       </div>
     </header>
 
@@ -157,7 +162,7 @@ const mapa =
         <div class="wrap wrap-820">
           <div class="hero-intro">
             <p class="hero-olho" data-edit>CAMPINAS RECEBE LEANDRO MARCONDES, DIRETAMENTE DE LONDRES!</p>
-            <h1 data-edit>JÁ PENSOU ESTAR NO TÊNIS CLUBE DE CAMPINAS, NO CAMBUÍ, COM O TREINADOR QUE TROUXE AO BRASIL OS SEMINÁRIOS DE MENTES MILIONÁRIAS?</h1>
+            <h1 data-edit>Já pensou em estar no Tênis Clube de Campinas, no Cambuí, com o treinador que trouxe ao Brasil o seminário Os Segredos da Mente Milionária?</h1>
             <p class="hero-sub" data-edit>
               Descubra como os padrões mentais que você desenvolveu ao longo da vida influenciam quanto
               dinheiro você ganha, como administra seus recursos e as decisões que toma nos negócios.
@@ -246,32 +251,20 @@ const mapa =
       <!-- 6. Reconhecimento: as cenas que o público descreve (clusters A, B, C e D da pesquisa) -->
       <section class="secao reconhece" id="reconhece">
         <div class="wrap wrap-760">
-          <h2>Veja se é você</h2>
+          <h2 data-edit>Você já percebeu que nem sempre o problema está na falta de conhecimento?</h2>
+          <p class="continuacao-texto" data-edit>
+            Você sabe o que precisa fazer. Mas, na hora de agir, alguma coisa se repete.
+          </p>
           <ul class="cenas">
-            <li data-edit>Se você não resolve, fica parado.</li>
-            <li data-edit>Você explica de novo. E de novo.</li>
-            <li data-edit>Segura o feedback por semanas. Um dia fala tudo de uma vez.</li>
-            <li data-edit>Decide no calor. Depois, com calma, vê o estrago.</li>
-            <li data-edit>Chega em casa e a empresa continua na cabeça.</li>
-            <li data-edit>Trabalha no sábado e ainda falta tempo.</li>
-            <li data-edit>Já leu sobre inteligência emocional. Na hora da pressão, reage igual.</li>
+            <li data-edit>Você trabalha muito, mas sente que o dinheiro poderia render mais.</li>
+            <li data-edit>Tem dificuldade para tomar decisões financeiras importantes.</li>
+            <li data-edit>Deixa oportunidades passarem por medo de arriscar.</li>
+            <li data-edit>Sabe que precisa mudar algumas atitudes, mas continua repetindo os mesmos comportamentos.</li>
+            <li data-edit>Assume responsabilidades demais e sente dificuldade para delegar.</li>
+            <li data-edit>Quer fazer seu negócio crescer, mas acaba preso aos problemas do dia a dia.</li>
           </ul>
           <p class="continuacao-texto" data-edit>
-            Entre empreendedores paulistas, 78% trabalham no sábado. Mesmo assim, 45% dizem que falta tempo para a empresa.
-          </p>
-          <div class="dados dados-2">
-            <div>
-              <strong>78%</strong>
-              <span>trabalham no sábado</span>
-            </div>
-            <div>
-              <strong>45%</strong>
-              <span>dizem que falta tempo para a empresa</span>
-            </div>
-          </div>
-          <p class="fonte">Sebrae-SP, pesquisa “Tempo do empreendedor”, com 800 empreendedores paulistas.</p>
-          <p class="continuacao-texto" data-edit>
-            Trabalhar mais horas não resolveu. O que trava é o jeito de conduzir a equipe quando a pressão sobe.
+            Talvez você esteja tentando mudar seus resultados sem questionar os padrões que conduzem suas decisões.
           </p>
         </div>
       </section>
@@ -279,68 +272,82 @@ const mapa =
       <!-- 7. A virada e o que o sábado não é -->
       <section class="secao">
         <div class="wrap wrap-720">
-          <h2 class="centro" data-edit>O conceito você já viu. Este sábado é treino.</h2>
-          <p class="apoio centro" data-edit>
-            Um dia inteiro sobre a parte que curso técnico não cobre: a conversa com a equipe e a decisão sob pressão.
+          <h2 class="centro" data-edit>O conceito você já conhece. Mas será que consegue aplicar quando realmente precisa?</h2>
+          <p class="continuacao-texto" data-edit>
+            Você pode conhecer técnicas de gestão, estudar estratégias e ter experiência nos negócios.
+            Mas existe uma parte que exige mais do que conhecimento técnico: entender como seus
+            pensamentos e emoções influenciam suas decisões.
+          </p>
+          <p class="continuacao-texto" data-edit>
+            Como você reage diante de uma dificuldade? Como lida com dinheiro? Como conduz uma
+            conversa difícil? Como toma decisões quando está sob pressão?
+          </p>
+          <p class="promessa" data-edit>
+            <strong>Um sábado inteiro dedicado a desenvolver sua mentalidade, inteligência emocional e capacidade de liderança.</strong>
           </p>
         </div>
       </section>
 
       <section class="secao secao-suave">
         <div class="wrap wrap-760">
-          <h2 class="centro">O que este sábado não é</h2>
+          <h2 class="centro" data-edit>Tudo o que você precisa saber antes de participar</h2>
+          <p class="continuacao-texto" data-edit>
+            <strong>Uma experiência presencial, com informações claras desde o início.</strong>
+          </p>
           <ul class="cenas">
-            <li data-edit>Horário fechado: 9h às 17h. Está escrito antes de você pagar.</li>
-            <li data-edit>Preço fechado: R$ 197.</li>
-            <li data-edit>Reembolso de 100% até 2 de dezembro. Depois dessa data, não há reembolso.</li>
+            <li data-edit><strong>Data e horário:</strong> sábado, das 9h às 17h.</li>
+            <li data-edit><strong>Investimento:</strong> R$ 197.</li>
+            <li data-edit><strong>Local:</strong> Tênis Clube de Campinas, Cambuí.</li>
+            <li data-edit><strong>Garantia:</strong> reembolso integral para solicitações realizadas até 2 de dezembro. Após essa data, não haverá reembolso.</li>
           </ul>
-        </div>
-      </section>
-
-      <!-- 8. Como é o dia (agenda visível: nada de esconder o programa) -->
-      <section class="secao secao-suave dia" id="dia">
-        <div class="wrap wrap-720">
-          <h2 class="centro">Como é o dia, do credenciamento ao encerramento</h2>
-          <ol class="linha-do-dia">
-            <li>
-              <strong>8h30</strong>
-              <span>Credenciamento</span>
-            </li>
-            <li>
-              <strong>9h</strong>
-              <span>Início do treinamento</span>
-            </li>
-            <li>
-              <strong>Ao longo do dia</strong>
-              <span>Intervalos e horário de almoço</span>
-            </li>
-            <li>
-              <strong>17h</strong>
-              <span>Encerramento</span>
-            </li>
-          </ol>
-          <p class="gancho">Agora, quem conduz tudo isso.</p>
-          <p class="seta" aria-hidden="true">▼</p>
         </div>
       </section>
 
       <!-- 9. Palestrantes (autoridade antes do ingresso) -->
       <section class="secao palestrantes">
         <div class="wrap">
-          <p class="kicker">Palestrantes</p>
-          <h2>Quem conduz o dia</h2>
+          <p class="kicker">Treinadores</p>
+          <h2>Conheça quem vai conduzir essa experiência</h2>
           <div class="grade-3">
             {palestrantes.map((p) => (
               <article class="card palestrante">
                 <img class="redonda" src={p.foto} alt={p.nome} width="240" height="240" loading="lazy" decoding="async" />
                 <h3>{p.nome}</h3>
                 <p class="papel">{p.papel}</p>
-                <p class="bio-palestrante">{p.bio}</p>
+                {p.bio.map((paragrafo) => (
+                  <p class="bio-palestrante">{paragrafo}</p>
+                ))}
               </article>
             ))}
           </div>
           <p class="gancho">Mas você não precisa acreditar só em nós.</p>
           <p class="seta" aria-hidden="true">▼</p>
+        </div>
+      </section>
+
+      <section class="secao secao-suave quem-apoia" id="apoio">
+        <div class="wrap">
+          <h2 class="centro">Quem está apoiando esse evento</h2>
+          <ul class="apoio-logos">
+            <li class="apoio-logo claro">
+              <img src="/images/apoio/signature.png" alt="Signature Royal Palm" width="320" height="140" loading="lazy" decoding="async" />
+            </li>
+            <li class="apoio-logo escuro">
+              <img src="/images/apoio/via-filtros.png" alt="Via Filtros" width="320" height="180" loading="lazy" decoding="async" />
+            </li>
+            <li class="apoio-logo escuro">
+              <img src="/images/apoio/via-puroa.png" alt="Via Puroá" width="320" height="140" loading="lazy" decoding="async" />
+            </li>
+            <li class="apoio-logo escuro">
+              <img src="/images/apoio/myds.png" alt="MYDS, My Dream System" width="320" height="140" loading="lazy" decoding="async" />
+            </li>
+            <li class="apoio-logo claro">
+              <img src="/images/apoio/guaciara-instituto.jpg" alt="Guaciara Instituto de Fonoaudiologia" width="320" height="220" loading="lazy" decoding="async" />
+            </li>
+            <li class="apoio-logo escuro">
+              <img src="/images/apoio/doutora-escola.png" alt="Doutora Escola" width="320" height="280" loading="lazy" decoding="async" />
+            </li>
+          </ul>
         </div>
       </section>
 
