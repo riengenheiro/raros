@@ -118,7 +118,11 @@ async function salvar() {
     body: JSON.stringify({
       textos,
       campos,
-      pagina: location.pathname.startsWith("/v1") ? "v1" : "index",
+      pagina: location.pathname.startsWith("/v1")
+        ? "v1"
+        : location.pathname.startsWith("/v2")
+          ? "v2"
+          : "index",
     }),
   });
   let corpo: { ok?: boolean; gravou?: boolean; falhas?: string[]; erro?: string } = {};

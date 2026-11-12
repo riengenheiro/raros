@@ -22,6 +22,7 @@ const NUMERICOS = new Set(["vendidos", "lugares"]);
 const PAGINAS: Record<string, string> = {
   index: "index.astro",
   v1: "v1.astro",
+  v2: "v2.astro",
 };
 
 function escapar(valor: string) {
