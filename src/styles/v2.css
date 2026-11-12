@@ -595,8 +595,40 @@ h3 { font-size: 24px; color: var(--ouro); }
   color: var(--ouro);
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+.aviso-forte {
+  color: var(--titulo);
+  font-style: normal;
+  font-size: 1.05rem;
+}
+.escada-rola { margin: 28px auto 0; max-width: 720px; overflow-x: auto; }
+.escada {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.escada th, .escada td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--linha);
+  color: var(--texto);
+  font-size: 15px;
+}
+.escada thead th {
+  color: var(--ouro);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+.escada-agora th, .escada-agora td { color: var(--titulo); font-weight: 600; }
+.preco-de {
+  margin-right: 10px;
+  color: var(--mudo);
+  font-family: var(--serifa);
+  font-size: 28px;
+  text-decoration: line-through;
 }
 .contador-numeros {
   display: flex;
@@ -706,7 +738,7 @@ h3 { font-size: 24px; color: var(--ouro); }
 .de-preco { color: var(--mudo); font-size: 14px; text-decoration: line-through; text-decoration-color: rgba(139, 143, 156, 0.5); }
 .preco-linha {
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
   justify-content: center;
   gap: 4px;
   color: var(--ouro);

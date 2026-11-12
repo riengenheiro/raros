@@ -407,12 +407,44 @@ const mapa =
       <section class="secao secao-suave oferta" id="ingressos">
         <div class="wrap">
           <h2>Escolha o seu ingresso</h2>
-          <p class="aviso">
-            Lote 1 até 15 de novembro. Cartão de crédito em até 12x, Pix ou boleto.
-            Reembolso de 100% até 2 de dezembro de 2026.
+          <p class="aviso aviso-forte">
+            O preço sobe em datas fixas. Quem garante agora paga até 4x menos.
           </p>
+          <p class="aviso">
+            Cartão em até 12x, Pix ou boleto. Reembolso de 100% até 2 de dezembro de 2026.
+          </p>
+
+          <div class="escada-rola">
+            <table class="escada">
+              <thead>
+                <tr>
+                  <th>Lote</th>
+                  <th>Período</th>
+                  <th>Não sócio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="escada-agora">
+                  <th scope="row">Lote 1 (agora)</th>
+                  <td>até 15/11, às 23h59</td>
+                  <td>R$ 97</td>
+                </tr>
+                <tr>
+                  <th scope="row">Lote 2</th>
+                  <td>16/11 a 22/11</td>
+                  <td>R$ 197</td>
+                </tr>
+                <tr>
+                  <th scope="row">Lote 3</th>
+                  <td>a partir de 23/11</td>
+                  <td>R$ 397</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <div class="contador" data-fim="2026-11-15T23:59:59-03:00">
-            <p class="contador-rotulo">Lote 1 encerra em</p>
+            <p class="contador-rotulo">Lote 1 encerra em 15/11, às 23h59</p>
             <p class="contador-numeros" aria-live="polite">
               <span><strong data-unidade="dias">00</strong><small>dias</small></span>
               <span><strong data-unidade="horas">00</strong><small>horas</small></span>
@@ -425,14 +457,12 @@ const mapa =
             <article class="lote lote-destaque">
               <p class="lote-nome">Lote 1</p>
               <p class="lote-tipo"><strong>Não sócio</strong></p>
-              <ul>
-                <li>✓ Ingresso válido para 1 pessoa</li>
-                <li>✓ Treinamento completo de 1 dia, das 9h às 17h</li>
-                <li>✓ Networking, ação da Diretoria Cultural</li>
-                <li>✓ Confirmação imediata por e-mail</li>
-              </ul>
-              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">97</span></p>
+              <p class="preco-linha">
+                <span class="preco-de">R$ 397</span>
+                <span class="preco-moeda">R$</span><span class="preco">97</span>
+              </p>
               <p class="a-vista">à vista ou em até 12x no cartão</p>
+              <p class="lote-nota">Em 16/11 o ingresso passa a R$ 197. Sem exceções.</p>
               <a
                 class="btn btn-bloco"
                 href={evento.links.individual}
@@ -441,22 +471,16 @@ const mapa =
                 data-content-name="Ingresso não sócio RAROS lote 1"
                 data-value="97"
                 data-num-items="1"
-              >{cta}</a>
-              <p class="via">Pagamento seguro via Hotmart</p>
+              >Garantir ingresso por R$ 97</a>
+              <p class="via">Reembolso de 100% até 2 de dezembro</p>
             </article>
 
             <article class="lote">
               <p class="lote-nome">Sócio do Clube</p>
-              <p class="lote-tipo"><strong>Tênis Clube</strong></p>
-              <p class="lote-nota">Obrigatório apresentar a carteirinha</p>
-              <ul>
-                <li>✓ Ingresso de sócio do Tênis Clube</li>
-                <li>✓ Treinamento completo de 1 dia, das 9h às 17h</li>
-                <li>✓ Networking, ação da Diretoria Cultural</li>
-                <li>✓ Confirmação imediata por e-mail</li>
-              </ul>
               <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">47</span></p>
-              <p class="a-vista">à vista ou em até 12x no cartão</p>
+              <p class="a-vista">em qualquer lote</p>
+              <p class="lote-nota">Economia de até R$ 350 em relação ao Lote 3</p>
+              <p class="lote-nota">Obrigatório apresentar a carteirinha</p>
               <a
                 class="btn btn-bloco"
                 href={evento.links.socio}
@@ -465,8 +489,7 @@ const mapa =
                 data-content-name="Ingresso sócio do clube RAROS"
                 data-value="47"
                 data-num-items="1"
-              >{cta}</a>
-              <p class="via">Pagamento seguro via Hotmart</p>
+              >Garantir ingresso por R$ 47</a>
             </article>
           </div>
         </div>
@@ -651,9 +674,10 @@ const mapa =
               intervalos e horário de almoço.
             </li>
             <li>
-              <strong>Ingressos:</strong> há o ingresso de não sócio, lote 1 a R$ 97 até 15 de
-              novembro de 2026, e o ingresso de sócio do Tênis Clube, a R$ 47. O ingresso de sócio
-              exige a apresentação da carteirinha no credenciamento. Cada ingresso vale para 1 pessoa.
+              <strong>Ingressos:</strong> não sócio: lote 1 a R$ 97 até 15 de novembro de 2026,
+              às 23h59; lote 2 a R$ 197 de 16 a 22 de novembro; lote 3 a R$ 397 a partir de 23 de
+              novembro. Sócio do Tênis Clube: R$ 47 em qualquer lote, com apresentação da
+              carteirinha no credenciamento. Cada ingresso vale para 1 pessoa.
             </li>
             <li>
               <strong>Pagamento:</strong> processado pela Hotmart, com cartão de crédito em até 12x,
@@ -748,7 +772,7 @@ const mapa =
         const atualizar = () => {
           const falta = fim - Date.now();
           if (falta <= 0) {
-            if (rotulo) rotulo.textContent = "O lote 1 encerrou em 15 de novembro.";
+            if (rotulo) rotulo.textContent = "O lote 1 encerrou em 15/11, às 23h59.";
             caixa.querySelector(".contador-numeros")?.remove();
             return;
           }
