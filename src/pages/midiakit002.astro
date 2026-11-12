@@ -14,11 +14,7 @@ const k2 = {
   casa: "Tênis Clube de Campinas",
   endereco: "R. Cel. Quirino, 1346 — Cambuí, Campinas — SP, 13015-330",
 
-  destaques: [
-    { valor: "140", rotulo: "lugares na sala do dia, em ambiente reservado" },
-  ],
-
-  // Composição prevista (meta de distribuição dos 140 lugares, até validar inscrições)
+  // Composição prevista (meta de distribuição da sala, até validar inscrições)
   composicao: [
     { pct: 60, qtd: 84, rotulo: "Sócios do Tênis Clube de Campinas" },
     { pct: 20, qtd: 28, rotulo: "Sócios do clube integrantes do Clube de Networking" },
@@ -277,7 +273,7 @@ const zap =
           <p class="k2-rotulo">{k2.nome} · Proposta de parceria 2026</p>
           <p class="k2-capa-fato">
             {k2.nome} · {k2.tema}<br />
-            {k2.data} · {k2.casa} · 140 lugares
+            {k2.data} · {k2.casa}
           </p>
           <h1 class="k2-capa-tema">
             <span class="k2-sr">{k2.nome}: </span>Uma experiência de marca para até 140 convidados em Campinas.
@@ -287,7 +283,7 @@ const zap =
             emocional aplicada aos negócios e novas conexões.
           </p>
           <p class="k2-capa-info">Evento da Diretoria Cultural do {k2.casa}</p>
-          <p class="k2-capa-info">{k2.data} · {k2.casa}, Cambuí · Até 140 convidados</p>
+          <p class="k2-capa-info">{k2.data} · {k2.casa}, Cambuí</p>
           <p class="k2-capa-info">{k2.tema}</p>
           <div class="k2-acoes">
             <a class="k2-botao k2-botao-cheio" href={zap}>Agendar conversa</a>
@@ -300,17 +296,12 @@ const zap =
       <section class="k2-pag k2-claro k2-centro">
         <div class="k2-wrap">
           <p class="k2-num">01 · O encontro</p>
-          <h2 class="k2-manifesto">Cento e quarenta lugares. Uma única sala. As pessoas que decidem.</h2>
+          <h2 class="k2-manifesto">Um dia. Uma sala. As pessoas que decidem.</h2>
           <p class="k2-lead">
             O RAROS reúne, por um dia, sócios do {k2.casa} e empresários convidados em torno de
             inteligência emocional aplicada aos negócios. Um ambiente reservado, pensado para
             conversas que viram parcerias.
           </p>
-          <ul class="k2-destaques">
-            {k2.destaques.map((d) => (
-              <li><strong>{d.valor}</strong><span>{d.rotulo}</span></li>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -320,8 +311,7 @@ const zap =
           <p class="k2-num">02 · Público</p>
           <h2>Quem estará na sala</h2>
           <p class="k2-lead">
-            Composição prevista dos {k2.composicao.reduce((s, c) => s + c.qtd, 0)} lugares. É a meta de
-            distribuição do RAROS, a ser validada com as inscrições.
+            Como a sala se divide. É a meta de distribuição do RAROS, a ser validada com as inscrições.
           </p>
 
           <div class="k2-barra" role="img" aria-label={k2.composicao.map((c) => `${c.qtd} lugares, ${c.pct}%: ${c.rotulo}`).join("; ")}>
@@ -389,8 +379,8 @@ const zap =
           <p class="k2-num">04 · Parceria</p>
           <h2>Formatos de parceria</h2>
           <p class="k2-lead">
-            A experiência do patrocinador é o contato direto com a base de clientes: uma única sala, {k2.destaques[0].valor}
-            lugares, com a sua marca presente do credenciamento ao encerramento, às 17h.
+            A experiência do patrocinador é o contato direto com a base de clientes, numa única sala, do
+            credenciamento ao encerramento, às 17h.
           </p>
           <ul class="k2-experiencia">
             {k2.experiencia.map((e) => (
