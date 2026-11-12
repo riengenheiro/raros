@@ -301,6 +301,19 @@ h3 { font-size: 24px; color: var(--ouro); }
   letter-spacing: 0.04em;
   line-height: 1;
 }
+.topbar-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 8px 14px;
+  border-radius: 4px;
+  background: var(--tinta);
+  color: var(--ouro-claro);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
 
 /* Hero */
 .hero {
@@ -315,7 +328,7 @@ h3 { font-size: 24px; color: var(--ouro); }
   position: absolute;
   inset: -40px;
   background: var(--hero) center / cover no-repeat;
-  filter: blur(26px) brightness(0.42) saturate(0.9);
+  filter: blur(14px) brightness(0.55) saturate(0.9);
   z-index: 0;
 }
 .hero::after {
@@ -343,7 +356,7 @@ h3 { font-size: 24px; color: var(--ouro); }
 
 .hero-cta { position: relative; z-index: 2; margin-top: 32px; }
 
-.seta { margin: 24px 0 0; color: var(--ouro); font-size: 18px; font-weight: 800; }
+.seta { margin: 24px 0 0; color: var(--ouro); font-size: 18px; font-weight: 800; text-align: center; }
 
 .video-box { padding: 8px 0 40px; background: var(--fundo); }
 .video-box iframe {
@@ -404,6 +417,27 @@ h3 { font-size: 24px; color: var(--ouro); }
   letter-spacing: 0.24em;
   text-transform: uppercase;
 }
+.destaque-ouro, .hero-sub.destaque-ouro { color: var(--ouro); }
+.experiencias { margin-top: 36px; }
+.ultimo { margin-top: 56px; }
+.ultimo .btn { margin-top: 28px; }
+.ultimo-fotos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+.ultimo-fotos img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+@media (max-width: 700px) {
+  .ultimo-fotos { grid-template-columns: 1fr 1fr; gap: 8px; }
+}
+.experiencias .card p { color: var(--texto); line-height: 1.6; }
 
 .grade-3,
 .grade-4 {
@@ -694,6 +728,16 @@ h3 { font-size: 24px; color: var(--ouro); }
   padding-top: 38px;
   box-shadow: 0 0 0 4px rgba(217, 176, 98, 0.08), 0 24px 60px rgba(217, 176, 98, 0.12);
 }
+.lote-ingresso {
+  display: block;
+  width: min(220px, 70%);
+  height: auto;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+  border: 1px solid var(--ouro-linha);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  transform: rotate(-3deg);
+}
 .selo {
   position: absolute;
   top: -15px;
@@ -794,6 +838,7 @@ h3 { font-size: 24px; color: var(--ouro); }
 .garantia p { color: var(--texto); font-size: 15px; margin: 12px auto 24px; max-width: 620px; }
 .garantia p a { color: var(--ouro-claro); }
 .selo-seguranca { width: 200px; margin-top: 20px; opacity: 0.8; }
+.selos-garantia { display: block; width: min(300px, 100%); height: auto; margin: 24px auto 0; opacity: 0.85; }
 
 .sobre-grid {
   display: grid;
@@ -1491,6 +1536,50 @@ body.editando [contenteditable="true"]:focus {
   font-size: 1.125rem;
   line-height: 1.55;
   text-wrap: balance;
+}
+.hero-sub-forte { color: var(--ouro-claro); font-size: 1.25rem; }
+.hero-autoridade { color: var(--texto); font-size: 1rem; }
+.custo { max-width: 680px; margin: 0 auto 28px; text-align: center; }
+.custo h2 { margin-bottom: 12px; }
+.custo p + p { margin-top: 12px; }
+.lote-secundario .btn {
+  background: transparent;
+  color: var(--ouro-claro);
+  border: 1px solid var(--ouro);
+}
+.barra-compra { display: none; }
+.edicao .elementor-heading-title {
+  margin: 0 0 16px;
+  color: var(--ouro);
+  font-size: 22px;
+  line-height: 1;
+  text-align: center;
+}
+.diferenciais {
+  display: block;
+  width: min(900px, calc(100% - 32px));
+  height: auto;
+  margin: 32px auto 0;
+}
+#porque, #ingressos { scroll-margin-top: 80px; }
+@media (max-width: 800px) {
+  .barra-compra {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 45;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--ouro);
+    color: var(--tinta);
+    text-decoration: none;
+  }
+  .barra-compra strong { font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; }
+  body { padding-bottom: 64px; }
 }
 
 /* Frase-ponte: a última linha de cada seção puxa a leitura para a próxima */

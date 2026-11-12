@@ -15,6 +15,8 @@ const evento = {
   casa: "Tênis Clube de Campinas",
   endereco: "R. Cel. Quirino, 1346 — Cambuí, Campinas — SP, 13015-330",
   video: "",
+  vendidos: 78,
+  lugares: 23,
   produtora: "G&R Instituto Educacional",
   telefone: "(19) 99432-8278",
   links: {
@@ -50,7 +52,7 @@ const depoimentos = [
 ];
 
 const cta = "Quero meu ingresso";
-const ctaHero = "Quero ajustar meu termostato";
+const ctaHero = "Sim, quero descobrir agora";
 const heroFundo = "/images/hero-leandro.webp";
 const mapa =
   "https://www.google.com/maps/search/?api=1&query=" +
@@ -108,11 +110,20 @@ const mapa =
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <title>RAROS | Inteligência Emocional para Liderar o Seu Negócio, em {evento.cidade}</title>
+    <title>RAROS · Descubra em que temperatura está o seu termostato · Campinas, 5/12</title>
     <meta
       name="description"
-      content="Sábado, 5 de dezembro, das 9h às 17h, no Tênis Clube de Campinas. Lote 1 a R$ 97 até 15 de novembro. Ingresso de sócio do clube a R$ 47."
+      content="Sábado, 5 de dezembro, no Tênis Clube de Campinas. Lote 1 a R$ 97 até 15 de novembro. Descubra em que temperatura o seu termostato está regulado."
     />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="RAROS · Em que temperatura está o seu termostato?" />
+    <meta
+      property="og:description"
+      content="Sábado, 5 de dezembro, no Tênis Clube de Campinas. Lote 1 a R$ 97 até domingo, 15 de novembro."
+    />
+    <meta property="og:image" content="https://vivasuamissao.top/images/hero-leandro.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preload" as="image" href={heroFundo} type="image/webp" fetchpriority="high" />
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap"
@@ -151,7 +162,8 @@ const mapa =
     <!-- 1. Barra fixa: informação real, sem cronômetro -->
     <header class="topbar">
       <div class="topbar-inner">
-        <p class="topbar-frase" data-edit><strong>Treinamento presencial</strong> · Sábado, 5 de dezembro · 9h às 17h · Tênis Clube de Campinas</p>
+        <p class="topbar-frase" data-edit><strong>TÊNIS CLUBE DE CAMPINAS - CAMBUÍ - 05 DE DEZEMBRO - 09:00 às 17:00</strong></p>
+        <a class="topbar-btn" href="#porque">PORQUE IR NESSE EVENTO?</a>
       </div>
     </header>
 
@@ -159,31 +171,24 @@ const mapa =
       <!-- 2. Hero: seleciona o leitor, nomeia a dor em palavras dele e diz o que é -->
       <section class="hero" style={`--hero: url('${heroFundo}')`}>
         <div class="wrap wrap-820">
-          <div class="hero-intro">
-            <p class="hero-olho" data-edit>CAMPINAS · TÊNIS CLUBE DE CAMPINAS · CAMBUÍ</p>
-            <h1 data-edit>Por que você se esforça, muda, começa de novo… e sempre volta para o mesmo lugar?</h1>
-            <p class="hero-sub" data-edit>
-              Existe um termostato dentro de você. Ele foi regulado ao longo da sua vida e decide,
-              sem você perceber, até onde você chega no dinheiro, no trabalho e nos relacionamentos.
-            </p>
-            <p class="hero-sub" data-edit>
-              No RAROS, você vai descobrir em que temperatura o seu está regulado e como começar a ajustá-lo.
-            </p>
-            <p class="hero-sub" data-edit>
-              Com Leandro Marcondes, direto de Londres, o treinador que trouxe ao Brasil o seminário
-              Os Segredos da Mente Milionária.
-            </p>
+          <div class="hero-texto">
+            <div class="hero-intro">
+              <h1 data-edit>O Primeiro Treinamento Interativo de Liderança com Inteligência Emocional de 8 horas no Tênis Clube de Campinas.</h1>
+              <p class="hero-sub destaque-ouro" data-edit>
+                Descubra o segredo simples de quem prospera com leveza, ri mais e não vive apagando incêndio.
+              </p>
+            </div>
+            <img
+              class="hero-foto"
+              src={heroFundo}
+              alt="Leandro Marcondes falando para a plateia"
+              width="682"
+              height="1024"
+              fetchpriority="high"
+            />
+            <a class="btn btn-lg hero-cta" href="#ingressos">{ctaHero}</a>
+            <p class="nota" data-edit>Entenda por que esse treinamento <strong>é sucesso por onde ele passa.</strong></p>
           </div>
-          <a class="btn btn-lg hero-cta" href="#ingressos">{ctaHero}</a>
-          <p class="nota" data-edit>Vagas limitadas · Tênis Clube de Campinas, Cambuí</p>
-          <img
-            class="hero-foto"
-            src={heroFundo}
-            alt="Leandro Marcondes falando para a plateia"
-            width="682"
-            height="1024"
-            fetchpriority="high"
-          />
         </div>
       </section>
 
@@ -199,36 +204,9 @@ const mapa =
         </section>
       )}
 
-      <!-- 4. Resumo do evento: o que é, quanto custa, risco e lugar, no primeiro olhar -->
-      <section class="faixa-beneficios">
-        <div class="wrap">
-          <ul>
-            <li>
-              <strong>Um dia inteiro</strong>
-              <span>de experiência presencial</span>
-            </li>
-            <li>
-              <strong>Novas ideias</strong>
-              <span>e formas de pensar</span>
-            </li>
-            <li>
-              <strong>Inteligência emocional</strong>
-              <span>e liderança</span>
-            </li>
-            <li>
-              <strong>Troca com empresários</strong>
-              <span>e líderes</span>
-            </li>
-          </ul>
-        </div>
-      </section>
-
       <!-- 5. Edições anteriores -->
       <section class="edicao">
-        <p class="edicao-legenda">
-          Assista a como foram as edições anteriores do RAROS, realizadas em outros locais.
-          Esta é a primeira no Tênis Clube de Campinas.
-        </p>
+        <div class="elementor-heading-title" aria-hidden="true">▼</div>
         <div class="edicao-video depo-video" data-id="6JuHeCETFT0" data-titulo="Edições anteriores" data-rotulo="Assistir edições anteriores">
           <button type="button" class="depo-capa" aria-label="Assistir edições anteriores">
             <img
@@ -242,45 +220,101 @@ const mapa =
             <span class="depo-play" aria-hidden="true"></span>
           </button>
         </div>
+        <img
+          class="diferenciais"
+          src="/images/diferenciais.jpg"
+          alt="Aprendizagem divertida, networking guiado, ambiente seguro e treinador de Londres"
+          width="1024"
+          height="254"
+          loading="lazy"
+          decoding="async"
+        />
       </section>
 
       <!-- 6. Reconhecimento: as cenas que o público descreve (clusters A, B, C e D da pesquisa) -->
-      <section class="secao reconhece" id="reconhece">
-        <div class="wrap wrap-760">
-          <h2 data-edit>Você já percebeu que nem sempre o problema está na falta de conhecimento?</h2>
-          <p class="continuacao-texto" data-edit>
-            Você sabe o que precisa fazer. Mas, na hora de agir, alguma coisa se repete.
-          </p>
-          <ul class="cenas">
-            <li data-edit>Você trabalha muito, mas sente que o dinheiro poderia render mais.</li>
-            <li data-edit>Tem dificuldade para tomar decisões financeiras importantes.</li>
-            <li data-edit>Deixa oportunidades passarem por medo de arriscar.</li>
-            <li data-edit>Sabe que precisa mudar algumas atitudes, mas continua repetindo os mesmos comportamentos.</li>
-            <li data-edit>Assume responsabilidades demais e sente dificuldade para delegar.</li>
-            <li data-edit>Quer fazer seu negócio crescer, mas acaba preso aos problemas do dia a dia.</li>
-          </ul>
-          <p class="continuacao-texto" data-edit>
-            Talvez você esteja tentando mudar seus resultados sem questionar os padrões que conduzem suas decisões.
-          </p>
+      <section class="secao reconhece" id="porque">
+        <div class="wrap">
+          <h2 data-edit>Preparado para ter aquela ideia…<br /><span class="destaque-ouro">…que vai fazer seus olhos brilharem na hora?</span></h2>
+          <p class="desce centro">Entenda aqui embaixo ▼</p>
+          <div class="grade-3 experiencias">
+            <article class="card">
+              <img class="redonda" src="/images/ambiente-4-480.webp" alt="Participantes interagindo durante o treinamento" width="240" height="240" loading="lazy" decoding="async" />
+              <h3 data-edit>8 horas de descobertas, interação e boas risadas…</h3>
+              <p data-edit>
+                Chega de palestras chatas, slides infinitos e teoria que dá sono! No Treinamento
+                Interativo de Liderança com Inteligência Emocional, você participa do primeiro minuto
+                até o final — você nem vai sentir a hora passando! O que mais surpreende são os
+                momentos de interação divertidos, onde você se identifica com cada situação real, dá
+                risada e ainda volta para casa com aquela sensação boa de ter feito novos amigos.
+              </p>
+            </article>
+            <article class="card">
+              <img class="redonda" src="/images/mk/edicao-networking.jpg" alt="Empresários conversando durante o evento" width="240" height="240" loading="lazy" decoding="async" />
+              <h3 data-edit>No clube mais badalado de Campinas, no coração do Cambuí</h3>
+              <p data-edit>
+                Já imaginou combinar ideias que viram a chave, boas risadas e conexões com gente
+                interessante? É essa experiência completa que levamos para você no Tênis Clube de
+                Campinas — o endereço mais charmoso, tradicional e disputado da cidade.
+              </p>
+            </article>
+            <article class="card">
+              <img class="redonda" src="/images/card-energia-480.webp" alt="Participantes rindo durante o treinamento" width="240" height="240" loading="lazy" decoding="async" />
+              <h3 data-edit>Termine o dia com a energia lá no teto</h3>
+              <p data-edit>
+                A experiência mais leve e marcante que você pode ter com seu parceiro de negócios,
+                sua equipe ou amigos. Traga a sua turma para o Cambuí, viva cada momento na prática
+                e saia sem querer que o sábado acabe. Esse dia merece ser compartilhado!
+              </p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <!-- 7. A virada e o que o sábado não é -->
-      <section class="secao">
-        <div class="wrap wrap-720">
-          <h2 class="centro" data-edit>O conceito você já conhece. Mas será que consegue aplicar quando realmente precisa?</h2>
-          <p class="continuacao-texto" data-edit>
-            Você pode conhecer técnicas de gestão, estudar estratégias e ter experiência nos negócios.
-            Mas existe uma parte que exige mais do que conhecimento técnico: entender como seus
-            pensamentos e emoções influenciam suas decisões.
-          </p>
-          <p class="continuacao-texto" data-edit>
-            Como você reage diante de uma dificuldade? Como lida com dinheiro? Como conduz uma
-            conversa difícil? Como toma decisões quando está sob pressão?
-          </p>
-          <p class="promessa" data-edit>
-            <strong>Um sábado inteiro dedicado a desenvolver sua mentalidade, inteligência emocional e capacidade de liderança.</strong>
-          </p>
+      <!-- 10. Depoimentos em vídeo -->
+      <section class="secao secao-suave depoimentos">
+        <div class="wrap">
+          <h2>O que dizem quem já assistiu ao show:</h2>
+          <div class="depo-videos">
+            {depoimentos.map((id) => (
+              <div class="depo-video" data-id={id}>
+                <button type="button" class="depo-capa" aria-label="Assistir depoimento">
+                  <img
+                    src={`/images/yt/${id}.webp`}
+                    alt=""
+                    width="480"
+                    height="360"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="depo-play" aria-hidden="true"></span>
+                </button>
+              </div>
+            ))}
+          </div>
+          <div class="ultimo">
+            <h2 class="centro">TODO EVENTO É TRANSFORMADOR</h2>
+            <p class="apoio centro">Olha como foi no último</p>
+            <div class="ultimo-fotos">
+              {[
+                "Plateia durante o treinamento",
+                "Participantes reunidos no palco",
+                "Participantes conversando no intervalo",
+                "Participantes rindo durante uma dinâmica",
+                "Plateia levantando as mãos durante o treinamento",
+                "Plateia de pé fazendo uma dinâmica com os braços para cima",
+              ].map((alt, i) => (
+                <img
+                  src={`/images/ultimo-${i + 1}.webp`}
+                  alt={alt}
+                  width="640"
+                  height="480"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ))}
+            </div>
+            <p class="centro"><a class="btn" href="#ingressos">Garantir meu ingresso</a></p>
+          </div>
         </div>
       </section>
 
@@ -301,84 +335,7 @@ const mapa =
               </article>
             ))}
           </div>
-          <p class="gancho">Mas você não precisa acreditar só em nós.</p>
-          <p class="seta" aria-hidden="true">▼</p>
-        </div>
-      </section>
-
-      <section class="secao secao-suave quem-apoia" id="apoio">
-        <div class="wrap">
-          <h2 class="centro">Quem está apoiando esse evento</h2>
-          <ul class="apoio-logos">
-            <li class="apoio-logo claro">
-              <img src="/images/apoio/signature.png" alt="Signature Royal Palm" width="320" height="140" loading="lazy" decoding="async" />
-            </li>
-            <li class="apoio-logo escuro">
-              <img src="/images/apoio/via-filtros.png" alt="Via Filtros" width="320" height="180" loading="lazy" decoding="async" />
-            </li>
-            <li class="apoio-logo escuro">
-              <img src="/images/apoio/via-puroa.png" alt="Via Puroá" width="320" height="140" loading="lazy" decoding="async" />
-            </li>
-            <li class="apoio-logo escuro">
-              <img src="/images/apoio/myds.png" alt="MYDS, My Dream System" width="320" height="140" loading="lazy" decoding="async" />
-            </li>
-            <li class="apoio-logo claro">
-              <img src="/images/apoio/guaciara-instituto.jpg" alt="Guaciara Instituto de Fonoaudiologia" width="320" height="220" loading="lazy" decoding="async" />
-            </li>
-            <li class="apoio-logo escuro">
-              <img src="/images/apoio/doutora-escola.png" alt="Doutora Escola" width="320" height="280" loading="lazy" decoding="async" />
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- 10. Depoimentos em vídeo -->
-      <section class="secao secao-suave depoimentos">
-        <div class="wrap">
-          <h2>O que dizem os participantes:</h2>
-          <p class="apoio centro">Depoimentos de edições anteriores do RAROS, realizadas em outros locais.</p>
-          <div class="depo-videos">
-            {depoimentos.map((id) => (
-              <div class="depo-video" data-id={id}>
-                <button type="button" class="depo-capa" aria-label="Assistir depoimento">
-                  <img
-                    src={`/images/yt/${id}.webp`}
-                    alt=""
-                    width="480"
-                    height="360"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span class="depo-play" aria-hidden="true"></span>
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <!-- 11. Ambiente -->
-      <section class="secao casa">
-        <div class="wrap">
-          <p class="kicker">O lugar</p>
-          <h2>Tênis Clube de Campinas</h2>
-          <p class="apoio">Fundado em 1913. Sede social na R. Cel. Quirino, 1346, Cambuí.</p>
-          <div class="grade-4">
-            {[1, 2, 3, 4].map((n) => (
-              <img
-                class="foto-show"
-                src={`/images/ambiente-${n}-960.webp`}
-                srcset={`/images/ambiente-${n}-480.webp 480w, /images/ambiente-${n}-960.webp 960w`}
-                sizes="(max-width: 760px) calc(100vw - 32px), 270px"
-                alt="Ambiente do evento"
-                width="280"
-                height="210"
-                loading="lazy"
-                decoding="async"
-              />
-            ))}
-          </div>
-          <p class="centro"><a class="btn" href="#ingressos">{cta}</a></p>
+          <p class="centro"><a class="btn" href="#ingressos">{ctaHero}</a></p>
         </div>
       </section>
 
@@ -403,55 +360,37 @@ const mapa =
       <!-- 13. Oferta: preço, o que inclui e risco, sem urgência inventada -->
       <section class="secao secao-suave oferta" id="ingressos">
         <div class="wrap">
-          <h2>Escolha o seu ingresso</h2>
-          <p class="aviso aviso-forte">
-            O preço sobe em datas fixas. Quem garante agora paga até 4x menos.
+          <h2 data-edit><strong>Falta pouco para você ter o dia mais transformador da sua vida!</strong></h2>
+          <p class="aviso" data-edit>
+            Nota: se clicar em "comprar agora" e nada acontecer, é porque os ingressos esgotaram. Pedimos desculpas.
           </p>
-          <p class="aviso">
-            Cartão em até 12x, Pix ou boleto. Reembolso de 100% até 2 de dezembro de 2026.
-          </p>
-
-          <div class="escada-rola">
-            <table class="escada">
-              <thead>
-                <tr>
-                  <th>Lote</th>
-                  <th>Período</th>
-                  <th>Não sócio</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="escada-agora">
-                  <th scope="row">Lote 1 (agora)</th>
-                  <td>até 15/11, às 23h59</td>
-                  <td>R$ 97</td>
-                </tr>
-                <tr>
-                  <th scope="row">Lote 2</th>
-                  <td>16/11 a 22/11</td>
-                  <td>R$ 197</td>
-                </tr>
-                <tr>
-                  <th scope="row">Lote 3</th>
-                  <td>a partir de 23/11</td>
-                  <td>R$ 397</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="contador" data-fim="2026-11-15T23:59:59-03:00">
-            <p class="contador-rotulo">Lote 1 encerra em 15/11, às 23h59</p>
-            <p class="contador-numeros" aria-live="polite">
-              <span><strong data-unidade="dias">00</strong><small>dias</small></span>
-              <span><strong data-unidade="horas">00</strong><small>horas</small></span>
-              <span><strong data-unidade="minutos">00</strong><small>min</small></span>
-              <span><strong data-unidade="segundos">00</strong><small>seg</small></span>
+          <div class="escassez">
+            <div class="escassez-topo">
+              <span>Ingressos vendidos</span>
+              <strong><span data-campo="vendidos">{evento.vendidos}</span>%</strong>
+            </div>
+            <div class="trilho" aria-hidden="true">
+              <span style={`width: ${evento.vendidos}%`}></span>
+            </div>
+            <p>
+              <span data-edit>Restam apenas</span>
+              <strong><span data-campo="lugares">{evento.lugares}</span></strong>
+              <span data-edit>lugares neste lote</span>
             </p>
           </div>
 
           <div class="grade-ingressos">
             <article class="lote lote-destaque">
+              <span class="selo">⭐ O mais vendido</span>
+              <img
+                class="lote-ingresso"
+                src="/images/ingresso-raros.webp"
+                alt="Ingresso do RAROS: 5 de dezembro, sábado, no Tênis Clube de Campinas"
+                width="420"
+                height="747"
+                loading="lazy"
+                decoding="async"
+              />
               <p class="lote-nome">Lote 1</p>
               <p class="lote-tipo"><strong>Não sócio</strong></p>
               <p class="preco-linha">
@@ -469,10 +408,10 @@ const mapa =
                 data-value="97"
                 data-num-items="1"
               >Garantir ingresso por R$ 97</a>
-              <p class="via">Reembolso de 100% até 2 de dezembro</p>
+              <p class="via">Compra segura pela Hotmart</p>
             </article>
 
-            <article class="lote">
+            <article class="lote lote-secundario">
               <p class="lote-nome">Sócio do Clube</p>
               <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">47</span></p>
               <p class="a-vista">em qualquer lote</p>
@@ -495,7 +434,8 @@ const mapa =
       <!-- 14. Como funciona -->
       <section class="secao passos">
         <div class="wrap wrap-960">
-          <h2>Como garantir o ingresso</h2>
+          <h2>Comprar é simples e rápido</h2>
+          <p class="apoio">Em menos de 2 minutos seu lugar está garantido</p>
           <div class="grade-3">
             <article class="passo">
               <p class="numero">1</p>
@@ -510,7 +450,7 @@ const mapa =
             <article class="passo">
               <p class="numero">3</p>
               <h3>Apresente na porta</h3>
-              <p>Apresente seu ingresso no credenciamento do Tênis Clube, a partir das 8h30. Pronto, é só aproveitar o dia!</p>
+              <p>No credenciamento do Tênis Clube, a partir das 8h30, você faz o check-in pelo celular. Pronto, é só aproveitar o dia!</p>
             </article>
           </div>
         </div>
@@ -532,6 +472,15 @@ const mapa =
             <a href="#termos">Veja os termos e condições.</a>
           </p>
           <a class="btn btn-claro" href="#ingressos">{cta}</a>
+          <img
+            class="selos-garantia"
+            src="/images/selos-garantia.png"
+            alt="Compra segura, satisfação garantida e privacidade protegida"
+            width="300"
+            height="36"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </section>
 
@@ -540,7 +489,7 @@ const mapa =
         <div class="wrap wrap-1100 sobre">
           <div class="sobre-grid">
             <div class="sobre-cabeca">
-              <h2>Quem está Apoiando o evento?</h2>
+              <h2>Apoio da Diretoria Cultural do Tênis Clube de Campinas</h2>
               <div class="realizacao">
                 <span class="realizacao-rotulo">Diretora Cultural do Tênis Clube de Campinas</span>
                 <strong>Ana Clara de Mello e Silva</strong>
@@ -557,11 +506,38 @@ const mapa =
               decoding="async"
             />
             <p class="sobre-bio" data-edit>
-              Os RAROS são um encontro presencial de 1 dia no Tênis Clube de Campinas, realizado
+              Os RAROS é um encontro presencial de 1 dia no Tênis Clube de Campinas, apoiado
               pela Diretoria Cultural. O Networking é uma ação idealizada e desenvolvida por esta
               diretoria, para aproximar empresários, empreendedores e líderes.
             </p>
           </div>
+        </div>
+      </section>
+
+      <!-- 18. Quem está apoiando com marca -->
+      <section class="secao secao-suave quem-apoia" id="apoio">
+        <div class="wrap">
+          <h2 class="centro">Quem está apoiando esse evento</h2>
+          <ul class="apoio-logos">
+            <li class="apoio-logo claro">
+              <img src="/images/apoio/signature.png" alt="Signature Royal Palm" width="320" height="140" loading="lazy" decoding="async" />
+            </li>
+            <li class="apoio-logo escuro">
+              <img src="/images/apoio/via-filtros.png" alt="Via Filtros" width="320" height="180" loading="lazy" decoding="async" />
+            </li>
+            <li class="apoio-logo escuro">
+              <img src="/images/apoio/via-puroa.png" alt="Via Puroá" width="320" height="140" loading="lazy" decoding="async" />
+            </li>
+            <li class="apoio-logo escuro">
+              <img src="/images/apoio/myds.png" alt="MYDS, My Dream System" width="320" height="140" loading="lazy" decoding="async" />
+            </li>
+            <li class="apoio-logo claro">
+              <img src="/images/apoio/guaciara-instituto.jpg" alt="Guaciara Instituto de Fonoaudiologia" width="320" height="220" loading="lazy" decoding="async" />
+            </li>
+            <li class="apoio-logo escuro">
+              <img src="/images/apoio/doutora-escola.png" alt="Doutora Escola" width="320" height="280" loading="lazy" decoding="async" />
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -594,8 +570,8 @@ const mapa =
           <details>
             <summary>Para quem é este treinamento?</summary>
             <p>
-              Para quem é dono, sócio ou conduz a equipe de um negócio. O ingresso de sócio do
-              Tênis Clube tem valor próprio.
+              Para quem sente que já se esforça o bastante e continua no mesmo lugar, principalmente
+              quem lidera um negócio ou uma equipe. O ingresso de sócio do Tênis Clube tem valor próprio.
             </p>
           </details>
           <details>
@@ -622,9 +598,16 @@ const mapa =
             <p>Sim. Usamos a Hotmart, uma das maiores plataformas de pagamento do Brasil. 100% seguro e confiável.</p>
           </details>
           <details>
+            <summary>Por que RAROS?</summary>
+            <p>Porque pouca gente para para ajustar o próprio termostato.</p>
+          </details>
+          <details>
             <summary>Para mais informações, como faço?</summary>
             <p>
-              <span data-edit>Entre em contato com nosso produtor pelo telefone</span>
+              <a class="btn" href="https://wa.me/5519994328278?text=Ol%C3%A1%21%20Quero%20tirar%20uma%20d%C3%BAvida%20sobre%20o%20RAROS.">Tirar dúvida no WhatsApp</a>
+            </p>
+            <p>
+              <span data-edit>Ou ligue para</span>
               <a href="tel:+5519994328278" data-campo="telefone">{evento.telefone}</a>
             </p>
           </details>
@@ -643,6 +626,10 @@ const mapa =
         </div>
       </section>
     </main>
+    <a class="barra-compra" href="#ingressos">
+      <span>R$ 97 até domingo</span>
+      <strong>Garantir</strong>
+    </a>
 
     <footer class="rodape">
       <div class="wrap wrap-1100">
@@ -658,8 +645,9 @@ const mapa =
             <p>Cartão até 12x · Pix · Boleto</p>
           </div>
           <div>
-            <h2>Ambiente seguro</h2>
-            <p>Pagamento processado pela Hotmart</p>
+            <h2>Dúvidas</h2>
+            <p><a href="https://wa.me/5519994328278?text=Ol%C3%A1%21%20Quero%20tirar%20uma%20d%C3%BAvida%20sobre%20o%20RAROS.">WhatsApp</a></p>
+            <p><a href="tel:+5519994328278">{evento.telefone}</a></p>
           </div>
         </div>
         <div class="termos" id="termos">
@@ -699,6 +687,7 @@ const mapa =
           Telefone para dúvidas
           <a href="tel:+5519994328278" data-campo="telefone">{evento.telefone}</a>
         </p>
+        <p class="cnpj">G&R INSTITUTO EDUCACIONAL LTDA · CNPJ 39.969.764/0001-25</p>
       </div>
     </footer>
     </div>
@@ -765,19 +754,26 @@ const mapa =
           segundos: caixa.querySelector('[data-unidade="segundos"]'),
         };
         const rotulo = caixa.querySelector(".contador-rotulo");
+        const topo = document.getElementById("topbar-timer");
         const dois = (n) => String(n).padStart(2, "0");
         const atualizar = () => {
           const falta = fim - Date.now();
           if (falta <= 0) {
             if (rotulo) rotulo.textContent = "O lote 1 encerrou em 15/11, às 23h59.";
             caixa.querySelector(".contador-numeros")?.remove();
+            if (topo) topo.textContent = "Encerrou";
             return;
           }
           const total = Math.floor(falta / 1000);
-          campos.dias.textContent = dois(Math.floor(total / 86400));
-          campos.horas.textContent = dois(Math.floor((total % 86400) / 3600));
-          campos.minutos.textContent = dois(Math.floor((total % 3600) / 60));
-          campos.segundos.textContent = dois(total % 60);
+          const dias = Math.floor(total / 86400);
+          const horas = Math.floor((total % 86400) / 3600);
+          const minutos = Math.floor((total % 3600) / 60);
+          const segundos = total % 60;
+          campos.dias.textContent = dois(dias);
+          campos.horas.textContent = dois(horas);
+          campos.minutos.textContent = dois(minutos);
+          campos.segundos.textContent = dois(segundos);
+          if (topo) topo.textContent = `${dois(dias)}d ${dois(horas)}h ${dois(minutos)}m`;
         };
         atualizar();
         setInterval(atualizar, 1000);
