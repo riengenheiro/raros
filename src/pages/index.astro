@@ -18,8 +18,7 @@ const evento = {
   produtora: "G&R Instituto Educacional",
   telefone: "(19) 99432-8278",
   links: {
-    individual: "https://pay.hotmart.com/W107941887P?off=vyswj0sp",
-    combo: "https://pay.hotmart.com/W107941887P?off=bndwz2ti",
+    individual: "https://pay.hotmart.com/W107941887P?off=uh7firvc",
     socio: "https://pay.hotmart.com/W107941887P?off=1or0i69a",
   },
 };
@@ -101,7 +100,7 @@ const mapa =
         content_name: "RAROS",
         content_category: "Evento presencial",
         content_type: "product",
-        content_ids: ["raros-individual", "raros-combo", "raros-socio"],
+        content_ids: ["raros-nao-socio", "raros-socio"],
         currency: "BRL",
       });
     </script>}
@@ -112,7 +111,7 @@ const mapa =
     <title>RAROS | Inteligência Emocional para Liderar o Seu Negócio, em {evento.cidade}</title>
     <meta
       name="description"
-      content="Sábado, 5 de dezembro, das 9h às 17h, no Tênis Clube de Campinas. Treinamento para quem lidera equipe. Ingresso R$ 197, com reembolso de 100% até 2 de dezembro."
+      content="Sábado, 5 de dezembro, das 9h às 17h, no Tênis Clube de Campinas. Lote 1 a R$ 97 até 15 de novembro. Ingresso de sócio do clube a R$ 47."
     />
     <link rel="preload" as="image" href={heroFundo} type="image/webp" fetchpriority="high" />
     <link
@@ -409,53 +408,39 @@ const mapa =
         <div class="wrap">
           <h2>Escolha o seu ingresso</h2>
           <p class="aviso">
-            Cartão de crédito em até 12x, Pix ou boleto. Reembolso de 100% até 2 de dezembro de 2026.
+            Lote 1 até 15 de novembro. Cartão de crédito em até 12x, Pix ou boleto.
+            Reembolso de 100% até 2 de dezembro de 2026.
           </p>
+          <div class="contador" data-fim="2026-11-15T23:59:59-03:00">
+            <p class="contador-rotulo">Lote 1 encerra em</p>
+            <p class="contador-numeros" aria-live="polite">
+              <span><strong data-unidade="dias">00</strong><small>dias</small></span>
+              <span><strong data-unidade="horas">00</strong><small>horas</small></span>
+              <span><strong data-unidade="minutos">00</strong><small>min</small></span>
+              <span><strong data-unidade="segundos">00</strong><small>seg</small></span>
+            </p>
+          </div>
 
-          <div class="grade-3">
-            <article class="lote">
-              <p class="lote-nome">Individual</p>
-              <p class="lote-tipo"><strong>1 pessoa</strong></p>
+          <div class="grade-ingressos">
+            <article class="lote lote-destaque">
+              <p class="lote-nome">Lote 1</p>
+              <p class="lote-tipo"><strong>Não sócio</strong></p>
               <ul>
                 <li>✓ Ingresso válido para 1 pessoa</li>
                 <li>✓ Treinamento completo de 1 dia, das 9h às 17h</li>
                 <li>✓ Networking, ação da Diretoria Cultural</li>
                 <li>✓ Confirmação imediata por e-mail</li>
               </ul>
-              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">197</span></p>
+              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">97</span></p>
               <p class="a-vista">à vista ou em até 12x no cartão</p>
               <a
                 class="btn btn-bloco"
                 href={evento.links.individual}
                 data-checkout
-                data-content-id="raros-individual"
-                data-content-name="Ingresso individual RAROS"
-                data-value="197"
+                data-content-id="raros-nao-socio"
+                data-content-name="Ingresso não sócio RAROS lote 1"
+                data-value="97"
                 data-num-items="1"
-              >{cta}</a>
-              <p class="via">Pagamento seguro via Hotmart</p>
-            </article>
-
-            <article class="lote lote-destaque">
-              <p class="lote-nome">Combo</p>
-              <p class="lote-tipo"><strong>4 pessoas</strong></p>
-              <p class="lote-nota">Para ir com o sócio ou com quem lidera com você: R$ 97 por pessoa</p>
-              <ul>
-                <li>✓ Ingresso válido para 4 pessoas</li>
-                <li>✓ Treinamento completo de 1 dia, das 9h às 17h</li>
-                <li>✓ Networking, ação da Diretoria Cultural</li>
-                <li>✓ Confirmação imediata por e-mail</li>
-              </ul>
-              <p class="preco-linha"><span class="preco-moeda">R$</span><span class="preco">388</span></p>
-              <p class="a-vista">à vista ou em até 12x no cartão</p>
-              <a
-                class="btn btn-bloco"
-                href={evento.links.combo}
-                data-checkout
-                data-content-id="raros-combo"
-                data-content-name="Combo 4 pessoas RAROS"
-                data-value="388"
-                data-num-items="4"
               >{cta}</a>
               <p class="via">Pagamento seguro via Hotmart</p>
             </article>
@@ -574,9 +559,9 @@ const mapa =
           <details>
             <summary>Posso levar acompanhantes?</summary>
             <p>
-              O ingresso individual é para 1 pessoa. Para ir com o sócio ou com a equipe, escolha o
-              combo de 4 pessoas. O valor de sócio vale apenas para quem apresenta a carteirinha do
-              Tênis Clube de Campinas.
+              Cada pessoa precisa do próprio ingresso. Quem não é sócio do Tênis Clube compra o lote
+              1, a R$ 97, até 15 de novembro. O valor de sócio vale apenas para quem apresenta a
+              carteirinha do Tênis Clube de Campinas.
             </p>
           </details>
           <details>
@@ -666,9 +651,9 @@ const mapa =
               intervalos e horário de almoço.
             </li>
             <li>
-              <strong>Ingressos:</strong> o ingresso individual vale para 1 pessoa e o combo vale
-              para 4 pessoas. O ingresso de sócio exige a apresentação da carteirinha do Tênis Clube
-              de Campinas.
+              <strong>Ingressos:</strong> há o ingresso de não sócio, lote 1 a R$ 97 até 15 de
+              novembro de 2026, e o ingresso de sócio do Tênis Clube, a R$ 47. O ingresso de sócio
+              exige a apresentação da carteirinha no credenciamento. Cada ingresso vale para 1 pessoa.
             </li>
             <li>
               <strong>Pagamento:</strong> processado pela Hotmart, com cartão de crédito em até 12x,
@@ -746,6 +731,36 @@ const mapa =
           currency: "BRL",
         });
       });
+    </script>
+    <script is:inline>
+      (() => {
+        const caixa = document.querySelector(".contador");
+        if (!caixa) return;
+        const fim = new Date(caixa.dataset.fim).getTime();
+        const campos = {
+          dias: caixa.querySelector('[data-unidade="dias"]'),
+          horas: caixa.querySelector('[data-unidade="horas"]'),
+          minutos: caixa.querySelector('[data-unidade="minutos"]'),
+          segundos: caixa.querySelector('[data-unidade="segundos"]'),
+        };
+        const rotulo = caixa.querySelector(".contador-rotulo");
+        const dois = (n) => String(n).padStart(2, "0");
+        const atualizar = () => {
+          const falta = fim - Date.now();
+          if (falta <= 0) {
+            if (rotulo) rotulo.textContent = "O lote 1 encerrou em 15 de novembro.";
+            caixa.querySelector(".contador-numeros")?.remove();
+            return;
+          }
+          const total = Math.floor(falta / 1000);
+          campos.dias.textContent = dois(Math.floor(total / 86400));
+          campos.horas.textContent = dois(Math.floor((total % 86400) / 3600));
+          campos.minutos.textContent = dois(Math.floor((total % 3600) / 60));
+          campos.segundos.textContent = dois(total % 60);
+        };
+        atualizar();
+        setInterval(atualizar, 1000);
+      })();
     </script>
   </body>
 </html>

@@ -589,7 +589,45 @@ h3 { font-size: 24px; color: var(--ouro); }
   font-size: 13px;
   font-style: italic;
 }
-
+.contador { margin: 28px auto 8px; text-align: center; }
+.contador-rotulo {
+  margin: 0 0 12px;
+  color: var(--ouro);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.contador-numeros {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 0;
+}
+.contador-numeros span { min-width: 64px; }
+.contador-numeros strong {
+  display: block;
+  color: var(--titulo);
+  font-family: var(--serifa);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1;
+}
+.contador-numeros small {
+  display: block;
+  margin-top: 4px;
+  color: var(--mudo);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.grade-ingressos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 420px));
+  justify-content: center;
+  gap: 18px;
+  margin-top: 28px;
+}
 .escassez { max-width: 420px; margin: 28px auto 8px; }
 .escassez-topo, .escassez p { display: flex; justify-content: space-between; font-size: 14px; }
 .escassez-topo span { font-weight: 600; color: var(--texto); }
@@ -939,7 +977,7 @@ body.editando [contenteditable="true"]:focus {
   h3 { font-size: 22px; }
   .experiencia .continuacao { font-size: 24px; }
   .secao { padding: 44px 0; }
-  .grade-3, .grade-4, .sobre-grid, .rodape-cols,
+  .grade-3, .grade-4, .grade-ingressos, .sobre-grid, .rodape-cols,
   .palestrantes .grade-3 { grid-template-columns: 1fr; }
   .sobre-grid {
     grid-template-areas:
