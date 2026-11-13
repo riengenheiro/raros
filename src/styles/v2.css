@@ -1529,6 +1529,9 @@ body.editando [contenteditable="true"]:focus {
 .topbar-frase { text-align: center; }
 
 .hero h1 { font-size: 3rem; }
+@container palco (max-width: 700px) {
+  .hero h1 { font-size: 2rem; }
+}
 .hero-sub {
   max-width: 620px;
   margin: 24px auto 0;
@@ -1664,7 +1667,7 @@ body.editando [contenteditable="true"]:focus {
 .palestrante .bio-palestrante { margin-top: 12px; font-size: 14px; line-height: 1.6; }
 
 @media (max-width: 700px) {
-  .hero h1 { font-size: 2.25rem; }
+  .hero h1 { font-size: 2rem; }
   .dados { grid-template-columns: 1fr; }
   .linha-do-dia li { grid-template-columns: 1fr; gap: 4px; }
   .reconhece h2 { font-size: 28px; }
