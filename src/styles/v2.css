@@ -1550,6 +1550,13 @@ body.editando [contenteditable="true"]:focus {
   color: var(--ouro-claro);
   border: 1px solid var(--ouro);
 }
+.grade-ingressos .lote-tipo { margin-top: 8px; }
+.grade-ingressos .preco-linha { margin-top: 18px; }
+.grade-ingressos .a-vista { margin: 10px 0 0; }
+.grade-ingressos .lote-nota { margin-top: 14px; font-size: 13px; line-height: 1.5; }
+.grade-ingressos .lote-nota + .lote-nota { margin-top: 6px; }
+.grade-ingressos .btn { margin-top: 24px; }
+.grade-ingressos .via { margin-top: 14px; }
 .edicao .elementor-heading-title {
   margin: 0 0 16px;
   color: var(--ouro);
