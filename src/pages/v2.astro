@@ -115,7 +115,7 @@ const mapa =
     <title>RAROS · Descubra em que temperatura está o seu termostato · Campinas, 5/12</title>
     <meta
       name="description"
-      content="Sábado, 5 de dezembro, no Tênis Clube de Campinas. Lote 1 a R$ 97 até 15 de novembro. Descubra em que temperatura o seu termostato está regulado."
+      content="Sábado, 5 de dezembro, no Tênis Clube de Campinas. Lote 1 a R$ 97 até 22 de novembro. Descubra em que temperatura o seu termostato está regulado."
     />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
@@ -403,7 +403,7 @@ const mapa =
                 <span class="preco-moeda">R$</span><span class="preco">97</span>
               </p>
               <p class="a-vista">à vista ou em até 12x no cartão</p>
-              <p class="lote-nota">Em 16/11 o ingresso passa a R$ 197. Sem exceções.</p>
+              <p class="lote-nota">Em 23/11 o ingresso passa a R$ 197. Sem exceções.</p>
               <a
                 class="btn btn-bloco"
                 href={evento.links.individual}
@@ -570,7 +570,7 @@ const mapa =
             <summary>Posso levar acompanhantes?</summary>
             <p>
               Cada pessoa precisa do próprio ingresso. Quem não é sócio do Tênis Clube compra o lote
-              1, a R$ 97, até 15 de novembro. O valor de sócio vale apenas para quem apresenta a
+              1, a R$ 97, até 22 de novembro. O valor de sócio vale apenas para quem apresenta a
               carteirinha do Tênis Clube de Campinas.
             </p>
           </details>
@@ -669,9 +669,9 @@ const mapa =
               intervalos e horário de almoço.
             </li>
             <li>
-              <strong>Ingressos:</strong> não sócio: lote 1 a R$ 97 até 15 de novembro de 2026,
-              às 23h59; lote 2 a R$ 197 de 16 a 22 de novembro; lote 3 a R$ 397 a partir de 23 de
-              novembro. Sócio do Tênis Clube: R$ 47 em qualquer lote, com apresentação da
+              <strong>Ingressos:</strong> não sócio: lote 1 a R$ 97 até 22 de novembro de 2026,
+              às 23h59; a partir de 23 de novembro, R$ 197. Sócio do Tênis Clube: R$ 47 em qualquer
+              lote, com apresentação da
               carteirinha no credenciamento. Cada ingresso vale para 1 pessoa.
             </li>
             <li>
@@ -769,7 +769,7 @@ const mapa =
         const atualizar = () => {
           const falta = fim - Date.now();
           if (falta <= 0) {
-            if (rotulo) rotulo.textContent = "O lote 1 encerrou em 15/11, às 23h59.";
+            if (rotulo) rotulo.textContent = "O lote 1 encerrou em 22/11, às 23h59.";
             caixa.querySelector(".contador-numeros")?.remove();
             if (topo) topo.textContent = "Encerrou";
             return;
