@@ -1,0 +1,4 @@
+# Quem entra em /clube cai na página v2 já com o código do afiliado.
+# 302 (temporário): o código pode mudar sem ficar gravado no navegador.
+/clube   /v2/?ref=S108575051Q  302
+/clube/  /v2/?ref=S108575051Q  302
